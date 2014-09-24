@@ -22,6 +22,7 @@ public class Core
 		//getting rid of the border (pseudo fullscreen now created)
 		frame.setUndecorated(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.add(new Screen(frame));
 		frame.setVisible(true);
 	}
 }
