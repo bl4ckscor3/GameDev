@@ -1,7 +1,16 @@
 package bl4ckscor3.game.GameDev.core;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import bl4ckscor3.game.GameDev.listener.Key;
+import bl4ckscor3.game.GameDev.listener.Mouse;
+import bl4ckscor3.game.GameDev.listener.MouseMotion;
+import bl4ckscor3.game.GameDev.resources.ImageLibrary;
+import bl4ckscor3.game.GameDev.util.DebugUI;
+import bl4ckscor3.game.GameDev.world.Map;
 
 /**
  * bl4ckscor3 - 24.09.2014
@@ -9,10 +18,17 @@ import javax.swing.JPanel;
 public class Screen extends JPanel implements Runnable
 {
 	private Thread  thread = new Thread(this);
+	private Map map = new Map();
 	private int tps = 0;
 	private int fps = 0;
+	private int pixelSize = 3;
+	public static boolean shouldDisplayDebug = false;
+	
 	public Screen(JFrame frame)
 	{
+		frame.addKeyListener(new Key());
+		frame.addMouseListener(new Mouse());
+		frame.addMouseMotionListener(new MouseMotion());
 		thread.start();
 	}
 	
@@ -57,14 +73,31 @@ public class Screen extends JPanel implements Runnable
 				fps = frames;
 				ticks = 0;
 				frames = 0;
-				
-				System.out.println("TPS: " + tps);
-				System.out.println("FPS: " + fps);
 			}
 		}
 	}
 	
 	private void update()
 	{
+	}
+	
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		int imageWidth = 16;
+		int imageHeigth = 16;
+		
+		g.clearRect(0, 0, Core.SCREEN_WIDTH, Core.SCREEN_HEIGHT); //making sure to not print stuff outside of screen, also clears screen
+		
+		for(int x = 0; x < 20; x++)
+		{
+			for(int y = 0; y < 20; y++)
+			{
+				g.drawImage(ImageLibrary.GRASS, x * imageWidth * pixelSize, y * imageHeigth * pixelSize, imageWidth * pixelSize, imageHeigth * pixelSize, null);
+			}
+		}
+		
+		if(shouldDisplayDebug)
+			DebugUI.displayDebugUI(g);
 	}
 }
