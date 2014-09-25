@@ -20,7 +20,7 @@ public class Screen extends JPanel implements Runnable
 	private Thread  thread = new Thread(this);
 	private Map map = new Map();
 	private int tps = 0;
-	private int fps = 0;
+	public static int fps = 0;
 	private int pixelSize = 3;
 	public static boolean shouldDisplayDebug = false;
 	
