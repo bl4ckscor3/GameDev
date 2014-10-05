@@ -1,19 +1,12 @@
 package bl4ckscor3.game.GameDev.game;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.JPanel;
-
-import bl4ckscor3.game.GameDev.resources.ImageLibrary;
+import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
 {
 	public Screen screen;
-	public Map map;
+	public static Map map;
 	public static GameThread thread;
 	public int fps;
 	public int ups;
@@ -22,12 +15,17 @@ public class Game
 
 	public Game()
 	{
-		map = new Map();
+		Player player = new Player();
+		
+		map = new Map(player);
 		//starts the game thread
 		thread = new GameThread();
 	}
 
-	public static void update(){}
+	public static void update()
+	{
+		map.checkChunks();
+	}
 
 	/**
 	 * starts the game
