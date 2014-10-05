@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl4ckscor3.game.GameDev.core.Screen;
+import bl4ckscor3.game.GameDev.game.Screen;
 
 public class Key implements KeyListener
 {
