@@ -1,16 +1,16 @@
 package bl4ckscor3.game.GameDev.world;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 
 public class Map
 {
-	private List<Chunk> loadedChunks = new ArrayList<Chunk>();
+	public List<Chunk> loadedChunks = new CopyOnWriteArrayList<Chunk>();
 	private final int chunkAmountX = 5;
 	private final int chunkAmountY = 5;
-	private Player player;
+	public Player player;
 	
 	public Map(Player p)
 	{
@@ -41,7 +41,6 @@ public class Map
 				//loaded chunk at this position?
 				if(!loadedChunks.contains(new Chunk(x, y)))
 				{
-					System.out.println("load chunk");
 					Chunk c = new Chunk(x, y);
 					
 					loadedChunks.add(c);
@@ -55,9 +54,9 @@ public class Map
 		for(Chunk c : loadedChunks)
 		{
 			//is the chunk too far away?
-			if(c.chunkX > playerChunkX + (chunkAmountX - 1) / 2 && c.chunkX < playerChunkX - (chunkAmountX - 1) / 2 || c.chunkY > playerChunkY + (chunkAmountY - 1) / 2 && c.chunkY < playerChunkY - (chunkAmountY - 1) / 2)
+			if(c.chunkX > playerChunkX + (chunkAmountX - 1) / 2 || c.chunkX < playerChunkX - (chunkAmountX - 1) / 2 || c.chunkY > playerChunkY + (chunkAmountY - 1) / 2 || c.chunkY < playerChunkY - (chunkAmountY - 1) / 2)
 			{
-				System.out.println("unload chunk");
+				loadedChunks.remove(c);
 			}
 		}
 	}

@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
-import bl4ckscor3.game.GameDev.resources.ImageLibrary;
 import bl4ckscor3.game.GameDev.util.DebugUI;
+import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 
 {
@@ -37,12 +37,18 @@ public class Screen extends JPanel
 
 	private void renderBackground(Graphics g)
 	{
-		for(int x = 0; x < 20; x++)
+//		for(int x = 0; x < 20; x++)
+//		{
+//			for(int y = 0; y < 20; y++)
+//			{
+//				g.drawImage(ImageLibrary.GRASS, x * tileSize * pixelSize, y * tileSize * pixelSize, tileSize * pixelSize, tileSize * pixelSize, null);
+//			}
+//		}
+		
+		//drawing "chunks"
+		for(Chunk c : Game.map.loadedChunks)
 		{
-			for(int y = 0; y < 20; y++)
-			{
-				g.drawImage(ImageLibrary.GRASS, x * tileSize * pixelSize, y * tileSize * pixelSize, tileSize * pixelSize, tileSize * pixelSize, null);
-			}
+			g.drawLine(100 + c.chunkX * 5, 100 + c.chunkY * 5, 100 + c.chunkX * 5, 100 + c.chunkY * 5);
 		}
 	}
 

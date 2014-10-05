@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 
 import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
@@ -26,6 +27,10 @@ public class DebugUI
 		//mouse position
 		g.drawString("Horizontal mouse position: " + MouseMotion.mouseX, Main.screen.width - 360, 15);
 		g.drawString("Vertical mouse position: " + MouseMotion.mouseY, Main.screen.width - 360, 30);
+		
+		//player position
+		g.drawString("Player position X: " + Game.map.player.posX, Main.screen.width - 360, 60);
+		g.drawString("Player position Y: " + Game.map.player.posY, Main.screen.width - 360, 75);
 		
 		//fps
 		g.drawString("FPS: " + GameThread.fps, Main.screen.width - 91, 15);
