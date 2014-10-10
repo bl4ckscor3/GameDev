@@ -41,8 +41,8 @@ public class DebugUI
 	public static void drawChunkLines(Graphics g, Chunk c)
 	{
 		//vertical lines
-		g.drawLine(c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize, 0, c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize, Screen.height);
+		g.drawLine(c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.map.player.posX * Screen.tileSize * Screen.pixelSize, 0, c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.map.player.posX * Screen.tileSize * Screen.pixelSize, Screen.height);
 		//horizontal lines
-		g.drawLine(0, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize, Screen.width, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize);
+		g.drawLine(0, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.map.player.posY * Screen.tileSize * Screen.pixelSize, Screen.width, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.map.player.posY * Screen.tileSize * Screen.pixelSize);
 	}
 }

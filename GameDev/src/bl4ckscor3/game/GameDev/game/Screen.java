@@ -45,7 +45,7 @@ public class Screen extends JPanel
 				for(int y = 0; y < c.tiles[0].length; y++)
 				{
 					//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
-					g.drawImage(c.tiles[x][y].texture, x * tileSize * pixelSize + c.chunkX * c.chunkSizeX * tileSize * pixelSize,  y * tileSize * pixelSize + c.chunkY * c.chunkSizeY * tileSize * pixelSize, tileSize * pixelSize, tileSize * pixelSize, null);
+					g.drawImage(c.tiles[x][y].texture, x * tileSize * pixelSize + c.chunkX * c.chunkSizeX * tileSize * pixelSize - Game.map.player.posX * tileSize * pixelSize,  y * tileSize * pixelSize + c.chunkY * c.chunkSizeY * tileSize * pixelSize - Game.map.player.posY * tileSize * pixelSize, tileSize * pixelSize, tileSize * pixelSize, null);
 				}
 			}
 			
