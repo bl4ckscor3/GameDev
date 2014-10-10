@@ -40,17 +40,20 @@ public class Screen extends JPanel
 		//drawing "chunks"
 		for(Chunk c : Game.map.loadedChunks)
 		{
+			int posX = c.chunkX * c.chunkSizeX * tileSize * pixelSize - Game.map.player.posX * tileSize * pixelSize - tileSize * pixelSize / 2 + width / 2;
+			int posY = + c.chunkY * c.chunkSizeY * tileSize * pixelSize - Game.map.player.posY * tileSize * pixelSize - tileSize * pixelSize / 2 + height / 2;
+			
 			for(int x = 0; x < c.tiles.length; x++)
 			{
 				for(int y = 0; y < c.tiles[0].length; y++)
 				{
 					//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
-					g.drawImage(c.tiles[x][y].texture, x * tileSize * pixelSize + c.chunkX * c.chunkSizeX * tileSize * pixelSize - Game.map.player.posX * tileSize * pixelSize + width / 2,  y * tileSize * pixelSize + c.chunkY * c.chunkSizeY * tileSize * pixelSize - Game.map.player.posY * tileSize * pixelSize + height / 2, tileSize * pixelSize, tileSize * pixelSize, null);
+					g.drawImage(c.tiles[x][y].texture, x * tileSize * pixelSize + posX,  y * tileSize * pixelSize + posY, tileSize * pixelSize, tileSize * pixelSize, null);
 				}
 			}
 			
 			if(shouldDisplayDebug)
-				DebugUI.drawChunkLines(g, c);
+				DebugUI.drawChunkLines(g, c, posX, posY);
 		}
 	}
 

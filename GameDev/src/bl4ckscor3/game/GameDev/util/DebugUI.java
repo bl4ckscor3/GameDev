@@ -38,11 +38,11 @@ public class DebugUI
 		g.drawString("FPS: " + GameThread.fps, Main.screen.width - 91, 15);
 	}
 	
-	public static void drawChunkLines(Graphics g, Chunk c)
+	public static void drawChunkLines(Graphics g, Chunk c, int posX, int posY)
 	{
 		//vertical lines
-		g.drawLine(c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.map.player.posX * Screen.tileSize * Screen.pixelSize + Screen.width / 2, 0, c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.map.player.posX * Screen.tileSize * Screen.pixelSize + Screen.width / 2, Screen.height);
+		g.drawLine(posX, 0, posX, Screen.height);
 		//horizontal lines
-		g.drawLine(0, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.map.player.posY * Screen.tileSize * Screen.pixelSize + Screen.height / 2, Screen.width, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.map.player.posY * Screen.tileSize * Screen.pixelSize + Screen.height / 2);
+		g.drawLine(0, posY, Screen.width, posY);
 	}
 }
