@@ -43,6 +43,7 @@ public class Map
 				{
 					Chunk c = new Chunk(x, y);
 					
+					c.populate();
 					loadedChunks.add(c);
 				}
 			}

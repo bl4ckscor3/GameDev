@@ -6,8 +6,10 @@ import java.awt.Graphics;
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.GameThread;
+import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
+import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class DebugUI
 {
@@ -34,5 +36,13 @@ public class DebugUI
 		
 		//fps
 		g.drawString("FPS: " + GameThread.fps, Main.screen.width - 91, 15);
+	}
+	
+	public static void drawChunkLines(Graphics g, Chunk c)
+	{
+		//vertical lines
+		g.drawLine(c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize, 0, c.chunkX * c.chunkSizeX * Screen.tileSize * Screen.pixelSize, Screen.height);
+		//horizontal lines
+		g.drawLine(0, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize, Screen.width, c.chunkY * c.chunkSizeY * Screen.tileSize * Screen.pixelSize);
 	}
 }
