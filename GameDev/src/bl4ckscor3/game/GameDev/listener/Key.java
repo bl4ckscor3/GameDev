@@ -30,6 +30,8 @@ public class Key implements KeyListener
 			else
 				Screen.shouldDisplayDebug = false;
 		}
+		else if(event.getKeyCode() == 27) //ESC
+			System.exit(0);
 	}
 
 	@Override
