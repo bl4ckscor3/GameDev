@@ -55,9 +55,7 @@ public class Map
 		{
 			//is the chunk too far away?
 			if(c.chunkX > playerChunkX + (chunkAmountX - 1) / 2 || c.chunkX < playerChunkX - (chunkAmountX - 1) / 2 || c.chunkY > playerChunkY + (chunkAmountY - 1) / 2 || c.chunkY < playerChunkY - (chunkAmountY - 1) / 2)
-			{
 				loadedChunks.remove(c);
-			}
 		}
 	}
 }
