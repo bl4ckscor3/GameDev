@@ -37,7 +37,7 @@ public class Screen extends JPanel
 
 	private void renderBackground(Graphics g)
 	{
-		//drawing "chunks"
+		//drawing chunks
 		for(Chunk c : Game.map.loadedChunks)
 		{
 			int posX = c.chunkX * c.chunkSizeX * tileSize * pixelSize - Game.map.player.posX * tileSize * pixelSize - tileSize * pixelSize / 2 + width / 2;
