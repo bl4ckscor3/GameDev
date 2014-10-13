@@ -9,6 +9,7 @@ import bl4ckscor3.game.GameDev.world.Map;
 public class Game 
 {
 	public Screen screen;
+	public static int seed;
 	public static Map map;
 	public static GameThread thread;
 	public int fps;
