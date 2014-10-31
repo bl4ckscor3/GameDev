@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.world.Map;
+import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
+import bl4ckscor3.game.GameDev.world.generation.SimplexNoiseOctave;
 
 public class Game 
 {
@@ -21,6 +23,7 @@ public class Game
 	{
 		Player player = new Player();
 		
+		new SimplexNoiseOctave(0);
 		map = new Map(player);
 		//starts the game thread
 		thread = new GameThread();
