@@ -11,7 +11,7 @@ public class SimplexNoise
 	private double[] amplitudes;
 	
 	//random terrain generation
-	public SimplexNoise(int numberOfOctaves, double persistance)
+	public SimplexNoise(int numberOfOctaves, double persistence)
 	{
 		Random r = new Random(Game.seed); //making sure that the random numbers asked for are always the same (sudo-random aka calculated random)
 		
@@ -23,7 +23,19 @@ public class SimplexNoise
 		{
 			octaves[i] = new SimplexNoiseOctave(r.nextInt());
 			frequencies[i] = Math.pow(2, i);
-			amplitudes[i] = Math.pow(persistance, octaves.length - i);
+			amplitudes[i] = Math.pow(persistence, octaves.length - i);
 		}
+	}
+	
+	public double getNoise(int x, int y)
+	{
+		double result = 0;
+		
+		for(int i = 0; i < octaves.length; i++)
+		{
+			result += octaves[i].noise(x / frequencies[i], y / frequencies[i]) * amplitudes[i];
+		}
+		
+		return result;
 	}
 }

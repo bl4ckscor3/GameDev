@@ -1,17 +1,16 @@
 package bl4ckscor3.game.GameDev.game;
 
-import java.awt.event.KeyEvent;
-
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
+import bl4ckscor3.game.GameDev.world.Chunk;
 import bl4ckscor3.game.GameDev.world.Map;
+import bl4ckscor3.game.GameDev.world.generation.ImageWriter;
 import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
-import bl4ckscor3.game.GameDev.world.generation.SimplexNoiseOctave;
 
 public class Game 
 {
 	public Screen screen;
-	public static int seed;
+	public static int seed = 3456;
 	public static Map map;
 	public static GameThread thread;
 	public int fps;
@@ -23,7 +22,6 @@ public class Game
 	{
 		Player player = new Player();
 		
-		new SimplexNoiseOctave(0);
 		map = new Map(player);
 		//starts the game thread
 		thread = new GameThread();
@@ -47,7 +45,7 @@ public class Game
 		}
 	}
 
-	/**
+	/*
 	 * starts the game
 	 */
 	public static void start()
