@@ -25,6 +25,8 @@ public class Key implements KeyListener
 		//toggle of debug ui
 		if(event.getKeyCode() == 114) //F3
 		{
+			System.out.println("I'm here!");
+			
 			if(!Screen.shouldDisplayDebug)
 				Screen.shouldDisplayDebug = true;
 			else
