@@ -22,31 +22,6 @@ public class Game
 	{
 		Player player = new Player();
 
-		//just writing the noise map to a file
-		SimplexNoise sn = new SimplexNoise(7, 0.1);
-		double xStart = 0;
-		double yStart = 0;
-		double xEnd = 200;
-		double yEnd = 200;
-		int xRes = 200;
-		int yRes = 200;
-		double[][] data = new double[xRes][yRes];
-	
-		for(int i = 0; i < xRes; i++)
-		{
-			for(int j = 0; j < yRes; j++)
-			{
-				int x = (int) (xStart + (i * (xEnd - xStart) / xRes));
-				int y = (int) (yStart + (j * (yEnd - yStart) / yRes));
-				double noise = (1 + sn.getNoise(x, y)) / 2; //number between 0 and 1
-				
-				data[i][j] = noise;
-			}
-		}
-		
-		ImageWriter.greyWriteImage(data);
-		//done
-		
 		map = new Map(player);
 		//starts the game thread
 		thread = new GameThread();
