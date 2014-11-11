@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
-import bl4ckscor3.game.GameDev.util.DebugUI;
 import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 

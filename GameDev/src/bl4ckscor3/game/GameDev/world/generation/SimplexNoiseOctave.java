@@ -6,7 +6,7 @@ import java.util.Random;
 public class SimplexNoiseOctave
 {
 	private int swaps = 400;
-	private static short[] p_supply = 
+	private static short[] p_supply =
 		{
 		42, 222, 46, 158, 150, 17, 224, 11, 252, 133, 220, 190, 93, 151, 161, 243, 54, 48, 78, 56, 20, 9,
 		66, 250, 219, 25, 189, 31, 111, 14, 235, 131, 34, 170, 232, 101, 156, 159, 174, 88, 247, 41, 5, 122,
@@ -23,29 +23,35 @@ public class SimplexNoiseOctave
 	private short[] p = p_supply.clone();
 	private short[] perm = new short[512];
 	private short[] permMod12 = new short[512];
-	private Point[] points = {new Point(1, 1), new Point(-1, 1), new Point(1, -1), new Point(-1, -1)};
-	private final double f2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-	private final double g2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-		
+	private Point[] points =
+		{
+			new Point(1, 1),
+			new Point(-1, -1),
+			new Point(-1, 1),
+			new Point(1, -1)
+		};
+	private final double F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
+	private final double G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
+
 	public SimplexNoiseOctave(int seed)
 	{
 		Random r = new Random(seed);
-		
+
 		for (int i = 0; i < swaps; i++)
 		{
 			//swap position of these two numbers in array "p"
 			int origin = r.nextInt(p.length);
 			int destination = r.nextInt(p.length);
 			short temp = p[origin];
-			
+
 			//swapping
 			p[origin] = p[destination];
 			p[destination] = temp;
 		}
-		
+
 		for(int i = 0; i < perm.length; i++)
 		{
-			//see end of class
+			//for "i & 255" see end of class
 			perm[i] = p[i & 255];
 			permMod12[i] = (short) (perm[i] % 4);
 		}
@@ -57,14 +63,22 @@ public class SimplexNoiseOctave
 		double n0;
 		double n1;
 		double n2;
-		double s = (xIn + yIn) * f2;
+		double s = (xIn + yIn) * F2;
 		int i = fastFloor(xIn + s);
 		int j = fastFloor(yIn + s);
-		double t = (i + j) * g2;
+		double t = (i + j) * G2;
 		double X0 = i - t;
 		double Y0 = j - t;
 		double x0 = xIn - X0;
 		double y0 = yIn - Y0;
+		double s = (xIn + yIn) * F2;
+		int i = fastFloor(xIn + s);
+		int j = fastFloor(yIn + s);
+		double t = (i + j) * G2;
+		double X0 = i - t;
+		double Y0 = j - t;
+		double x0 = xIn -X0;
+		double y0 = yIn -Y0;
 		double x1;
 		double y1;
 		double x2;
@@ -91,11 +105,11 @@ public class SimplexNoiseOctave
 			j1 = 1;
 		}
 		
-		x1 = x0 - i1 + g2;
-		y1 = y0 - j1 + g2;
-		x2 = x0 - 1.0 + 2.0 * g2;
-		y2 = y0 - 1.0 + 2.0 * g2;
-		ii = i & 255; //making sure that it's not greater than 255
+		x1 = x0 - i1 + G2;
+		y1 = y0 - j1 + G2;
+		x2 = x0 - 1.0 + 2.0 * G2;
+		y2 = y0 - 1.0 + 2.0 * G2;
+		ii = i & 255; //making sure ii is not greater than 255
 		jj = j & 255;
 		gi0 = permMod12[ii + perm[jj]];
 		gi1 = permMod12[ii + i1 + perm[jj + j1]];
@@ -130,8 +144,8 @@ public class SimplexNoiseOctave
 		
 		return 70 * (n0 + n1 + n2);
 	}
-	
-	//just a useful method
+
+	//multiply p.x with x and p.y with y
 	private double dot(Point p, double x, double y)
 	{
 		return p.x * x + p.y * y;
@@ -144,13 +158,13 @@ public class SimplexNoiseOctave
 		
 		return x < xi ? xi - 1 : xi;
 	}
-	
+
 	//8-bit system
 	//00000101 (5)
 	//00001011 (11)
 	//5 & 11
 	//00000001 (1)
-	
+
 	//16-bit system
 	//00000000 11111111 (255)
 	//00000001 10101100 (428)
