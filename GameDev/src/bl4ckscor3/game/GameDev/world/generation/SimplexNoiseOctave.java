@@ -56,13 +56,10 @@ public class SimplexNoiseOctave
 			permMod12[i] = (short) (perm[i] % 4);
 		}
 	}
-	
+
 	//2d simplex noise
 	public double noise(double xIn, double yIn)
 	{
-		double n0;
-		double n1;
-		double n2;
 		double s = (xIn + yIn) * F2;
 		int i = fastFloor(xIn + s);
 		int j = fastFloor(yIn + s);
@@ -71,14 +68,9 @@ public class SimplexNoiseOctave
 		double Y0 = j - t;
 		double x0 = xIn - X0;
 		double y0 = yIn - Y0;
-		double s = (xIn + yIn) * F2;
-		int i = fastFloor(xIn + s);
-		int j = fastFloor(yIn + s);
-		double t = (i + j) * G2;
-		double X0 = i - t;
-		double Y0 = j - t;
-		double x0 = xIn -X0;
-		double y0 = yIn -Y0;
+		double n0;
+		double n1;
+		double n2;
 		double x1;
 		double y1;
 		double x2;
@@ -93,7 +85,7 @@ public class SimplexNoiseOctave
 		int gi0;
 		int gi1;
 		int gi2;
-		
+
 		if(x0 > y0)
 		{
 			i1 = 1;
@@ -104,7 +96,7 @@ public class SimplexNoiseOctave
 			i1 = 0;
 			j1 = 1;
 		}
-		
+
 		x1 = x0 - i1 + G2;
 		y1 = y0 - j1 + G2;
 		x2 = x0 - 1.0 + 2.0 * G2;
@@ -117,7 +109,7 @@ public class SimplexNoiseOctave
 		t0 = 0.5 - x0 * x0 - y0 * y0;
 		t1 = 0.5 - x1 * x1 - y1 * y1;
 		t2 = 0.5 - x2 * x2 - y2 * y2;
-		
+
 		if(t0 < 0)
 			n0 = 0;
 		else
@@ -125,7 +117,7 @@ public class SimplexNoiseOctave
 			t0 *= t0;
 			n0 = t0 * t0 * dot(points[gi0], x0, y0);
 		}
-		
+
 		if(t1 < 0)
 			n1 = 0;
 		else
@@ -133,7 +125,7 @@ public class SimplexNoiseOctave
 			t1 *= t1;
 			n1 = t1 * t1 * dot(points[gi1], x1, y1);
 		}
-		
+
 		if(t2 < 0)
 			n2 = 0;
 		else
@@ -141,7 +133,7 @@ public class SimplexNoiseOctave
 			t2 *= t2;
 			n2 = t2 * t2 * dot(points[gi2], x2, y2);
 		}
-		
+
 		return 70 * (n0 + n1 + n2);
 	}
 
@@ -150,12 +142,12 @@ public class SimplexNoiseOctave
 	{
 		return p.x * x + p.y * y;
 	}
-	
+
 	//rounding down a double to an int
 	private int fastFloor(double x)
 	{
 		int xi = (int) x;
-		
+
 		return x < xi ? xi - 1 : xi;
 	}
 
