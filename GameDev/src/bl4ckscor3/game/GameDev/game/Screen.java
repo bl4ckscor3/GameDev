@@ -16,7 +16,7 @@ public class Screen extends JPanel
 	public static int height = 720;
 	public static int pixelSize = 3;
 	public static int tileSize = 16;
-	public static boolean shouldDisplayDebug = false;
+	public static boolean shouldDisplayDebug = true;
 
 	public Screen(JFrame frame)
 	{

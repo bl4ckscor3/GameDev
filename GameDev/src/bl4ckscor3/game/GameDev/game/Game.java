@@ -2,10 +2,7 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.util.ImageWriter;
-import bl4ckscor3.game.GameDev.world.Chunk;
 import bl4ckscor3.game.GameDev.world.Map;
-import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
 
 public class Game 
 {
