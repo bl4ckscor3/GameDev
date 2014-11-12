@@ -15,6 +15,6 @@ public class Tile
 	public Tile(Material mat)
 	{
 		material = mat;
-		texture = TextureManager.loadRandomTexture(material.getRandomResourceID(), "grass/", 12);
+		texture = TextureManager.loadRandomTextureFromPath(material.getRandomResourceID(), "grass/", 12);
 	}
 }

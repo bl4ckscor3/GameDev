@@ -12,7 +12,7 @@ public class TextureManager
 		return new ImageIcon("resources/" + resourceID + ".png").getImage();
 	}
 	
-	public static Image loadTexture(String resourceID, String path)
+	public static Image loadTextureFromPath(String resourceID, String path)
 	{
 		return new ImageIcon("resources/" + path + resourceID + ".png").getImage();
 	}
@@ -24,7 +24,7 @@ public class TextureManager
 		return new ImageIcon("resources/" + resourceID + "_" + r.nextInt(textureAmount) + ".png").getImage();
 	}
 	
-	public static Image loadRandomTexture(String resourceID, String path, int textureAmount)
+	public static Image loadRandomTextureFromPath(String resourceID, String path, int textureAmount)
 	{
 		Random r = new Random();
 		
