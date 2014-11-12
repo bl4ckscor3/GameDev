@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
+import bl4ckscor3.game.GameDev.manager.TextureManager;
 import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 
@@ -60,6 +62,8 @@ public class Screen extends JPanel
 
 	private void renderForeground(Graphics g)
 	{
+		g.drawImage(TextureManager.loadTexture("player"), Game.map.player.posX, Game.map.player.posY, 16, 16, null);
+		
 		if(shouldDisplayDebug)
 			DebugUI.displayDebugUI(g);
 	}
