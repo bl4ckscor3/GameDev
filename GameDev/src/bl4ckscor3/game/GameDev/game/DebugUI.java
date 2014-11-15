@@ -38,8 +38,8 @@ public class DebugUI
 	public static void drawChunkLines(Graphics g, Chunk c, int posX, int posY)
 	{
 		//vertical lines
-		g.drawLine(posX, 0, posX, Screen.height);
+		g.drawLine(posX, 0, posX, Main.screen.height);
 		//horizontal lines
-		g.drawLine(0, posY, Screen.width, posY);
+		g.drawLine(0, posY, Main.screen.width, posY);
 	}
 }

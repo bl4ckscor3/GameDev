@@ -14,8 +14,8 @@ import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 
 {
-	public static int width = 1280;
-	public static int height = 720;
+	public int width = 1280;
+	public int height = 720;
 	public static int pixelSize = 3;
 	public static int tileSize = 16;
 	public static boolean shouldDisplayDebug = true;
