@@ -35,7 +35,6 @@ public class Main
 
 		screen = new Screen(frame);
 
-		//screen size is customizable under References.java
 		if(screen.width == 0)
 			screen.width = toolkit.getScreenSize().width;
 		if(screen.height == 0)
