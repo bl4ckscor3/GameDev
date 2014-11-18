@@ -15,7 +15,7 @@ import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 
 {
-	public static int pixelSize = 3;
+	public static float pixelSize = 2.5F;
 	public float pixelScaleWidth;
 	public float pixelScaleHeight;
 	public static int tileSize = 16;
@@ -63,12 +63,13 @@ public class Screen extends JPanel
 		}
 	}
 
-	private void render(Graphics g){}
+	private void render(Graphics g)
+	{
+		g.drawImage(Game.map.player.texture, Main.width / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleHeight / 2), Utilities.ceil(tileSize * pixelSize * pixelScaleWidth), Utilities.ceil(tileSize * pixelSize * pixelScaleHeight), null);
+	}
 
 	private void renderForeground(Graphics g)
 	{
-		g.drawImage(TextureManager.loadTexture("player"), Game.map.player.posX, Game.map.player.posY, 16, 16, null);
-		
 		if(shouldDisplayDebug)
 			DebugUI.displayDebugUI(g);
 	}
