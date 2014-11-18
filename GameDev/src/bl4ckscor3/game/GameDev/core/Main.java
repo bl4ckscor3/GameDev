@@ -2,12 +2,14 @@ package bl4ckscor3.game.GameDev.core;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
+
 
 /**
  * bl4ckscor3 - 23.09.2014
@@ -18,11 +20,18 @@ public class Main
 	public static Game game;
 	private boolean windowBorder = false; //border of the Windows windows (with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static int width = 800;
-	public static int height = 600;
-	
+	public static int width;
+	public static int height;
+
 	public static void main(String[] args)
-	{
+	{	
+		Scanner s = new Scanner(System.in);
+		
+		System.out.println("Controls: WASD - Move | F3 - Debug Menu | ESC - Close game");
+		System.out.println("Enter width: ");
+		width = Integer.parseInt(s.nextLine());
+		System.out.println("Enter height: ");
+		height = Integer.parseInt(s.nextLine());
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
