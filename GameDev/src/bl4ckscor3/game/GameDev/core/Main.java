@@ -1,5 +1,6 @@
 package bl4ckscor3.game.GameDev.core;
 
+import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -15,7 +16,11 @@ public class Main
 {
 	public static Screen screen;
 	public static Game game;
-
+	private boolean windowBorder = false; //border of the Windows windows (with minimize, maximize and close)
+	private boolean fullscreen = windowBorder;
+	public static int width = 1366;
+	public static int height = 780;
+	
 	public static void main(String[] args)
 	{
 		SwingUtilities.invokeLater(new Runnable()
@@ -30,23 +35,37 @@ public class Main
 
 	public Main()
 	{
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		JFrame frame = new JFrame();
+		Dimension maxScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-		screen = new Screen(frame);
-
-		if(screen.width == 0)
-			screen.width = toolkit.getScreenSize().width;
-		if(screen.height == 0)
-			screen.height = toolkit.getScreenSize().height;
-		
-		frame.setTitle("GameDev"); 
-		frame.setSize(screen.width, screen.height);
-		frame.setUndecorated(true);
-		frame.setLocationRelativeTo(null);
-		//getting rid of the border (pseudo fullscreen now created)
-		frame.setUndecorated(true);
+		frame.setTitle("GameDev");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		//setting width and height + border yes/no
+		if(width == 0)
+			width = maxScreenSize.width;
+		
+		if(height == 0)
+			height = maxScreenSize.height;
+		
+		if(width == maxScreenSize.width && height == maxScreenSize.height)
+			fullscreen = true;
+
+		if(fullscreen)
+		{
+			frame.setUndecorated(true);
+			frame.setSize(width, height);
+		}
+		else
+		{
+			frame.getContentPane().setPreferredSize(new Dimension(width, height));
+			frame.pack();
+		}
+		//end
+		
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		screen = new Screen(frame);
 		frame.add(screen);
 		frame.setVisible(true);
 		game = new Game();

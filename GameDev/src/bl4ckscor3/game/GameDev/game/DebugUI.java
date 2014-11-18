@@ -19,27 +19,27 @@ public class DebugUI
 		//currently pressed keys
 		for(int i : Key.keysPressed)
 		{
-			g.drawString("Key Pressed: " + i, Main.screen.width - 120, spaceY);
+			g.drawString("Key Pressed: " + i, Main.width - 120, spaceY);
 			spaceY += 15;
 		}
 
 		//mouse position
-		g.drawString("Horizontal mouse position: " + MouseMotion.mouseX, Main.screen.width - 360, 15);
-		g.drawString("Vertical mouse position: " + MouseMotion.mouseY, Main.screen.width - 360, 30);
+		g.drawString("Horizontal mouse position: " + MouseMotion.mouseX, Main.width - 360, 15);
+		g.drawString("Vertical mouse position: " + MouseMotion.mouseY, Main.width - 360, 30);
 		
 		//player position
-		g.drawString("Player position X: " + Game.map.player.posX, Main.screen.width - 360, 60);
-		g.drawString("Player position Y: " + Game.map.player.posY, Main.screen.width - 360, 75);
+		g.drawString("Player position X: " + Game.map.player.posX, Main.width - 360, 60);
+		g.drawString("Player position Y: " + Game.map.player.posY, Main.width - 360, 75);
 		
 		//fps
-		g.drawString("FPS: " + GameThread.fps, Main.screen.width - 91, 15);
+		g.drawString("FPS: " + GameThread.fps, Main.width - 91, 15);
 	}
 	
 	public static void drawChunkLines(Graphics g, Chunk c, int posX, int posY)
 	{
 		//vertical lines
-		g.drawLine(posX, 0, posX, Main.screen.height);
+		g.drawLine(posX, 0, posX, Main.height);
 		//horizontal lines
-		g.drawLine(0, posY, Main.screen.width, posY);
+		g.drawLine(0, posY, Main.width, posY);
 	}
 }

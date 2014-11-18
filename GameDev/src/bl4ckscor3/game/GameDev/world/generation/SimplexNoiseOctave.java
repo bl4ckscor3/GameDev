@@ -3,6 +3,8 @@ package bl4ckscor3.game.GameDev.world.generation;
 import java.awt.Point;
 import java.util.Random;
 
+import bl4ckscor3.game.GameDev.util.Utilities;
+
 public class SimplexNoiseOctave
 {
 	private int swaps = 400;
@@ -61,8 +63,8 @@ public class SimplexNoiseOctave
 	public double noise(double xIn, double yIn)
 	{
 		double s = (xIn + yIn) * F2;
-		int i = fastFloor(xIn + s);
-		int j = fastFloor(yIn + s);
+		int i = Utilities.fastFloor(xIn + s);
+		int j = Utilities.fastFloor(yIn + s);
 		double t = (i + j) * G2;
 		double X0 = i - t;
 		double Y0 = j - t;
@@ -141,14 +143,6 @@ public class SimplexNoiseOctave
 	private double dot(Point p, double x, double y)
 	{
 		return p.x * x + p.y * y;
-	}
-
-	//rounding down a double to an int
-	private int fastFloor(double x)
-	{
-		int xi = (int) x;
-
-		return x < xi ? xi - 1 : xi;
 	}
 
 	//8-bit system

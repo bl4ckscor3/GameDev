@@ -1,5 +1,6 @@
 package bl4ckscor3.game.GameDev.game;
 
+import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.world.Map;
@@ -13,7 +14,7 @@ public class Game
 	public int ups;
 	public static int mousePosX;
 	public static int mousePosY;
-
+	
 	public Game()
 	{
 		Player player = new Player();
