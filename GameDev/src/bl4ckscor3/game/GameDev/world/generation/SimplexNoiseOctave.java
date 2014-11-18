@@ -63,8 +63,8 @@ public class SimplexNoiseOctave
 	public double noise(double xIn, double yIn)
 	{
 		double s = (xIn + yIn) * F2;
-		int i = Utilities.fastFloor(xIn + s);
-		int j = Utilities.fastFloor(yIn + s);
+		int i = Utilities.floor(xIn + s);
+		int j = Utilities.floor(yIn + s);
 		double t = (i + j) * G2;
 		double X0 = i - t;
 		double Y0 = j - t;

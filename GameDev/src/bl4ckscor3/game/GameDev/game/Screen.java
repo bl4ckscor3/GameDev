@@ -59,7 +59,7 @@ public class Screen extends JPanel
 			}
 			
 			if(shouldDisplayDebug)
-				DebugUI.drawChunkLines(g, c, posX, posY);
+				DebugUI.drawChunkInfo(g, c, posX, posY);
 		}
 	}
 

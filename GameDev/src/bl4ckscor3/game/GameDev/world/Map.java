@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import bl4ckscor3.game.GameDev.entity.Player;
+import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class Map
 {
@@ -24,8 +25,8 @@ public class Map
 	public void checkChunks()
 	{
 		//which chunk the player is currently in
-		int playerChunkX = player.posX / Chunk.chunkSizeX;
-		int playerChunkY = player.posY / Chunk.chunkSizeY;
+		int playerChunkX = Utilities.floor(player.posX / (double) Chunk.chunkSizeX);
+		int playerChunkY = Utilities.floor(player.posY / (double) Chunk.chunkSizeY);
 	
 		unloadChunks(playerChunkX, playerChunkY);
 		loadChunks(playerChunkX, playerChunkY);

@@ -7,7 +7,7 @@ public class Utilities
 	 * @param x - The double to round
 	 * @return - Rounded int
 	 */
-	public static int fastFloor(double x)
+	public static int floor(double x)
 	{
 		int xi = (int) x;
 
