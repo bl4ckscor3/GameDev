@@ -23,6 +23,7 @@ public class Main
 	public static int width;
 	public static int height;
 
+	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT
 	public static void main(String[] args)
 	{	
 		Scanner s = new Scanner(System.in);

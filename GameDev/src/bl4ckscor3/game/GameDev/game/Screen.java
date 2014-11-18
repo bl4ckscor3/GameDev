@@ -20,8 +20,8 @@ public class Screen extends JPanel
 	public float pixelScaleHeight;
 	public static int tileSize = 16;
 	public static boolean shouldDisplayDebug = false;
-	public float optimizedScreenWidth = 1600;
-	public float optimizedScreenHeight = 900;
+	public float optimizedScreenWidth = 1920;
+	public float optimizedScreenHeight = 800;
 	
 	public Screen(JFrame frame)
 	{
