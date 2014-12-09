@@ -18,21 +18,15 @@ public class Main
 {
 	public static Screen screen;
 	public static Game game;
-	private boolean windowBorder = false; //border of the Windows windows (with minimize, maximize and close)
+	private boolean windowBorder = false; //border of Windows' windows (the thing with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static int width;
-	public static int height;
+	public static int width = 1600;
+	public static int height = 900;
 
-	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT
+	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT AND setScreenSize IS ENABLED
 	public static void main(String[] args)
 	{	
-		Scanner s = new Scanner(System.in);
-		
-		System.out.println("Controls: WASD - Move | F3 - Debug Menu | ESC - Close game");
-		System.out.println("Enter width: ");
-		width = Integer.parseInt(s.nextLine());
-		System.out.println("Enter height: ");
-		height = Integer.parseInt(s.nextLine());
+//		setScreenSize();
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
@@ -80,5 +74,16 @@ public class Main
 		frame.setVisible(true);
 		game = new Game();
 		Game.start();
+	}
+	
+	private static void setScreenSize() 
+	{
+		Scanner s = new Scanner(System.in);
+	
+		System.out.println("Controls: WASD - Move | F3 - Debug Menu | ESC - Close game");
+		System.out.println("Enter width: ");
+		width = Integer.parseInt(s.nextLine());
+		System.out.println("Enter height: ");
+		height = Integer.parseInt(s.nextLine());
 	}
 }
