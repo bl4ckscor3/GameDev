@@ -14,7 +14,7 @@ public class Chunk
 	public int chunkX;
 	//y position of whole chunk
 	public int chunkY;
-	public Tile[][] tiles = tiles = new Tile[chunkSizeX][chunkSizeY];;
+	public Tile[][] tiles = new Tile[chunkSizeX][chunkSizeY];;
 
 	public Chunk(int x, int y)
 	{
