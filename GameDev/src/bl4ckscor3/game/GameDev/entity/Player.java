@@ -8,10 +8,20 @@ public class Player
 {
 	public int posX;
 	public int posY;
-	public Image texture;
+	private Image texture;
 	
 	public Player()
 	{
-		texture = TextureManager.loadTexture("player");
+		setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+	}
+	
+	public void setTexture(Image texture)
+	{
+		this.texture = texture;
+	}
+	
+	public Image getTexture() 
+	{
+		return texture;
 	}
 }

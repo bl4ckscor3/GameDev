@@ -2,6 +2,7 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
+import bl4ckscor3.game.GameDev.manager.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
@@ -28,19 +29,31 @@ public class Game
 		map.checkChunks();
 
 		//making the player able to only move every other tick
-		if(moveTimer % 2 == 0)
+		if(moveTimer % 4 == 0)
 		{
 			//update keys
 			for(int key : Key.keysPressed)
 			{
 				if(key == 87 || key == 38) //w or up arrow
+				{
 					map.player.posY--;
+					map.player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
+				}
 				else if(key == 65 || key == 37) //a or left arrow
+				{
 					map.player.posX--;
+					map.player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
+				}
 				else if(key == 83 || key == 40) //s or down arrow
+				{
 					map.player.posY++;
+					map.player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+				}
 				else if(key == 68 || key == 39) //d or right arrow
+				{
 					map.player.posX++;
+					map.player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
+				}
 			}
 		}
 	}

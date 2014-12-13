@@ -65,7 +65,7 @@ public class Screen extends JPanel
 
 	private void render(Graphics g)
 	{
-		g.drawImage(Game.map.player.texture, Main.width / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleHeight / 2), Utilities.ceil(tileSize * pixelSize * pixelScaleWidth), Utilities.ceil(tileSize * pixelSize * pixelScaleHeight), null);
+		g.drawImage(Game.map.player.getTexture(), Main.width / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(tileSize * pixelSize * pixelScaleHeight / 2) - 6, 32, 41, null);
 	}
 
 	private void renderForeground(Graphics g)
