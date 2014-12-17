@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.content;
+package bl4ckscor3.game.GameDev.world.content;
 
 import java.util.ArrayList;
 import java.util.List;

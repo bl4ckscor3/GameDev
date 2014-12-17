@@ -1,37 +1,74 @@
 package bl4ckscor3.game.GameDev.world;
 
+import java.awt.Graphics;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import bl4ckscor3.game.GameDev.entity.Player;
+import bl4ckscor3.game.GameDev.entity.Entity;
+import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class Map
 {
 	public List<Chunk> loadedChunks = new CopyOnWriteArrayList<Chunk>();
+	public List<Entity> loadedEntities = new CopyOnWriteArrayList<Entity>();
 	private final int chunkAmountX = 5;
 	private final int chunkAmountY = 5;
-	public Player player;
 	
-	public Map(Player p)
+	public Map()
 	{
-		player = p;
 		checkChunks();
 	}
 	
 	/**
-	 * loading/unloading chunks
+	 * Renders all the chunks and entities
+	 */
+	public void render(Graphics g)
+	{
+		for(Chunk c : loadedChunks)
+		{
+			c.render(g);
+		}
+		
+		for(Entity e : loadedEntities)
+		{
+			e.render(g);
+		}
+	}
+	
+	public void tick()
+	{
+		checkChunks();
+		
+		for(Chunk c : loadedChunks)
+		{
+			c.tick();
+		}
+		
+		for(Entity e : loadedEntities)
+		{
+			e.tick();
+		}
+	}
+	
+	/**
+	 * Loading and unloading the chunks
 	 */
 	public void checkChunks()
 	{
 		//which chunk the player is currently in
-		int playerChunkX = Utilities.floor(player.posX / (double) Chunk.chunkSizeX);
-		int playerChunkY = Utilities.floor(player.posY / (double) Chunk.chunkSizeY);
+		int playerChunkX = Utilities.floor(Game.player.position.x / (double) Chunk.chunkSizeX);
+		int playerChunkY = Utilities.floor(Game.player.position.y / (double) Chunk.chunkSizeY);
 	
 		unloadChunks(playerChunkX, playerChunkY);
 		loadChunks(playerChunkX, playerChunkY);
 	}
 	
+	/**
+	 * Loads all the chunk withing the player's range
+	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
+	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
+	 */
 	public void loadChunks(int playerChunkX, int playerChunkY)
 	{
 		//checking each row from the chunk on the left to the chunk on the right (5 chunks)
@@ -51,6 +88,11 @@ public class Map
 		}
 	}
 	
+	/**
+	 * Unloads all the chunks outside of the player's range
+	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
+	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
+	 */
 	private void unloadChunks(int playerChunkX, int playerChunkY)
 	{
 		for(Chunk c : loadedChunks)
@@ -59,5 +101,11 @@ public class Map
 			if(c.chunkX > playerChunkX + (chunkAmountX - 1) / 2 || c.chunkX < playerChunkX - (chunkAmountX - 1) / 2 || c.chunkY > playerChunkY + (chunkAmountY - 1) / 2 || c.chunkY < playerChunkY - (chunkAmountY - 1) / 2)
 				loadedChunks.remove(c);
 		}
+	}
+	
+	public void spawnEntity(Entity e, int x, int y)
+	{
+		e.position.set(x, y);
+		loadedEntities.add(e);
 	}
 }

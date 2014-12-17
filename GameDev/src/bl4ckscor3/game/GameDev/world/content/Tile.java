@@ -1,10 +1,13 @@
-package bl4ckscor3.game.GameDev.content;
+package bl4ckscor3.game.GameDev.world.content;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl4ckscor3.game.GameDev.manager.TextureManager;
+import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.util.TextureManager;
+import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class Tile
 {
@@ -54,5 +57,31 @@ public class Tile
 	{
 		material = mat;
 		texture = TextureManager.loadRandomTextureFromPath(material.getResourceID(mat), path, textureAmount);
+	}
+
+	public void tick(){}
+	
+	/**
+	 * Test rendering
+	 */
+	public void render(Graphics g)
+	{
+		render(g, 0, 0);
+	}
+	
+	/**
+	 * Rendering the tile without the width and height
+	 */
+	public void render(Graphics g, int x, int y)
+	{
+		g.drawImage(texture, x, y, Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleWidth), Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleHeight), null);
+	}
+	
+	/**
+	 * Rendering the tile
+	 */
+	public void render(Graphics g, int x, int y, int width, int height)
+	{
+		g.drawImage(texture, x, y, width, height, null);
 	}
 }

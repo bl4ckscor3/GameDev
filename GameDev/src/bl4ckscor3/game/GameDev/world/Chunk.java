@@ -1,7 +1,13 @@
 package bl4ckscor3.game.GameDev.world;
 
-import bl4ckscor3.game.GameDev.content.Material;
-import bl4ckscor3.game.GameDev.content.Tile;
+import java.awt.Graphics;
+
+import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.util.DebugUI;
+import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.GameDev.world.content.Material;
+import bl4ckscor3.game.GameDev.world.content.Tile;
 import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
 
 public class Chunk
@@ -22,6 +28,9 @@ public class Chunk
 		chunkY = y;
 	}
 
+	/**
+	 * Determines which material to draw
+	 */
 	public void populate()
 	{
 		SimplexNoise sn = new SimplexNoise(7, 0.1);
@@ -65,6 +74,39 @@ public class Chunk
 				}
 
 				data[i][j] = noise;
+			}
+		}
+	}
+
+	/**
+	 * Renders the current chunk
+	 */
+	public void render(Graphics g)
+	{
+		//drawing chunks
+		int posX = Utilities.ceil((chunkX * chunkSizeX * Main.screen.tileSize * Main.screen.pixelSize - Game.player.position.x * Main.screen.tileSize * Main.screen.pixelSize - Main.screen.tileSize * Main.screen.pixelSize / 2) * Main.screen.pixelScaleWidth + Main.width / 2);
+		int posY = Utilities.ceil((chunkY * chunkSizeY * Main.screen.tileSize * Main.screen.pixelSize - Game.player.position.y * Main.screen.tileSize * Main.screen.pixelSize - Main.screen.tileSize * Main.screen.pixelSize / 2) * Main.screen.pixelScaleHeight + Main.height / 2);
+
+		for(int x = 0; x < tiles.length; x++)
+		{
+			for(int y = 0; y < tiles[0].length; y++)
+			{
+				//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
+				tiles[x][y].render(g, Utilities.ceil(x * Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(y * Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
+			}
+		}
+
+		if(Main.screen.shouldDisplayDebug)
+			DebugUI.drawChunkInfo(g, this, posX, posY);
+	}
+	
+	public void tick()
+	{
+		for(int x = 0; x < tiles.length; x++)
+		{
+			for(int y = 0; y < tiles[0].length; y++)
+			{
+				tiles[x][y].tick();
 			}
 		}
 	}

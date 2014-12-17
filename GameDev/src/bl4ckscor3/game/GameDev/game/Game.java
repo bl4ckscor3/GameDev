@@ -2,31 +2,38 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.manager.TextureManager;
+import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
 {
 	public static int seed = 123456789;
 	public static Map map;
+	public static Player player;
 	public static GameThread thread;
 	public int fps;
 	public int ups;
 	public static int mousePosX;
 	public static int mousePosY;
+	public static Game instance;
 
 	public Game()
 	{
-		Player player = new Player();
-
-		map = new Map(player);
+		instance = this;
+		player = new Player();
+		map = new Map();
+		//spawning of the entities
+		map.spawnEntity(player, 0, 0);
 		//starts the game thread
 		thread = new GameThread();
 	}
 
-	public static void update(int moveTimer)
+	/**
+	 * Updates the screen every tick
+	 */
+	public static void tick(int moveTimer)
 	{
-		map.checkChunks();
+		map.tick();
 
 		//making the player able to only move every other tick
 		if(moveTimer % 4 == 0)
@@ -36,23 +43,23 @@ public class Game
 			{
 				if(key == 87 || key == 38) //w or up arrow
 				{
-					map.player.posY--;
-					map.player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
+					player.position.y--;
+					player.texture = TextureManager.loadTextureFromPath("playerBack", "player/");
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
-					map.player.posX--;
-					map.player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
+					player.position.x--;
+					player.texture = TextureManager.loadTextureFromPath("playerLeft", "player/");
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
-					map.player.posY++;
-					map.player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+					player.position.y++;
+					player.texture = TextureManager.loadTextureFromPath("playerFacing", "player/");
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
-					map.player.posX++;
-					map.player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
+					player.position.x++;
+					player.texture = TextureManager.loadTextureFromPath("playerRight", "player/");
 				}
 			}
 		}

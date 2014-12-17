@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.manager;
+package bl4ckscor3.game.GameDev.util;
 
 import java.awt.Image;
 import java.util.Random;

@@ -1,27 +1,17 @@
 package bl4ckscor3.game.GameDev.entity;
 
+import java.awt.Graphics;
 import java.awt.Image;
 
-import bl4ckscor3.game.GameDev.manager.TextureManager;
+import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.util.TextureManager;
+import bl4ckscor3.game.GameDev.util.Utilities;
 
-public class Player
+public class Player extends Entity
 {
-	public int posX;
-	public int posY;
-	private Image texture;
-	
 	public Player()
 	{
-		setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
-	}
-	
-	public void setTexture(Image texture)
-	{
-		this.texture = texture;
-	}
-	
-	public Image getTexture() 
-	{
-		return texture;
+		super(TextureManager.loadTextureFromPath("playerFacing", "player/"));
 	}
 }
