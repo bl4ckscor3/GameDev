@@ -16,6 +16,10 @@ public class PauseMenu
 	public static Point[] optionLocations;
 	public static int selectedOption;
 	
+	/**
+	 * Showing the menu in all its glory
+	 * @param g - The Graphics to draw with
+	 */
 	public static void show(Graphics g)
 	{
 		String[] options =
