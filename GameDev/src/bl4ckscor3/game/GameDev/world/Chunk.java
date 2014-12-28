@@ -96,7 +96,7 @@ public class Chunk
 			}
 		}
 
-		if(Main.screen.shouldDisplayDebug)
+		if(Main.screen.displayDebug)
 			DebugUI.drawChunkInfo(g, this, posX, posY);
 	}
 	

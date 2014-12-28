@@ -11,9 +11,6 @@ import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
 import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.util.DebugUI;
-import bl4ckscor3.game.GameDev.util.TextureManager;
-import bl4ckscor3.game.GameDev.util.Utilities;
-import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class Screen extends JPanel 
 {
@@ -21,7 +18,8 @@ public class Screen extends JPanel
 	public float pixelScaleWidth;
 	public float pixelScaleHeight;
 	public static int tileSize = 16;
-	public static boolean shouldDisplayDebug = false;
+	public static boolean displayDebug = false;
+	public static boolean debugWasShown = false;
 	public float optimizedScreenWidth = 1920;
 	public float optimizedScreenHeight = 1080;
 	
@@ -40,11 +38,19 @@ public class Screen extends JPanel
 		//clears screen
 		g.clearRect(0, 0, Main.width, Main.height);
 		Game.map.render(g);
-		
-		if(shouldDisplayDebug)
-			DebugUI.displayDebugUI(g);
-		
+
 		if(Game.isPaused())
+		{
+			if(displayDebug)
+			{
+				displayDebug = false;
+				debugWasShown = true;
+			}
+			
 			PauseMenu.show(g);
+		}
+		
+		if(displayDebug)
+			DebugUI.displayDebugUI(g);
 	}
 }
