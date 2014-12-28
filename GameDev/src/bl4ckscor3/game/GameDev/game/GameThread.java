@@ -6,7 +6,7 @@ public class GameThread extends Thread implements Runnable
 {
 	private int tps = 0;
 	public static int fps = 0;
-	
+
 	@Override
 	public void run()
 	{
@@ -21,26 +21,28 @@ public class GameThread extends Thread implements Runnable
 		long nextGameTick = System.currentTimeMillis(); //next tick to update
 		long nextFrameTick = System.currentTimeMillis();
 		long time = System.currentTimeMillis();
-		
+
 		while(true)
 		{
 			loops = 0;
-			
+
 			while(System.currentTimeMillis() > nextGameTick && loops < maxFrameSkips)
 			{
-				Game.tick(ticks);
+				if(!Game.isPaused())
+					Game.tick(ticks);
+				
 				nextGameTick += gameSkipTicks; //makes sure to wait 16ms before updating again
 				ticks++;
 				loops++;
 			}
-			
+
 			if(System.currentTimeMillis() > nextFrameTick)
 			{
 				nextFrameTick += frameSkipTicks;
 				Main.screen.repaint();
 				frames++;
 			}
-			
+
 			if(time + 1000 <= System.currentTimeMillis())
 			{
 				time += 1000;

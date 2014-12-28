@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
 
 public class Key implements KeyListener
@@ -30,8 +31,14 @@ public class Key implements KeyListener
 			else
 				Screen.shouldDisplayDebug = false;
 		}
+		//pausing and unpausing
 		else if(event.getKeyCode() == 27) //ESC
-			System.exit(0);
+		{
+			if(!Game.isPaused())
+				Game.pause();
+			else
+				Game.unpause();
+		}
 	}
 
 	@Override

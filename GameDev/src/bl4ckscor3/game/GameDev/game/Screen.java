@@ -9,6 +9,7 @@ import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
+import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.util.DebugUI;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.util.Utilities;
@@ -33,6 +34,7 @@ public class Screen extends JPanel
 		frame.addMouseMotionListener(new MouseMotion());
 	}
 
+	@Override
 	public void paintComponent(Graphics g)
 	{
 		//clears screen
@@ -41,5 +43,8 @@ public class Screen extends JPanel
 		
 		if(shouldDisplayDebug)
 			DebugUI.displayDebugUI(g);
+		
+		if(Game.isPaused())
+			PauseMenu.show(g);
 	}
 }

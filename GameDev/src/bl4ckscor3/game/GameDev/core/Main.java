@@ -10,10 +10,6 @@ import javax.swing.SwingUtilities;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
 
-
-/**
- * bl4ckscor3 - 23.09.2014
- */
 public class Main
 {
 	public static Screen screen;

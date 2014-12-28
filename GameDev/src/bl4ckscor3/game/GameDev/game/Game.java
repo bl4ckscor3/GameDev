@@ -16,6 +16,7 @@ public class Game
 	public static int mousePosX;
 	public static int mousePosY;
 	public static Game instance;
+	private static boolean pause = false;
 
 	public Game()
 	{
@@ -71,5 +72,31 @@ public class Game
 	public static void start()
 	{
 		thread.start();
+	}
+
+	/**
+	 * Pauses the game
+	 */
+	public static void pause()
+	{
+		if(!isPaused())
+			pause = true;
+	}
+
+	/**
+	 * Unpauses the game
+	 */
+	public static void unpause()
+	{
+		if(isPaused())
+			pause = false;
+	}
+
+	/**
+	 * Checks if the game is paused
+	 */
+	public static boolean isPaused()
+	{
+		return pause;
 	}
 }

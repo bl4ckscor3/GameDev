@@ -1,5 +1,8 @@
 package bl4ckscor3.game.GameDev.util;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
 public class Utilities
 {
 	/**
@@ -24,5 +27,16 @@ public class Utilities
 		int xi = (int) x;
 		
 		return x > xi ? xi + 1 : xi;
+	}
+	
+	/**
+	 * Draws a String on the screen using a Point instead of x y
+	 * @param g - The Graphics to draw with
+	 * @param s - The String to draw
+	 * @param p - The coordinates of the String
+	 */
+	public static void drawStringAtPoint(Graphics g, String s, Point p)
+	{
+		g.drawString(s, p.x, p.y);
 	}
 }
