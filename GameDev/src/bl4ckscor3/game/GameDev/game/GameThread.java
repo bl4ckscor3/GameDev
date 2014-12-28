@@ -24,6 +24,11 @@ public class GameThread extends Thread implements Runnable
 
 		while(true)
 		{
+			if(Game.isPaused())
+				ticksPerSecond = 500;
+			else
+				ticksPerSecond = 50;
+			
 			loops = 0;
 
 			while(System.currentTimeMillis() > nextGameTick && loops < maxFrameSkips)
