@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
@@ -74,7 +75,7 @@ public class Tile
 	 */
 	public void render(Graphics g, int x, int y)
 	{
-		g.drawImage(texture, x, y, Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleWidth), Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleHeight), null);
+		g.drawImage(texture, x, y, Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth), Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight), null);
 	}
 	
 	/**

@@ -5,6 +5,7 @@ import java.awt.Image;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
 import com.sun.javafx.geom.Vec2f;
@@ -22,7 +23,7 @@ public class Entity
 	
 	public void render(Graphics g)
 	{
-		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 6, 32, 41, null);	
+		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 6, 32, 41, null);	
 	}
 	
 	public void tick(){}

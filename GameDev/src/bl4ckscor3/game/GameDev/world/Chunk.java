@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.DebugUI;
 import bl4ckscor3.game.GameDev.util.Utilities;
 import bl4ckscor3.game.GameDev.world.content.Material;
@@ -84,19 +85,19 @@ public class Chunk
 	public void render(Graphics g)
 	{
 		//drawing chunks
-		int posX = Utilities.ceil((chunkX * chunkSizeX * Main.screen.tileSize * Main.screen.pixelSize - Game.player.position.x * Main.screen.tileSize * Main.screen.pixelSize - Main.screen.tileSize * Main.screen.pixelSize / 2) * Main.screen.pixelScaleWidth + Main.width / 2);
-		int posY = Utilities.ceil((chunkY * chunkSizeY * Main.screen.tileSize * Main.screen.pixelSize - Game.player.position.y * Main.screen.tileSize * Main.screen.pixelSize - Main.screen.tileSize * Main.screen.pixelSize / 2) * Main.screen.pixelScaleHeight + Main.height / 2);
+		int posX = Utilities.ceil((chunkX * chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.player.position.x * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) * Main.screen.pixelScaleWidth + Main.width / 2);
+		int posY = Utilities.ceil((chunkY * chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.player.position.y * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) * Main.screen.pixelScaleHeight + Main.height / 2);
 
 		for(int x = 0; x < tiles.length; x++)
 		{
 			for(int y = 0; y < tiles[0].length; y++)
 			{
 				//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
-				tiles[x][y].render(g, Utilities.ceil(x * Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(y * Main.screen.tileSize * Main.screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
+				tiles[x][y].render(g, Utilities.ceil(x * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(y * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
 			}
 		}
 
-		if(Main.screen.displayDebug)
+		if(Screen.displayDebug)
 			DebugUI.drawChunkInfo(g, this, posX, posY);
 	}
 	

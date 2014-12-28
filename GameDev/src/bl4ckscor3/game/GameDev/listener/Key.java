@@ -5,7 +5,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
 
@@ -39,8 +38,8 @@ public class Key implements KeyListener
 				Game.pause();
 			else
 			{
-				if(Main.screen.debugWasShown)
-					Main.screen.displayDebug = true;
+				if(Screen.debugWasShown)
+					Screen.displayDebug = true;
 
 				Game.unpause();
 			}

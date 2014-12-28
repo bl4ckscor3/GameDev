@@ -76,7 +76,7 @@ public class Main
 	{
 		Scanner s = new Scanner(System.in);
 	
-		System.out.println("Controls: Arrow keys OR WASD - Move | F3 - Debug Menu | ESC - Close game");
+		System.out.println("Controls: Arrow keys OR WASD - Move | F3 - Debug Menu | ESC - Pause");
 		System.out.println("Enter width: ");
 		width = Integer.parseInt(s.nextLine());
 		System.out.println("Enter height: ");
