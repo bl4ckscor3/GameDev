@@ -39,7 +39,10 @@ public class Key implements KeyListener
 			else
 			{
 				if(Screen.debugWasShown)
+				{
 					Screen.displayDebug = true;
+					Screen.debugWasShown = false;
+				}
 
 				Game.unpause();
 			}
