@@ -42,7 +42,6 @@ public class Game
 	{
 		if(Menu.getState() != Menu.STATE_MAIN)
 		{
-			System.out.println("hi");
 			map.tick();
 
 			//making the player able to only move every other tick

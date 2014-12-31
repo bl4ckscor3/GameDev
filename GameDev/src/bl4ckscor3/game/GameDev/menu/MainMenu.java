@@ -33,9 +33,15 @@ public class MainMenu implements IMenu
 
 		if(!Game.hasRunBefore)
 		{
-			g.setColor(new Color(27, 72, 127));
+			g.setColor(Menu.colorM);
 			g.fillRect(0, 0, 1920, 1080);
-			g.setColor(new Color(200, 200, 200));
+			g.setColor(Menu.colorF);
+		}
+		else
+		{
+			g.setColor(Menu.colorMa);
+			g.fillRect(0, 0, 1920, 1080);
+			g.setColor(Menu.colorF);
 		}
 
 		Utilities.drawHeadline(g, "The Game!");

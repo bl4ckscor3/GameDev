@@ -20,6 +20,9 @@ public class Menu
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
 	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
+	public static final Color colorM = new Color(27, 72, 127); //color for the first main menu
+	public static final Color colorMa = new Color(27, 72, 127, 64); //color for the main menu after playing the game
+	public static final Color colorF = new Color(200, 200, 200); //color for the font
 	
 	/**
 	 * Determine which menu to show
@@ -27,9 +30,7 @@ public class Menu
 	 */
 	public static void displayMenu(Graphics g)
 	{
-		int bgAlpha = currentState == STATE_MAIN ? 192 : 64; //darker background if the main menu is shown
-		Color colorBg = new Color(0, 0, 0, bgAlpha); //color for the background
-		Color colorF = new Color(200, 200, 200); //color for the font
+		Color colorBg = new Color(0, 0, 0, 64); //color for the background
 		
 		//drawing the rectangle in the back to make the screen look dimmed
 		g.setColor(colorBg);
