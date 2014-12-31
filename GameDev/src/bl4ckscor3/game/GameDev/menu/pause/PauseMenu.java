@@ -31,16 +31,7 @@ public class PauseMenu
 		g.setColor(colorBg);
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(colorF);
-		
-		switch(currentState)
-		{
-			case STATE_MAIN:
-				menuStates.get(STATE_MAIN).show(g);
-				break;
-			case STATE_SETTINGS:
-				menuStates.get(STATE_SETTINGS).show(g);
-				break;
-		}
+		menuStates.get(getState()).show(g);
 	}
 
 	/**
