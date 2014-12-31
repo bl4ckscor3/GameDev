@@ -47,22 +47,22 @@ public class Game
 				if(key == 87 || key == 38) //w or up arrow
 				{
 					player.position.y--;
-					player.texture = TextureManager.loadTextureFromPath("playerBack", "player/");
+					player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
 					player.position.x--;
-					player.texture = TextureManager.loadTextureFromPath("playerLeft", "player/");
+					player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
 					player.position.y++;
-					player.texture = TextureManager.loadTextureFromPath("playerFacing", "player/");
+					player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
 					player.position.x++;
-					player.texture = TextureManager.loadTextureFromPath("playerRight", "player/");
+					player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
 				}
 			}
 		}

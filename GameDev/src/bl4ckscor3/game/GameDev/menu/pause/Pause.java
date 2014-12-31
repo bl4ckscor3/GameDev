@@ -28,7 +28,7 @@ public class Pause implements IPauseMenu
 		Font fontO = new Font("Candara", 1, 30); //options font
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;
-		
+
 		PauseMenu.optionBounds = new Rectangle[options.length];
 		PauseMenu.optionLocations = new Point[options.length];
 		Utilities.drawHeadline(g, "Pause");

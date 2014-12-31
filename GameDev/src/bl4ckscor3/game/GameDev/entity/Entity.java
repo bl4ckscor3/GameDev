@@ -11,7 +11,7 @@ import com.sun.javafx.geom.Vec2f;
 
 public class Entity
 {
-	public Image texture;
+	private Image texture;
 	public Vec2f position;
 	
 	public Entity(Image texture)
@@ -26,4 +26,9 @@ public class Entity
 	}
 	
 	public void tick(){}
+
+	public void setTexture(Image tex)
+	{
+		texture = tex;	
+	}
 }

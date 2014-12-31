@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
+import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
 
@@ -32,7 +33,7 @@ public class MouseMotion implements MouseMotionListener
 			
 			for(int i = 0; i < optionBounds.length; i++)
 			{
-				optionBounds[i].translate(optionLocations[i].x, optionLocations[i].y + 20);
+				optionBounds[i].translate(optionLocations[i].x, optionLocations[i].y + (Main.width * Main.height <= 1440000 ? 20 : 0));
 				
 				if(optionBounds[i].contains(event.getPoint()))
 				{

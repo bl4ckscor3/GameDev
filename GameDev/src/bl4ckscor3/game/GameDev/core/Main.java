@@ -16,8 +16,8 @@ public class Main
 	public static Game game;
 	private boolean windowBorder = false; //border of Windows' windows (the thing with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static int width ;
-	public static int height;
+	public static int width = 1600;
+	public static int height = 900;
 
 	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT AND setScreenSize IS ENABLED
 	public static void main(String[] args)
