@@ -11,6 +11,8 @@ public class PauseMenu
 	public static final int STATE_OFF = -1;
 	public static final int STATE_MAIN = 0;
 	public static final int STATE_SETTINGS = 1;
+	public static final int STATE_LOAD = 2;
+	public static final int STATE_SAVE = 3;
 	//pause menu is off by default
 	private static int currentState = STATE_OFF;
 	private static int selectedOption;

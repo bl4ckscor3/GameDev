@@ -64,10 +64,10 @@ public class Pause implements IPauseMenu
 				PauseMenu.setState(PauseMenu.STATE_SETTINGS);
 				break;
 			case 2: //load
-				System.out.println("Loading is not implemented yet.");
+				PauseMenu.setState(PauseMenu.STATE_LOAD);
 				break;
 			case 3: //save
-				System.out.println("Saving is not implemented yet.");
+				PauseMenu.setState(PauseMenu.STATE_SAVE);
 				break;
 			case 4: //main menu
 				System.out.println("The Main Menu has not been implemented yet.");

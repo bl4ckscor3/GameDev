@@ -2,8 +2,10 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
+import bl4ckscor3.game.GameDev.menu.pause.Load;
 import bl4ckscor3.game.GameDev.menu.pause.Pause;
 import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.pause.Save;
 import bl4ckscor3.game.GameDev.menu.pause.Settings;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
@@ -75,6 +77,8 @@ public class Game
 	{
 		PauseMenu.menuStates.add(new Pause());
 		PauseMenu.menuStates.add(new Settings());
+		PauseMenu.menuStates.add(new Load());
+		PauseMenu.menuStates.add(new Save());
 		thread.start();
 	}
 
