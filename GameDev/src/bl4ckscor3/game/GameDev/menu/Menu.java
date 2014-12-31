@@ -27,7 +27,7 @@ public class Menu
 	 */
 	public static void displayMenu(Graphics g)
 	{
-		int bgAlpha = currentState == STATE_MAIN ? 128 : 64; //darker background if the main menu is shown
+		int bgAlpha = currentState == STATE_MAIN ? 192 : 64; //darker background if the main menu is shown
 		Color colorBg = new Color(0, 0, 0, bgAlpha); //color for the background
 		Color colorF = new Color(200, 200, 200); //color for the font
 		
