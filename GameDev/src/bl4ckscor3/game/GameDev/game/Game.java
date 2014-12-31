@@ -93,7 +93,7 @@ public class Game
 	public static void unpause()
 	{
 		if(isPaused())
-			PauseMenu.setState(-1);
+			PauseMenu.setState(PauseMenu.STATE_OFF);
 	}
 
 	/**
@@ -101,6 +101,6 @@ public class Game
 	 */
 	public static boolean isPaused()
 	{
-		return PauseMenu.getState() != -1 ? true : false;
+		return PauseMenu.getState() != PauseMenu.STATE_OFF ? true : false;
 	}
 }

@@ -7,8 +7,8 @@ import java.awt.Rectangle;
 public interface IPauseMenu
 {
 	/**
-	 * Showing the Settings menu in all its glory
-	 * @param g
+	 * Showing the menu in all its glory
+	 * @param g - The Graphics to draw with
 	 */
 	public void show(Graphics g);
 	

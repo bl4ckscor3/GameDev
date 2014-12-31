@@ -33,8 +33,8 @@ public class DebugUI
 		g.drawString("Player position X: " + Game.player.position.x, Main.width - 360, 60);
 		g.drawString("Player position Y: " + Game.player.position.y, Main.width - 360, 75);
 		
-		//fps
-		g.drawString("FPS: " + GameThread.fps, Main.width - 91, 15);
+		//fps currently not displaying correctly
+//		g.drawString("FPS: " + GameThread.fps, Main.width - 91, 15);
 	}
 	
 	public static void drawChunkInfo(Graphics g, Chunk c, int posX, int posY)

@@ -22,7 +22,7 @@ public class Pause implements IPauseMenu
 				"Settings",
 				"Load (currently not active)",
 				"Save (currently not active)",
-				"Main Menu (currently not active)",
+				"Main Menu (automatically saves the game (currently not active))",
 				"Exit (automatically saves the game (currently not active))"
 			};
 		Font fontO = new Font("Candara", 1, 30); //options font
