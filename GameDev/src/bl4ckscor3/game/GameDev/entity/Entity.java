@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import bl4ckscor3.game.GameDev.core.Main;
-import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.Utilities;
 

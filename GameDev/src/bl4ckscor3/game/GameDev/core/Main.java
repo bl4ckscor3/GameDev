@@ -22,7 +22,7 @@ public class Main
 	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT AND setScreenSize IS ENABLED
 	public static void main(String[] args)
 	{	
-//		setScreenSize();
+		setScreenSize();
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override

@@ -9,7 +9,7 @@ import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.Mouse;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
-import bl4ckscor3.game.GameDev.menu.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
 import bl4ckscor3.game.GameDev.util.DebugUI;
 
 public class Screen extends JPanel 
@@ -47,7 +47,7 @@ public class Screen extends JPanel
 				debugWasShown = true;
 			}
 			
-			PauseMenu.show(g);
+			PauseMenu.displayMenu(g);
 		}
 		
 		if(displayDebug)

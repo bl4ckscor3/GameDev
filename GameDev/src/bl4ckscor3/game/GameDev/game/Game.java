@@ -2,6 +2,9 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
+import bl4ckscor3.game.GameDev.menu.pause.Pause;
+import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.pause.Settings;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 
@@ -16,7 +19,6 @@ public class Game
 	public static int mousePosX;
 	public static int mousePosY;
 	public static Game instance;
-	private static boolean pause = false;
 
 	public Game()
 	{
@@ -67,10 +69,12 @@ public class Game
 	}
 
 	/**
-	 * Starts the game
+	 * Starts the game and sets up the pause menu
 	 */
 	public static void start()
 	{
+		PauseMenu.menuStates.add(new Pause());
+		PauseMenu.menuStates.add(new Settings());
 		thread.start();
 	}
 
@@ -80,7 +84,7 @@ public class Game
 	public static void pause()
 	{
 		if(!isPaused())
-			pause = true;
+			PauseMenu.setState(PauseMenu.STATE_MAIN);
 	}
 
 	/**
@@ -89,7 +93,7 @@ public class Game
 	public static void unpause()
 	{
 		if(isPaused())
-			pause = false;
+			PauseMenu.setState(-1);
 	}
 
 	/**
@@ -97,6 +101,6 @@ public class Game
 	 */
 	public static boolean isPaused()
 	{
-		return pause;
+		return PauseMenu.getState() != -1 ? true : false;
 	}
 }

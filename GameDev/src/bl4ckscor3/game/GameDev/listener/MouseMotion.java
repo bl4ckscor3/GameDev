@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.menu.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
 
 public class MouseMotion implements MouseMotionListener
 {
@@ -36,11 +36,11 @@ public class MouseMotion implements MouseMotionListener
 				
 				if(optionBounds[i].contains(event.getPoint()))
 				{
-					PauseMenu.selectedOption = k;
+					PauseMenu.setSelectedOption(k);
 					break;
 				}
 				else
-					PauseMenu.selectedOption = -1;
+					PauseMenu.setSelectedOption(-1);
 			
 				k++;
 			}
