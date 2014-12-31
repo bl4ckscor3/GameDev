@@ -13,14 +13,7 @@ public class Mouse implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent paramMouseEvent)
 	{
-		switch(PauseMenu.getState())
-		{
-			case PauseMenu.STATE_MAIN:
-				PauseMenu.menuStates.get(PauseMenu.STATE_MAIN).onClick();
-				break;
-			case PauseMenu.STATE_SETTINGS:
-				PauseMenu.menuStates.get(PauseMenu.STATE_SETTINGS).onClick();
-		}
+		PauseMenu.menuStates.get(PauseMenu.getState()).onClick();
 	}
 
 	@Override
