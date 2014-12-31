@@ -14,10 +14,9 @@ public class Menu
 	public static final int STATE_SETTINGS = 2;
 	public static final int STATE_LOAD = 3;
 	public static final int STATE_SAVE = 4;
-	//the main menu is open when the game starts
 	private static int previousState;
-	private static int currentState = STATE_MAIN;
-	private static int selectedOption;
+	private static int currentState = STATE_MAIN; //the main menu is open when the game starts
+	private static int selectedOption; //the option the mouse is currently over - 0 is the top option, the highest number is the bottom option
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
 	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
