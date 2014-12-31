@@ -1,5 +1,6 @@
 package bl4ckscor3.game.GameDev.menu;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -29,13 +30,21 @@ public class MainMenu implements IMenu
 
 		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
+
+		if(!Game.hasRunBefore)
+		{
+			g.setColor(new Color(27, 72, 127));
+			g.fillRect(0, 0, 1920, 1080);
+			g.setColor(new Color(200, 200, 200));
+		}
+
 		Utilities.drawHeadline(g, "The Game!");
 		g.setFont(fontO);
 
 		for(String s : options)
 		{
 			Menu.optionLocations[i] = new Point(Main.width / 2 - metricsO.stringWidth(s) / 2, (Main.height / 4 + Main.height / 16) + 60 * (i + 1)); //same as with optionBounds
-			
+
 			if(Menu.getSelectedOption() != -1 && Menu.getSelectedOption() == i)
 			{
 				g.setFont(new Font("Candara", 1, 35));
@@ -44,7 +53,7 @@ public class MainMenu implements IMenu
 			}
 			else
 				Utilities.drawStringAtPoint(g, s, Menu.optionLocations[i]);
-			
+
 			Menu.optionBounds[i] = metricsO.getStringBounds(s, g).getBounds(); //writing the bounds of the string into an array to detect if the mouse is over the string later on
 			i++;
 		}
