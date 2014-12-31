@@ -7,7 +7,7 @@ import java.util.List;
 
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class Key implements KeyListener
 {
@@ -40,9 +40,9 @@ public class Key implements KeyListener
 			else
 			{
 				//pressing escape while not being in the main pause menu gets you back to the main pause menu
-				if(PauseMenu.getState() != 0)
-					PauseMenu.setState(PauseMenu.STATE_MAIN);
-				else if(PauseMenu.getState() == 0 && Screen.debugWasShown)
+				if(Menu.getState() != Menu.STATE_PAUSE)
+					Menu.setState(Menu.STATE_PAUSE);
+				else if(Menu.getState() == Menu.STATE_PAUSE && Screen.debugWasShown)
 				{
 					Screen.displayDebug = true;
 					Screen.debugWasShown = false;

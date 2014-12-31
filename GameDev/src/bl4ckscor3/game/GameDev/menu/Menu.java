@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.menu.pause;
+package bl4ckscor3.game.GameDev.menu;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,19 +6,20 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.LinkedList;
 
-public class PauseMenu
+public class Menu
 {
 	public static final int STATE_OFF = -1;
 	public static final int STATE_MAIN = 0;
-	public static final int STATE_SETTINGS = 1;
-	public static final int STATE_LOAD = 2;
-	public static final int STATE_SAVE = 3;
+	public static final int STATE_PAUSE = 1;
+	public static final int STATE_SETTINGS = 2;
+	public static final int STATE_LOAD = 3;
+	public static final int STATE_SAVE = 4;
 	//pause menu is off by default
 	private static int currentState = STATE_OFF;
 	private static int selectedOption;
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
-	public static LinkedList<IPauseMenu> menuStates = new LinkedList<IPauseMenu>();
+	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
 	
 	/**
 	 * Determine which menu to show

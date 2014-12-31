@@ -1,15 +1,15 @@
-package bl4ckscor3.game.GameDev.menu.pause;
+package bl4ckscor3.game.GameDev.menu;
 
 import java.awt.Graphics;
 
 import bl4ckscor3.game.GameDev.util.Utilities;
 
-public class Load implements IPauseMenu
+public class SaveMenu implements IMenu
 {
 	@Override
 	public void show(Graphics g)
 	{
-		Utilities.drawHeadline(g, "Load");
+		Utilities.drawHeadline(g, "Save");
 	}
 
 	@Override

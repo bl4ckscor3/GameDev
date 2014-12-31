@@ -1,7 +1,7 @@
 package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.core.Main;
-import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class GameThread extends Thread implements Runnable
 {

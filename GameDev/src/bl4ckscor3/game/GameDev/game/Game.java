@@ -2,11 +2,12 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.menu.pause.Load;
-import bl4ckscor3.game.GameDev.menu.pause.Pause;
-import bl4ckscor3.game.GameDev.menu.pause.PauseMenu;
-import bl4ckscor3.game.GameDev.menu.pause.Save;
-import bl4ckscor3.game.GameDev.menu.pause.Settings;
+import bl4ckscor3.game.GameDev.menu.LoadMenu;
+import bl4ckscor3.game.GameDev.menu.MainMenu;
+import bl4ckscor3.game.GameDev.menu.PauseMenu;
+import bl4ckscor3.game.GameDev.menu.Menu;
+import bl4ckscor3.game.GameDev.menu.SaveMenu;
+import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 
@@ -75,10 +76,11 @@ public class Game
 	 */
 	public static void start()
 	{
-		PauseMenu.menuStates.add(new Pause());
-		PauseMenu.menuStates.add(new Settings());
-		PauseMenu.menuStates.add(new Load());
-		PauseMenu.menuStates.add(new Save());
+		Menu.menuStates.add(new MainMenu());
+		Menu.menuStates.add(new PauseMenu());
+		Menu.menuStates.add(new SettingsMenu());
+		Menu.menuStates.add(new LoadMenu());
+		Menu.menuStates.add(new SaveMenu());
 		thread.start();
 	}
 
@@ -88,7 +90,7 @@ public class Game
 	public static void pause()
 	{
 		if(!isPaused())
-			PauseMenu.setState(PauseMenu.STATE_MAIN);
+			Menu.setState(Menu.STATE_PAUSE);
 	}
 
 	/**
@@ -97,7 +99,7 @@ public class Game
 	public static void unpause()
 	{
 		if(isPaused())
-			PauseMenu.setState(PauseMenu.STATE_OFF);
+			Menu.setState(Menu.STATE_OFF);
 	}
 
 	/**
@@ -105,6 +107,6 @@ public class Game
 	 */
 	public static boolean isPaused()
 	{
-		return PauseMenu.getState() != PauseMenu.STATE_OFF ? true : false;
+		return Menu.getState() != Menu.STATE_OFF ? true : false;
 	}
 }

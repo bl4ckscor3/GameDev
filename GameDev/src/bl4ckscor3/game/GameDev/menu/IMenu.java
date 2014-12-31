@@ -1,10 +1,10 @@
-package bl4ckscor3.game.GameDev.menu.pause;
+package bl4ckscor3.game.GameDev.menu;
 
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-public interface IPauseMenu
+public interface IMenu
 {
 	/**
 	 * Showing the menu in all its glory
