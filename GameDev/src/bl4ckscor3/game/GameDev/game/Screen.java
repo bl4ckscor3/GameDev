@@ -22,7 +22,7 @@ public class Screen extends JPanel
 	public static boolean debugWasShown = false;
 	public float optimizedScreenWidth = 1920;
 	public float optimizedScreenHeight = 1080;
-	
+
 	public Screen(JFrame frame)
 	{
 		pixelScaleWidth = Main.width / optimizedScreenWidth;
@@ -35,21 +35,23 @@ public class Screen extends JPanel
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		//clears screen
-		g.clearRect(0, 0, Main.width, Main.height);
-		Game.map.render(g);
+		g.clearRect(0, 0, 1920, 1080);
+		
+		if(Game.hasRunBefore)
+			//clears screen
+			Game.map.render(g);
 
-		if(Game.isPaused())
+		if(Game.isMenuOpen())
 		{
 			if(displayDebug)
 			{
 				displayDebug = false;
 				debugWasShown = true;
 			}
-			
+
 			Menu.displayMenu(g);
 		}
-		
+
 		if(displayDebug)
 			DebugUI.displayDebugUI(g);
 	}

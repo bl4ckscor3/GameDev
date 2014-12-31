@@ -29,7 +29,7 @@ public class GameThread extends Thread implements Runnable
 
 			while(System.currentTimeMillis() > nextGameTick && loops < maxFrameSkips)
 			{
-				if(!Game.isPaused())
+				if(!Game.isMenuOpen())
 					Game.tick(ticks);
 				
 				nextGameTick += gameSkipTicks; //makes sure to wait 16ms before updating again

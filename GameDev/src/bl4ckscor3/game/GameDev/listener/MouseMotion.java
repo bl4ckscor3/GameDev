@@ -25,7 +25,7 @@ public class MouseMotion implements MouseMotionListener
 		mouseX = event.getX();
 		mouseY = event.getY();
 
-		if(Game.isPaused())
+		if(Game.isMenuOpen())
 		{
 			Rectangle[] optionBounds = Menu.optionBounds;
 			Point[] optionLocations = Menu.optionLocations;

@@ -35,21 +35,29 @@ public class Key implements KeyListener
 		//pausing and unpausing
 		else if(event.getKeyCode() == 27) //ESC
 		{
-			if(!Game.isPaused())
-				Game.pause();
-			else
+			if(Menu.getState() != Menu.STATE_MAIN)
 			{
-				//pressing escape while not being in the main pause menu gets you back to the main pause menu
-				if(Menu.getState() != Menu.STATE_PAUSE)
-					Menu.setState(Menu.STATE_PAUSE);
-				else if(Menu.getState() == Menu.STATE_PAUSE && Screen.debugWasShown)
-				{
-					Screen.displayDebug = true;
-					Screen.debugWasShown = false;
-					Game.unpause();
-				}
+				if(!Game.isMenuOpen())
+					Game.pause();
 				else
-					Game.unpause();
+				{
+					//pressing escape while not being in the main (pause) menu gets you back to the main (pause) menu
+					if(Menu.getState() != Menu.STATE_PAUSE || Menu.getState() != Menu.STATE_MAIN)
+					{
+						if(Menu.getPreviousState() == Menu.STATE_MAIN)
+							Menu.setState(Menu.STATE_MAIN);
+						else
+							Menu.setState(Menu.STATE_PAUSE);
+					}
+					else if(Menu.getState() == Menu.STATE_PAUSE && Screen.debugWasShown)
+					{
+						Screen.displayDebug = true;
+						Screen.debugWasShown = false;
+						Game.unpause();
+					}
+					else
+						Game.unpause();
+				}
 			}
 		}
 	}

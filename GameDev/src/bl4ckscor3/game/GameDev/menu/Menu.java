@@ -14,8 +14,9 @@ public class Menu
 	public static final int STATE_SETTINGS = 2;
 	public static final int STATE_LOAD = 3;
 	public static final int STATE_SAVE = 4;
-	//pause menu is off by default
-	private static int currentState = STATE_OFF;
+	//the main menu is open when the game starts
+	private static int previousState;
+	private static int currentState = STATE_MAIN;
 	private static int selectedOption;
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
@@ -34,7 +35,7 @@ public class Menu
 		g.setColor(colorBg);
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(colorF);
-		menuStates.get(getState()).show(g);
+		menuStates.get(currentState).show(g);
 	}
 
 	/**
@@ -43,6 +44,7 @@ public class Menu
 	 */
 	public static void setState(int state)
 	{
+		previousState = currentState;
 		currentState = state;
 	}
 
@@ -52,6 +54,15 @@ public class Menu
 	public static int getState()
 	{
 		return currentState;
+	}
+	
+	/**
+	 * Getting the state the menu was in before the current state
+	 * Used to determine wether ESC should bring the player back to the PauseMenu or not
+	 */
+	public static int getPreviousState()
+	{
+		return previousState;
 	}
 	
 	/**

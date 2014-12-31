@@ -22,7 +22,8 @@ public class Game
 	public static int mousePosX;
 	public static int mousePosY;
 	public static Game instance;
-
+	public static boolean hasRunBefore = false; //used to stop the map from rendering if the game is still in the main menu directly after starting
+	
 	public Game()
 	{
 		instance = this;
@@ -39,33 +40,37 @@ public class Game
 	 */
 	public static void tick(int moveTimer)
 	{
-		map.tick();
-
-		//making the player able to only move every other tick
-		if(moveTimer % 4 == 0)
+		if(Menu.getState() != Menu.STATE_MAIN)
 		{
-			//update keys
-			for(int key : Key.keysPressed)
+			System.out.println("hi");
+			map.tick();
+
+			//making the player able to only move every other tick
+			if(moveTimer % 4 == 0)
 			{
-				if(key == 87 || key == 38) //w or up arrow
+				//update keys
+				for(int key : Key.keysPressed)
 				{
-					player.position.y--;
-					player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
-				}
-				else if(key == 65 || key == 37) //a or left arrow
-				{
-					player.position.x--;
-					player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
-				}
-				else if(key == 83 || key == 40) //s or down arrow
-				{
-					player.position.y++;
-					player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
-				}
-				else if(key == 68 || key == 39) //d or right arrow
-				{
-					player.position.x++;
-					player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
+					if(key == 87 || key == 38) //w or up arrow
+					{
+						player.position.y--;
+						player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
+					}
+					else if(key == 65 || key == 37) //a or left arrow
+					{
+						player.position.x--;
+						player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
+					}
+					else if(key == 83 || key == 40) //s or down arrow
+					{
+						player.position.y++;
+						player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+					}
+					else if(key == 68 || key == 39) //d or right arrow
+					{
+						player.position.x++;
+						player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
+					}
 				}
 			}
 		}
@@ -89,7 +94,7 @@ public class Game
 	 */
 	public static void pause()
 	{
-		if(!isPaused())
+		if(!isMenuOpen())
 			Menu.setState(Menu.STATE_PAUSE);
 	}
 
@@ -98,14 +103,22 @@ public class Game
 	 */
 	public static void unpause()
 	{
-		if(isPaused())
+		closeMenu();
+	}
+	
+	/**
+	 * Closes any menu
+	 */
+	public static void closeMenu()
+	{
+		if(isMenuOpen())
 			Menu.setState(Menu.STATE_OFF);
 	}
-
+	
 	/**
 	 * Checks if the game is paused
 	 */
-	public static boolean isPaused()
+	public static boolean isMenuOpen()
 	{
 		return Menu.getState() != Menu.STATE_OFF ? true : false;
 	}
