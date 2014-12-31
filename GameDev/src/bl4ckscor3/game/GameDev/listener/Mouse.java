@@ -13,7 +13,9 @@ public class Mouse implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent paramMouseEvent)
 	{
-		PauseMenu.menuStates.get(PauseMenu.getState()).onClick();
+		//only check if the pause menu is open
+		if(PauseMenu.getState() != -1)
+			PauseMenu.menuStates.get(PauseMenu.getState()).onClick();
 	}
 
 	@Override
