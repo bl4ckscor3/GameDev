@@ -22,7 +22,8 @@ public class Main
 	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT AND setScreenSize IS ENABLED
 	public static void main(String[] args)
 	{	
-//		setScreenSize();
+//		setScreenSize(args);
+		
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
@@ -72,14 +73,14 @@ public class Main
 		Game.start();
 	}
 	
-	private static void setScreenSize() 
+	private static void setScreenSize(String[] args) 
 	{
 		Scanner s = new Scanner(System.in);
 	
 		System.out.println("Controls: Arrow keys OR WASD - Move | F3 - Debug Menu | ESC - Pause");
-		System.out.println("Enter width: ");
+		System.out.println("Enter your preferred screen width: ");
 		width = Integer.parseInt(s.nextLine());
-		System.out.println("Enter height: ");
+		System.out.println("Enter your preferred screen height: ");
 		height = Integer.parseInt(s.nextLine());
 	}
 }
