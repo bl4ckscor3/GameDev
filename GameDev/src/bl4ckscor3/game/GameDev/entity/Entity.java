@@ -6,18 +6,17 @@ import java.awt.Image;
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.Utilities;
-
-import com.sun.javafx.geom.Vec2f;
+import bl4ckscor3.game.GameDev.util.Vector2D;
 
 public class Entity
 {
 	private Image texture;
-	public Vec2f position;
+	public Vector2D position;
 	
 	public Entity(Image texture)
 	{
 		this.texture = texture;
-		position = new Vec2f();
+		position = new Vector2D();
 	}
 	
 	public void render(Graphics g)
