@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 
 import bl4ckscor3.game.GameDev.core.Main;
-import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class MouseMotion implements MouseMotionListener
@@ -22,12 +21,15 @@ public class MouseMotion implements MouseMotionListener
 	@Override
 	public void mouseMoved(MouseEvent event)
 	{
+		//setting the x and y position of the mouse cursor
 		mouseX = event.getX();
 		mouseY = event.getY();
 
-		if(Game.isMenuOpen())
+		if(Menu.isOpen())
 		{
+			//the with and height of the string
 			Rectangle[] optionBounds = Menu.optionBounds;
+			//the location of the string
 			Point[] optionLocations = Menu.optionLocations;
 			int k = 0;
 			

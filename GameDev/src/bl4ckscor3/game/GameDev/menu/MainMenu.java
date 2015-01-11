@@ -1,6 +1,5 @@
 package bl4ckscor3.game.GameDev.menu;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -16,6 +15,7 @@ public class MainMenu implements IMenu
 	@Override
 	public void show(Graphics g)
 	{
+		//the options available to click on the screen
 		String[] options =
 			{
 				"Play",
@@ -31,6 +31,7 @@ public class MainMenu implements IMenu
 		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
 
+		//determining wether the main menu was opened after stopping to play and then displaying the correct background (with/without alpha value)
 		if(!Game.hasRunBefore)
 		{
 			g.setColor(Menu.colorM);
@@ -47,6 +48,7 @@ public class MainMenu implements IMenu
 		Utilities.drawHeadline(g, "The Game!");
 		g.setFont(fontO);
 
+		//drawing the strings at the correct positions
 		for(String s : options)
 		{
 			Menu.optionLocations[i] = new Point(Main.width / 2 - metricsO.stringWidth(s) / 2, (Main.height / 4 + Main.height / 16) + 60 * (i + 1)); //same as with optionBounds
@@ -68,6 +70,7 @@ public class MainMenu implements IMenu
 	@Override
 	public void onClick()
 	{
+		//determining which option was clicked
 		switch(Menu.getSelectedOption())
 		{
 			case 0: //play

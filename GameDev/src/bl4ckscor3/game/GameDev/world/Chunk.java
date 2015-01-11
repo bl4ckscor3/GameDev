@@ -101,6 +101,9 @@ public class Chunk
 			DebugUI.drawChunkInfo(g, this, posX, posY);
 	}
 	
+	/**
+	 * Gets called every gametick
+	 */
 	public void tick()
 	{
 		for(int x = 0; x < tiles.length; x++)

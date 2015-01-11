@@ -7,27 +7,43 @@ import javax.swing.ImageIcon;
 
 public class TextureManager
 {
-	public static Image loadTexture(String resourceID)
+	/**
+	 * Loading a texture from the resources folder without subfolders
+	 * @param fileName - The name of the file
+	 */
+	public static Image loadTexture(String fileName)
 	{
-		return new ImageIcon("resources/" + resourceID + ".png").getImage();
+		return new ImageIcon("resources/" + fileName + ".png").getImage();
 	}
 	
-	public static Image loadTextureFromPath(String resourceID, String path)
+	/**
+	 * Loading a texture from the resources folder with subfolders
+	 * @param fileName - The name of the file
+	 */
+	public static Image loadTextureFromPath(String fileName, String path)
 	{
-		return new ImageIcon("resources/" + path + resourceID + ".png").getImage();
+		return new ImageIcon("resources/" + path + fileName + ".png").getImage();
 	}
 	
-	public static Image loadRandomTexture(String resourceID, int textureAmount)
+	/**
+	 * Loading a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder without subfolders
+	 * @param fileName - The name of the file
+	 */
+	public static Image loadRandomTexture(String fileName, int textureAmount)
 	{
 		Random r = new Random();
 		
-		return new ImageIcon("resources/" + resourceID + "_" + r.nextInt(textureAmount) + ".png").getImage();
+		return new ImageIcon("resources/" + fileName + "_" + r.nextInt(textureAmount) + ".png").getImage();
 	}
 	
-	public static Image loadRandomTextureFromPath(String resourceID, String path, int textureAmount)
+	/**
+	 * Loading a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder with subfolders
+	 * @param fileName - The name of the file
+	 */
+	public static Image loadRandomTextureFromPath(String fileName, String path, int textureAmount)
 	{
 		Random r = new Random();
 		
-		return new ImageIcon("resources/" + path + resourceID + "_" + r.nextInt(textureAmount) + ".png").getImage();
+		return new ImageIcon("resources/" + path + fileName + "_" + r.nextInt(textureAmount) + ".png").getImage();
 	}
 }

@@ -1,6 +1,5 @@
 package bl4ckscor3.game.GameDev.menu;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import bl4ckscor3.game.GameDev.game.Game;

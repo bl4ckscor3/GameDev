@@ -36,6 +36,9 @@ public class Map
 		}
 	}
 	
+	/**
+	 * Gets called every game tick
+	 */
 	public void tick()
 	{
 		checkChunks();
@@ -103,6 +106,12 @@ public class Map
 		}
 	}
 	
+	/**
+	 * Spawns an entity at a given position
+	 * @param e - The entity to spawn
+	 * @param x - The x position the entity spawns at
+	 * @param y - The y position the entity spawns at
+	 */
 	public void spawnEntity(Entity e, int x, int y)
 	{
 		e.position.set(x, y);

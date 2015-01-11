@@ -13,20 +13,22 @@ import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
 {
+	/** The seed to generate the map from*/
 	public static int seed = 123456789;
+	/** The map*/
 	public static Map map;
+	/** The player*/
 	public static Player player;
+	/** The game thread (infinite loop for updates etc.)*/
 	public static GameThread thread;
-	public int fps;
-	public int ups;
+	/** The current X position of the mouse cursor*/
 	public static int mousePosX;
+	/** The current Y position of the mouse cursor*/
 	public static int mousePosY;
-	public static Game instance;
 	public static boolean hasRunBefore = false; //used to stop the map from rendering if the game is still in the main menu directly after starting
 	
 	public Game()
 	{
-		instance = this;
 		player = new Player();
 		map = new Map();
 		//spawning of the entities
@@ -76,7 +78,7 @@ public class Game
 	}
 
 	/**
-	 * Starts the game and sets up the pause menu
+	 * Sets up the menu and starts the game
 	 */
 	public static void start()
 	{
@@ -93,7 +95,7 @@ public class Game
 	 */
 	public static void pause()
 	{
-		if(!isMenuOpen())
+		if(!Menu.isOpen())
 			Menu.setState(Menu.STATE_PAUSE);
 	}
 
@@ -102,23 +104,6 @@ public class Game
 	 */
 	public static void unpause()
 	{
-		closeMenu();
-	}
-	
-	/**
-	 * Closes any menu
-	 */
-	public static void closeMenu()
-	{
-		if(isMenuOpen())
-			Menu.setState(Menu.STATE_OFF);
-	}
-	
-	/**
-	 * Checks if the game is paused
-	 */
-	public static boolean isMenuOpen()
-	{
-		return Menu.getState() != Menu.STATE_OFF ? true : false;
+		Menu.closeMenu();
 	}
 }

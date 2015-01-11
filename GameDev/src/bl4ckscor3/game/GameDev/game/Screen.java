@@ -32,16 +32,20 @@ public class Screen extends JPanel
 		frame.addMouseMotionListener(new MouseMotion());
 	}
 
+	/**
+	 * Drawing on the screen
+	 * @param g - The Graphics to draw with
+	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		//clears screen
 		g.clearRect(0, 0, 1920, 1080);
 		
 		if(Game.hasRunBefore)
-			//clears screen
 			Game.map.render(g);
 
-		if(Game.isMenuOpen())
+		if(Menu.isOpen())
 		{
 			if(displayDebug)
 			{
@@ -50,6 +54,7 @@ public class Screen extends JPanel
 			}
 
 			Menu.displayMenu(g);
+			return; //no need to check if the debug menu is open, since it's closed in menus anyways
 		}
 
 		if(displayDebug)

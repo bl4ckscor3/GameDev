@@ -82,4 +82,21 @@ public class Menu
 	{
 		return selectedOption;
 	}
+	
+	/**
+	 * Closes any menu
+	 */
+	public static void closeMenu()
+	{
+		if(isOpen())
+			Menu.setState(Menu.STATE_OFF);
+	}
+	
+	/**
+	 * Checks if the game is paused
+	 */
+	public static boolean isOpen()
+	{
+		return Menu.getState() != Menu.STATE_OFF ? true : false;
+	}
 }

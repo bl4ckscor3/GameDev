@@ -3,10 +3,7 @@ package bl4ckscor3.game.GameDev.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 
 public class Mouse implements MouseListener
 {

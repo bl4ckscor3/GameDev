@@ -60,6 +60,9 @@ public class Tile
 		texture = TextureManager.loadRandomTextureFromPath(material.getResourceID(mat), path, textureAmount);
 	}
 
+	/**
+	 * Gets called every game tick
+	 */
 	public void tick(){}
 	
 	/**

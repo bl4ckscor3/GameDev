@@ -21,6 +21,7 @@ public class Key implements KeyListener
 	@Override
 	public void keyPressed(KeyEvent event)
 	{
+		//adding the currently pressed key(s) to the list
 		if(!keysPressed.contains(event.getKeyCode()))
 			keysPressed.add(event.getKeyCode());
 
@@ -32,12 +33,12 @@ public class Key implements KeyListener
 			else
 				Screen.displayDebug = false;
 		}
-		//pausing and unpausing
+		//pausing and unpausing, also switching to the previous menu
 		else if(event.getKeyCode() == 27) //ESC
 		{
 			if(Menu.getState() != Menu.STATE_MAIN)
 			{
-				if(!Game.isMenuOpen())
+				if(!Menu.isOpen())
 					Game.pause();
 				else if(Menu.getState() == Menu.STATE_PAUSE)
 				{
@@ -69,6 +70,7 @@ public class Key implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent event)
 	{
+		//removing the keys if they are no longer being pressed
 		keysPressed.remove((Object)event.getKeyCode());
 	}
 }
