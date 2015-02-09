@@ -14,6 +14,8 @@ import bl4ckscor3.game.GameDev.util.DebugUI;
 
 public class Screen extends JPanel 
 {
+	//i don't know why this is needed
+	private static final long serialVersionUID = -792758178177325345L;
 	public static float pixelSize = 2.5F;
 	public float pixelScaleWidth;
 	public float pixelScaleHeight;

@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
 import bl4ckscor3.game.GameDev.world.Chunk;

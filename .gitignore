@@ -1,7 +1,5 @@
-/.metadata
+/bin
 /RemoteSystemsTempFiles
-/GameDev/bin
-/GameDev/RemoteSystemsTempFiles
-/GameDev/.settings
-/GameDev/.project
-/GameDev/.classpath
+/.settings
+/.project
+/.classpath
