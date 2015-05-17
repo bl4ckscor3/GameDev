@@ -1,5 +1,6 @@
 package bl4ckscor3.game.GameDev.menu;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -39,9 +40,9 @@ public class PauseMenu implements IMenu
 			
 			if(Menu.getSelectedOption() != -1 && Menu.getSelectedOption() == i)
 			{
-				g.setFont(new Font("Candara", 1, 35));
+				g.setColor(new Color(255, 0, 0));
 				Utilities.drawStringAtPoint(g, s, Menu.optionLocations[i]);
-				g.setFont(fontO);
+				g.setColor(Menu.colorF);
 			}
 			else
 				Utilities.drawStringAtPoint(g, s, Menu.optionLocations[i]);

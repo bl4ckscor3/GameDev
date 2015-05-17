@@ -22,7 +22,7 @@ public class Menu
 	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
 	public static final Color colorM = new Color(27, 72, 127); //color for the first main menu
 	public static final Color colorMa = new Color(27, 72, 127, 64); //color for the main menu after playing the game
-	public static final Color colorF = new Color(200, 200, 200); //color for the font
+	public static final Color colorF = new Color(255, 255, 255); //color for the font
 	
 	/**
 	 * Determine which menu to show
