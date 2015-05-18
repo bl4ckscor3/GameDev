@@ -30,10 +30,8 @@ public class Menu
 	 */
 	public static void displayMenu(Graphics g)
 	{
-		Color colorBg = new Color(0, 0, 0, 64); //color for the background
-		
 		//drawing the rectangle in the back to make the screen look dimmed
-		g.setColor(colorBg);
+		g.setColor(new Color(0, 0, 0, 64));
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(colorF);
 		menuStates.get(currentState).show(g);

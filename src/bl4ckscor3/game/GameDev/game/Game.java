@@ -26,6 +26,10 @@ public class Game
 	/** The current Y position of the mouse cursor*/
 	public static int mousePosY;
 	public static boolean hasRunBefore = false; //used to stop the map from rendering if the game is still in the main menu directly after starting
+	private static int moveUpCount = 0; //used to determine texture
+	private static int moveLeftCount = 0;
+	private static int moveDownCount = 0;
+	private static int moveRightCount = 0;
 	
 	public Game()
 	{
@@ -55,22 +59,82 @@ public class Game
 					if(key == 87 || key == 38) //w or up arrow
 					{
 						player.position.y--;
-						player.setTexture(TextureManager.loadTextureFromPath("playerBack", "player/"));
+						
+						switch(moveUpCount)
+						{
+							case 0:
+								player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
+								moveUpCount++;
+								break;
+							case 1:
+								player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
+								moveUpCount++;
+								break;
+							case 2:
+								player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
+								moveUpCount = 0;
+								break;
+						}
 					}
 					else if(key == 65 || key == 37) //a or left arrow
 					{
 						player.position.x--;
-						player.setTexture(TextureManager.loadTextureFromPath("playerLeft", "player/"));
+						
+						switch(moveLeftCount)
+						{
+							case 0:
+								player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+								moveLeftCount++;
+								break;
+							case 1:
+								player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
+								moveLeftCount++;
+								break;
+							case 2:
+								player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
+								moveLeftCount = 0;
+								break;
+						}
 					}
 					else if(key == 83 || key == 40) //s or down arrow
 					{
 						player.position.y++;
-						player.setTexture(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+						
+						switch(moveDownCount)
+						{
+							case 0:
+								player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
+								moveDownCount++;
+								break;
+							case 1:
+								player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
+								moveDownCount++;
+								break;
+							case 2:
+								player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
+								moveDownCount = 0;
+								break;
+						}
 					}
 					else if(key == 68 || key == 39) //d or right arrow
 					{
 						player.position.x++;
-						player.setTexture(TextureManager.loadTextureFromPath("playerRight", "player/"));
+
+						switch(moveRightCount)
+						{
+							case 0:
+								player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
+								moveRightCount++;
+								break;
+							case 1:
+								player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
+								moveRightCount++;
+								break;
+							case 2:
+								player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
+								moveRightCount = 0;
+								break;
+						}
 					}
 				}
 			}

@@ -6,6 +6,6 @@ public class Player extends Entity
 {
 	public Player()
 	{
-		super(TextureManager.loadTextureFromPath("playerFacing", "player/"));
+		super(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
 	}
 }
