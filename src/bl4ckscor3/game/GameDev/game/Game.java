@@ -62,7 +62,7 @@ public class Game
 						
 						switch(moveUpCount)
 						{
-							case 0:
+							case 0: case 2:
 								player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
 								moveUpCount++;
 								break;
@@ -70,7 +70,7 @@ public class Game
 								player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
 								moveUpCount++;
 								break;
-							case 2:
+							case 3:
 								player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
 								moveUpCount = 0;
 								break;
@@ -82,7 +82,7 @@ public class Game
 						
 						switch(moveLeftCount)
 						{
-							case 0:
+							case 0: case 2:
 								player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
 								moveLeftCount++;
 								break;
@@ -90,7 +90,7 @@ public class Game
 								player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
 								moveLeftCount++;
 								break;
-							case 2:
+							case 3:
 								player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
 								moveLeftCount = 0;
 								break;
@@ -102,7 +102,7 @@ public class Game
 						
 						switch(moveDownCount)
 						{
-							case 0:
+							case 0: case 2:
 								player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
 								moveDownCount++;
 								break;
@@ -110,7 +110,7 @@ public class Game
 								player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
 								moveDownCount++;
 								break;
-							case 2:
+							case 3:
 								player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
 								moveDownCount = 0;
 								break;
@@ -122,7 +122,7 @@ public class Game
 
 						switch(moveRightCount)
 						{
-							case 0:
+							case 0: case 2:
 								player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
 								moveRightCount++;
 								break;
@@ -130,7 +130,7 @@ public class Game
 								player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
 								moveRightCount++;
 								break;
-							case 2:
+							case 3:
 								player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
 								moveRightCount = 0;
 								break;
