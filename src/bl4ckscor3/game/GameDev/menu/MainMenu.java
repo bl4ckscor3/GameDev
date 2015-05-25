@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.temp.SeedPrompt;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class MainMenu implements IMenu
@@ -75,8 +76,7 @@ public class MainMenu implements IMenu
 		switch(Menu.getSelectedOption())
 		{
 			case 0: //play
-				Game.hasRunBefore = true;
-				Menu.setState(Menu.STATE_OFF);
+				new SeedPrompt();
 				break;
 			case 1: //settings
 				Menu.setState(Menu.STATE_SETTINGS);

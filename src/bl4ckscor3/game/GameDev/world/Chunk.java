@@ -32,9 +32,9 @@ public class Chunk
 	/**
 	 * Determines which material to draw
 	 */
-	public void populate()
+	public void populate(int seed)
 	{
-		SimplexNoise sn = new SimplexNoise(7, 0.1);
+		SimplexNoise sn = new SimplexNoise(7, 0.1, seed);
 		double xStart = chunkX * chunkSizeX;
 		double yStart = chunkY * chunkSizeY;
 		double xEnd = xStart + chunkSizeX;

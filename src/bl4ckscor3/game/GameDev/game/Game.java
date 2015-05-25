@@ -14,7 +14,7 @@ import bl4ckscor3.game.GameDev.world.Map;
 public class Game 
 {
 	/** The seed to generate the map from*/
-	public static int seed = 123456789;
+	private static int seed;
 	/** The map*/
 	public static Map map;
 	/** The player*/
@@ -34,7 +34,7 @@ public class Game
 	public Game()
 	{
 		player = new Player();
-		map = new Map();
+		map = new Map(seed);
 		//spawning of the entities
 		map.spawnEntity(player, 0, 0);
 		//starts the game thread
@@ -48,7 +48,7 @@ public class Game
 	{
 		if(Menu.getState() != Menu.STATE_MAIN)
 		{
-			map.tick();
+			map.tick(seed);
 
 			//making the player able to only move every other tick
 			if(moveTimer % 4 == 0)
@@ -169,5 +169,10 @@ public class Game
 	public static void unpause()
 	{
 		Menu.closeMenu();
+	}
+
+	public static void setSeed(int s)
+	{
+		seed = s;
 	}
 }

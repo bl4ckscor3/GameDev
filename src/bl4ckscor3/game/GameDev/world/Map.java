@@ -15,9 +15,9 @@ public class Map
 	private final int chunkAmountX = 5;
 	private final int chunkAmountY = 5;
 	
-	public Map()
+	public Map(int seed)
 	{
-		checkChunks();
+		checkChunks(seed);
 	}
 	
 	/**
@@ -39,9 +39,9 @@ public class Map
 	/**
 	 * Gets called every game tick
 	 */
-	public void tick()
+	public void tick(int seed)
 	{
-		checkChunks();
+		checkChunks(seed);
 		
 		for(Chunk c : loadedChunks)
 		{
@@ -57,14 +57,14 @@ public class Map
 	/**
 	 * Loading and unloading the chunks
 	 */
-	public void checkChunks()
+	public void checkChunks(int seed)
 	{
 		//which chunk the player is currently in
 		int playerChunkX = Utilities.floor(Game.player.position.x / (double) Chunk.chunkSizeX);
 		int playerChunkY = Utilities.floor(Game.player.position.y / (double) Chunk.chunkSizeY);
 	
 		unloadChunks(playerChunkX, playerChunkY);
-		loadChunks(playerChunkX, playerChunkY);
+		loadChunks(playerChunkX, playerChunkY, seed);
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class Map
 	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
 	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
 	 */
-	public void loadChunks(int playerChunkX, int playerChunkY)
+	public void loadChunks(int playerChunkX, int playerChunkY, int seed)
 	{
 		//checking each row from the chunk on the left to the chunk on the right (5 chunks)
 		for(int x = playerChunkX - (chunkAmountX - 1) / 2; x <= playerChunkX + (chunkAmountX - 1) / 2; x++)
@@ -84,7 +84,7 @@ public class Map
 				{
 					Chunk c = new Chunk(x, y);
 					
-					c.populate();
+					c.populate(seed);
 					loadedChunks.add(c);
 				}
 			}
