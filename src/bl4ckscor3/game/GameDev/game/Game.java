@@ -4,11 +4,10 @@ import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.menu.LoadMenu;
 import bl4ckscor3.game.GameDev.menu.MainMenu;
-import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.Menu;
+import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
-import bl4ckscor3.game.GameDev.temp.SeedPrompt;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 

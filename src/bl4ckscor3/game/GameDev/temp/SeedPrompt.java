@@ -15,9 +15,15 @@ import bl4ckscor3.game.GameDev.menu.Menu;
 public class SeedPrompt extends JFrame
 {
 	private static final long serialVersionUID = -7766742253902186804L;
-
+	private static boolean opened = false;
+	
 	public SeedPrompt()
 	{
+		if(opened)
+			return;
+		
+		opened = true;
+		
 		JLabel label = new JLabel();
 		JLabel label2 = new JLabel();
 		JLabel label3 = new JLabel();
