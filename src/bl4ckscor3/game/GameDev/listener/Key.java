@@ -12,11 +12,9 @@ import bl4ckscor3.game.GameDev.menu.Menu;
 public class Key implements KeyListener
 {
 	public static List<Integer> keysPressed = new ArrayList<Integer>();
-
+	
 	@Override
-	public void keyTyped(KeyEvent event)
-	{
-	}
+	public void keyTyped(KeyEvent event){}
 
 	@Override
 	public void keyPressed(KeyEvent event)

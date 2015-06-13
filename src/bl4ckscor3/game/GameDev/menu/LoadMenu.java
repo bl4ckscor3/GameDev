@@ -27,7 +27,5 @@ public class LoadMenu implements IMenu
 	}
 
 	@Override
-	public void onClick()
-	{
-	}
+	public void onEnter(){}
 }

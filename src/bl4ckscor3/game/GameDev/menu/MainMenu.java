@@ -70,7 +70,7 @@ public class MainMenu implements IMenu
 	}
 
 	@Override
-	public void onClick()
+	public void onEnter()
 	{
 		//determining which option was clicked
 		switch(Menu.getSelectedOption())

@@ -2,8 +2,6 @@ package bl4ckscor3.game.GameDev.world.generation;
 
 import java.util.Random;
 
-import bl4ckscor3.game.GameDev.game.Game;
-
 public class SimplexNoise
 {
 	private SimplexNoiseOctave[] octaves;

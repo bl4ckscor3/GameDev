@@ -5,7 +5,6 @@ import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class GameThread extends Thread implements Runnable
 {
-	private int tps = 0;
 	public static int fps = 0;
 
 	@Override
@@ -31,6 +30,8 @@ public class GameThread extends Thread implements Runnable
 			{
 				if(!Menu.isOpen())
 					Game.tick(ticks);
+				else
+					Game.tickMenu(ticks);
 				
 				nextGameTick += gameSkipTicks; //makes sure to wait 16ms before updating again
 				ticks++;
@@ -47,7 +48,6 @@ public class GameThread extends Thread implements Runnable
 			if(time + 1000 <= System.currentTimeMillis())
 			{
 				time += 1000;
-				tps = ticks;
 				fps = frames;
 				ticks = 0;
 				frames = 0;

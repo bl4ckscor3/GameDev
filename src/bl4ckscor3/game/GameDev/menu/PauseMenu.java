@@ -53,7 +53,7 @@ public class PauseMenu implements IMenu
 	}
 	
 	@Override
-	public void onClick()
+	public void onEnter()
 	{
 		switch(Menu.getSelectedOption())
 		{

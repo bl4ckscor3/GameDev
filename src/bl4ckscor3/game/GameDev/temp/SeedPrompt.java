@@ -9,13 +9,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import com.sun.xml.internal.ws.util.StringUtils;
-
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class SeedPrompt extends JFrame
 {
+	private static final long serialVersionUID = -7766742253902186804L;
+
 	public SeedPrompt()
 	{
 		JLabel label = new JLabel();

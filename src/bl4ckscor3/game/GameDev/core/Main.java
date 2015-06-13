@@ -1,7 +1,9 @@
 package bl4ckscor3.game.GameDev.core;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -19,7 +21,6 @@ public class Main
 	public static int width = 1600;
 	public static int height = 900;
 
-	//IMPORTANT NOTICE: PROGRAM CAN ONLY BE STARTED VIA COMMAND PROMPT IF IN .jar FORMAT AND setScreenSize IS ENABLED
 	public static void main(String[] args)
 	{	
 //		setScreenSize(args);
@@ -64,6 +65,7 @@ public class Main
 		}
 		//end
 		
+		frame.getContentPane().setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB), new Point(0, 0), "blank cursor"));
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		screen = new Screen(frame);
@@ -82,5 +84,6 @@ public class Main
 		width = Integer.parseInt(s.nextLine());
 		System.out.println("Enter your preferred screen height: ");
 		height = Integer.parseInt(s.nextLine());
+		s.close();
 	}
 }

@@ -14,9 +14,10 @@ public class Menu
 	public static final int STATE_SETTINGS = 2;
 	public static final int STATE_LOAD = 3;
 	public static final int STATE_SAVE = 4;
+	private static final int highestOption = 4;
 	private static int previousState;
 	private static int currentState = STATE_MAIN; //the main menu is open when the game starts
-	private static int selectedOption; //the option the mouse is currently over - 0 is the top option, the highest number is the bottom option
+	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
 	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
@@ -96,5 +97,13 @@ public class Menu
 	public static boolean isOpen()
 	{
 		return Menu.getState() != Menu.STATE_OFF ? true : false;
+	}
+	
+	/**
+	 * Gets the highest option currently available.
+	 */
+	public static int getHighestOption()
+	{
+		return highestOption;
 	}
 }

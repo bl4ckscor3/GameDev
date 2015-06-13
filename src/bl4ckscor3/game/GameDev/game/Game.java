@@ -8,6 +8,7 @@ import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.Menu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
+import bl4ckscor3.game.GameDev.temp.SeedPrompt;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.world.Map;
 
@@ -30,7 +31,7 @@ public class Game
 	private static int moveLeftCount = 0;
 	private static int moveDownCount = 0;
 	private static int moveRightCount = 0;
-	
+
 	public Game()
 	{
 		player = new Player();
@@ -42,100 +43,119 @@ public class Game
 	}
 
 	/**
-	 * Updates the screen every tick
+	 * Updates the screen every tick if ingame
 	 */
 	public static void tick(int moveTimer)
 	{
-		if(Menu.getState() != Menu.STATE_MAIN)
+		map.tick(seed);
+
+		//making the player able to only move every other tick
+		if(moveTimer % 4 == 0)
 		{
-			map.tick(seed);
-
-			//making the player able to only move every other tick
-			if(moveTimer % 4 == 0)
+			//update keys
+			for(int key : Key.keysPressed)
 			{
-				//update keys
-				for(int key : Key.keysPressed)
+				if(key == 87 || key == 38) //w or up arrow
 				{
-					if(key == 87 || key == 38) //w or up arrow
-					{
-						player.position.y--;
-						
-						switch(moveUpCount)
-						{
-							case 0: case 2:
-								player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
-								moveUpCount++;
-								break;
-							case 1:
-								player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
-								moveUpCount++;
-								break;
-							case 3:
-								player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
-								moveUpCount = 0;
-								break;
-						}
-					}
-					else if(key == 65 || key == 37) //a or left arrow
-					{
-						player.position.x--;
-						
-						switch(moveLeftCount)
-						{
-							case 0: case 2:
-								player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
-								moveLeftCount++;
-								break;
-							case 1:
-								player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
-								moveLeftCount++;
-								break;
-							case 3:
-								player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
-								moveLeftCount = 0;
-								break;
-						}
-					}
-					else if(key == 83 || key == 40) //s or down arrow
-					{
-						player.position.y++;
-						
-						switch(moveDownCount)
-						{
-							case 0: case 2:
-								player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
-								moveDownCount++;
-								break;
-							case 1:
-								player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
-								moveDownCount++;
-								break;
-							case 3:
-								player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
-								moveDownCount = 0;
-								break;
-						}
-					}
-					else if(key == 68 || key == 39) //d or right arrow
-					{
-						player.position.x++;
+					player.position.y--;
 
-						switch(moveRightCount)
-						{
-							case 0: case 2:
-								player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
-								moveRightCount++;
-								break;
-							case 1:
-								player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
-								moveRightCount++;
-								break;
-							case 3:
-								player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
-								moveRightCount = 0;
-								break;
-						}
+					switch(moveUpCount)
+					{
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
+							moveUpCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
+							moveUpCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
+							moveUpCount = 0;
+							break;
 					}
+				}
+				else if(key == 65 || key == 37) //a or left arrow
+				{
+					player.position.x--;
+
+					switch(moveLeftCount)
+					{
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+							moveLeftCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
+							moveLeftCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
+							moveLeftCount = 0;
+							break;
+					}
+				}
+				else if(key == 83 || key == 40) //s or down arrow
+				{
+					player.position.y++;
+
+					switch(moveDownCount)
+					{
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
+							moveDownCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
+							moveDownCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
+							moveDownCount = 0;
+							break;
+					}
+				}
+				else if(key == 68 || key == 39) //d or right arrow
+				{
+					player.position.x++;
+
+					switch(moveRightCount)
+					{
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
+							moveRightCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
+							moveRightCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
+							moveRightCount = 0;
+							break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Updates the screen every tick if in a menu
+	 */
+	public static void tickMenu(int ticks)
+	{
+		if(ticks % 4 == 0)
+		{
+			for(int key : Key.keysPressed)
+			{
+				if(key == 38) //up arrow
+					Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
+				else if(key == 40) //down arrow
+					Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
+				else if(key == 10) //enter
+				{
+					if(Menu.getState() != -1)
+						Menu.menuStates.get(Menu.getState()).onEnter();
 				}
 			}
 		}

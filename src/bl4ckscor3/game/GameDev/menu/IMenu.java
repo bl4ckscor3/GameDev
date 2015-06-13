@@ -11,7 +11,7 @@ public interface IMenu
 	public void show(Graphics g);
 	
 	/**
-	 * Determines the action when clicking on the menu
+	 * Determines the action when pressing enter in the menu
 	 */
-	public void onClick();
+	public void onEnter();
 }
