@@ -2,8 +2,7 @@ package bl4ckscor3.game.GameDev.listener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
@@ -11,7 +10,7 @@ import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class Key implements KeyListener
 {
-	public static List<Integer> keysPressed = new ArrayList<Integer>();
+	public static CopyOnWriteArrayList<Integer> keysPressed = new CopyOnWriteArrayList<Integer>();
 	
 	@Override
 	public void keyTyped(KeyEvent event){}
