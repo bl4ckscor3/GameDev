@@ -115,6 +115,17 @@ public class Chunk
 		}
 	}
 
+	/**
+	 * Gets the tile at the given innerchunk position
+	 * @param x The x position
+	 * @param y The y position
+	 * @return The Tile
+	 */
+	public Tile getTile(int x, int y)
+	{
+		return tiles[x][y];
+	}
+	
 	@Override
 	public boolean equals(Object o)
 	{

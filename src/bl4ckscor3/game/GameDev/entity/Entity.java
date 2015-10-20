@@ -14,7 +14,7 @@ public class Entity
 	private Image texture;
 	/** The position of the entity*/
 	public Vector2D position;
-
+	
 	public Entity(Image texture)
 	{
 		this.texture = texture;

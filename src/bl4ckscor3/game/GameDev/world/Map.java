@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import bl4ckscor3.game.GameDev.entity.Entity;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.GameDev.util.Vector2D;
 
 public class Map
 {
@@ -60,8 +61,8 @@ public class Map
 	public void checkChunks(int seed)
 	{
 		//which chunk the player is currently in
-		int playerChunkX = Utilities.floor(Game.player.position.x / (double) Chunk.chunkSizeX);
-		int playerChunkY = Utilities.floor(Game.player.position.y / (double) Chunk.chunkSizeY);
+		int playerChunkX = Utilities.floor(Game.player.position.x / (double)Chunk.chunkSizeX);
+		int playerChunkY = Utilities.floor(Game.player.position.y / (double)Chunk.chunkSizeY);
 	
 		unloadChunks(playerChunkX, playerChunkY);
 		loadChunks(playerChunkX, playerChunkY, seed);
@@ -116,5 +117,32 @@ public class Map
 	{
 		e.position.set(x, y);
 		loadedEntities.add(e);
+	}
+	
+	/**
+	 * Gets the entitie's position within a chunk
+	 * @param e The entity to check the position of
+	 * @return The position within the chunk
+	 */
+	public Vector2D getChunkPosition(Entity e)
+	{
+		return new Vector2D((int)(e.position.x % Chunk.chunkSizeX), (int)(e.position.y % Chunk.chunkSizeY));
+	}
+	
+	/**
+	 * Gets the chunk at the given chunk coordinates
+	 * @param x Chunk coord x
+	 * @param y Chunk coord y
+	 * @return The chunk, null if no chunk has been found
+	 */
+	public Chunk getChunk(int x, int y)
+	{
+		for(Chunk c : loadedChunks)
+		{
+			if(x == c.chunkX && y == c.chunkY)
+				return c;
+		}
+		
+		return null;
 	}
 }

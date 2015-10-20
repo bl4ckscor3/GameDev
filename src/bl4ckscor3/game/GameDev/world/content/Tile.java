@@ -88,4 +88,14 @@ public class Tile
 	{
 		g.drawImage(texture, x, y, width, height, null);
 	}
+	
+	/**
+	 * Checks if this Material is water
+	 * @param m The Material to check
+	 * @return Wether the Material is water or not
+	 */
+	public boolean isWater()
+	{
+		return material == Material.WATER_DEEP || material == Material.WATER_NORMAL;
+	}
 }

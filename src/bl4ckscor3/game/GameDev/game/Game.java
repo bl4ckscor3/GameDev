@@ -9,6 +9,8 @@ import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 import bl4ckscor3.game.GameDev.util.TextureManager;
+import bl4ckscor3.game.GameDev.util.Vector2D;
+import bl4ckscor3.game.GameDev.world.Chunk;
 import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
@@ -51,11 +53,20 @@ public class Game
 		//making the player able to only move every other tick
 		if(moveTimer % 4 == 0)
 		{
+			Vector2D pos = map.getChunkPosition(player);
+			Chunk c = map.getChunk(((int)(player.position.x / (double)Chunk.chunkSizeX)) - 1, ((int)(player.position.y / (double)Chunk.chunkSizeY)) - 1);
+			
+			System.out.println(pos.x + " " + pos.y);
+			System.out.println(c.chunkX + " " + c.chunkY);
+			
 			//update keys
 			for(int key : Key.keysPressed)
 			{
 				if(key == 87 || key == 38) //w or up arrow
 				{
+					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
+						return;
+					
 					player.position.y--;
 
 					switch(moveUpCount)
@@ -78,6 +89,9 @@ public class Game
 				{
 					player.position.x--;
 
+					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater())
+						return;
+
 					switch(moveLeftCount)
 					{
 						case 0: case 2:
@@ -98,6 +112,9 @@ public class Game
 				{
 					player.position.y++;
 
+					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater())
+						return;
+					
 					switch(moveDownCount)
 					{
 						case 0: case 2:
@@ -117,6 +134,9 @@ public class Game
 				else if(key == 68 || key == 39) //d or right arrow
 				{
 					player.position.x++;
+
+					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater())
+						return;
 
 					switch(moveRightCount)
 					{
