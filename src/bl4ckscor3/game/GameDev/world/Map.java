@@ -126,7 +126,7 @@ public class Map
 	 */
 	public Vector2D getChunkPosition(Entity e)
 	{
-		return new Vector2D((int)(e.position.x % Chunk.chunkSizeX), (int)(e.position.y % Chunk.chunkSizeY));
+		return new Vector2D(e.position.x % Chunk.chunkSizeX, e.position.y % Chunk.chunkSizeY);
 	}
 	
 	/**

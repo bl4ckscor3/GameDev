@@ -23,7 +23,7 @@ public class Tile
 	public Tile(Material mat)
 	{
 		material = mat;
-		texture = TextureManager.loadTexture(material.getResourceID(mat));
+		texture = TextureManager.loadTexture(material.getResourceID());
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class Tile
 	public Tile(Material mat, String path)
 	{
 		material = mat;
-		texture = TextureManager.loadTextureFromPath(material.getResourceID(mat), path);
+		texture = TextureManager.loadTextureFromPath(material.getResourceID(), path);
 	}
 	
 	/**
@@ -45,7 +45,7 @@ public class Tile
 	public Tile(Material mat, int textureAmount)
 	{
 		material = mat;
-		texture = TextureManager.loadRandomTexture(material.getResourceID(mat), textureAmount);
+		texture = TextureManager.loadRandomTexture(material.getResourceID(), textureAmount);
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Tile
 	public Tile(Material mat, String path, int textureAmount)
 	{
 		material = mat;
-		texture = TextureManager.loadRandomTextureFromPath(material.getResourceID(mat), path, textureAmount);
+		texture = TextureManager.loadRandomTextureFromPath(material.getResourceID(), path, textureAmount);
 	}
 
 	/**
@@ -97,5 +97,13 @@ public class Tile
 	public boolean isWater()
 	{
 		return material == Material.WATER_DEEP || material == Material.WATER_NORMAL;
+	}
+	
+	/**
+	 * Gets the Material of this Tile
+	 */
+	public Material getMaterial()
+	{
+		return material;
 	}
 }

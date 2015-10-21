@@ -16,7 +16,7 @@ import bl4ckscor3.game.GameDev.world.Map;
 public class Game 
 {
 	/** The seed to generate the map from*/
-	private static int seed;
+	private static int seed = 12789327;
 	/** The map*/
 	public static Map map;
 	/** The player*/
@@ -50,25 +50,21 @@ public class Game
 	{
 		map.tick(seed);
 
-		//making the player able to only move every other tick
+		//making the player able to only move every other 4 ticks
 		if(moveTimer % 4 == 0)
 		{
 			Vector2D pos = map.getChunkPosition(player);
-			Chunk c = map.getChunk(((int)(player.position.x / (double)Chunk.chunkSizeX)) - 1, ((int)(player.position.y / (double)Chunk.chunkSizeY)) - 1);
+			Chunk c = map.getChunk(((int)(player.position.x / (double)Chunk.chunkSizeX)), ((int)(player.position.y / (double)Chunk.chunkSizeY)));
 			
 			System.out.println(pos.x + " " + pos.y);
 			System.out.println(c.chunkX + " " + c.chunkY);
+			System.out.println(c.getTile((int)pos.x,(int)pos.y).getMaterial().getResourceID());
 			
 			//update keys
 			for(int key : Key.keysPressed)
 			{
 				if(key == 87 || key == 38) //w or up arrow
 				{
-					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
-						return;
-					
-					player.position.y--;
-
 					switch(moveUpCount)
 					{
 						case 0: case 2:
@@ -84,14 +80,14 @@ public class Game
 							moveUpCount = 0;
 							break;
 					}
+					
+					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
+						return;
+					
+					player.position.y--;
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
-					player.position.x--;
-
-					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater())
-						return;
-
 					switch(moveLeftCount)
 					{
 						case 0: case 2:
@@ -107,14 +103,14 @@ public class Game
 							moveLeftCount = 0;
 							break;
 					}
+					
+					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater())
+						return;
+					
+					player.position.x--;
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
-					player.position.y++;
-
-					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater())
-						return;
-					
 					switch(moveDownCount)
 					{
 						case 0: case 2:
@@ -130,14 +126,14 @@ public class Game
 							moveDownCount = 0;
 							break;
 					}
+					
+					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater())
+						return;
+					
+					player.position.y++;
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
-					player.position.x++;
-
-					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater())
-						return;
-
 					switch(moveRightCount)
 					{
 						case 0: case 2:
@@ -153,6 +149,11 @@ public class Game
 							moveRightCount = 0;
 							break;
 					}
+					
+					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater())
+						return;
+					
+					player.position.x++;
 				}
 			}
 		}

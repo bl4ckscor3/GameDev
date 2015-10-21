@@ -33,12 +33,12 @@ public class Material
 	}
 
 	/**
-	 * Returns the resourceID of the given Material
-	 * @param mat - The Material to get the ID from
+	 * Returns the resourceID of the
+	 * @return The resource ID
 	 */
-	public String getResourceID(Material mat)
+	public String getResourceID()
 	{
-		return mat.resourceID;
+		return resourceID;
 	}
 	
 	/**
