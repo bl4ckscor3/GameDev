@@ -54,11 +54,7 @@ public class Game
 		if(moveTimer % 4 == 0)
 		{
 			Vector2D pos = map.getChunkPosition(player);
-			Chunk c = map.getChunk(((int)(player.position.x / (double)Chunk.chunkSizeX)), ((int)(player.position.y / (double)Chunk.chunkSizeY)));
-			
-			System.out.println(pos.x + " " + pos.y);
-			System.out.println(c.chunkX + " " + c.chunkY);
-			System.out.println(c.getTile((int)pos.x,(int)pos.y).getMaterial().getResourceID());
+			Chunk c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)), ((int)(player.position.y / Chunk.chunkSizeY)));
 			
 			//update keys
 			for(int key : Key.keysPressed)
