@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
@@ -18,13 +17,11 @@ public class Main
 	public static Game game;
 	private boolean windowBorder = false; //border of Windows' windows (the thing with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static int width = 1600;
-	public static int height = 900;
+	public static int width = 1280;
+	public static int height = 720;
 
 	public static void main(String[] args)
 	{	
-//		setScreenSize(args);
-		
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
@@ -73,17 +70,5 @@ public class Main
 		frame.setVisible(true);
 		game = new Game();
 		Game.start();
-	}
-	
-	private static void setScreenSize(String[] args) 
-	{
-		Scanner s = new Scanner(System.in);
-	
-		System.out.println("Controls: Arrow keys OR WASD - Move | F3 - Debug Menu | ESC - Pause");
-		System.out.println("Enter your preferred screen width: ");
-		width = Integer.parseInt(s.nextLine());
-		System.out.println("Enter your preferred screen height: ");
-		height = Integer.parseInt(s.nextLine());
-		s.close();
 	}
 }

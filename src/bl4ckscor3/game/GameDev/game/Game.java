@@ -16,7 +16,7 @@ import bl4ckscor3.game.GameDev.world.Map;
 public class Game 
 {
 	/** The seed to generate the map from*/
-	private static int seed = 12789327;
+	private static int seed = 25687431;
 	/** The map*/
 	public static Map map;
 	/** The player*/
@@ -77,6 +77,12 @@ public class Game
 							break;
 					}
 					
+					if(((int)pos.y - 1) == -1)
+					{
+						pos.y = 16;
+						c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)), ((int)(player.position.y / Chunk.chunkSizeY)) - 1);
+					}
+					
 					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
 						return;
 					
@@ -99,7 +105,13 @@ public class Game
 							moveLeftCount = 0;
 							break;
 					}
-					
+
+					if(((int)pos.x - 1) == -1)
+					{
+						pos.x = 16;
+						c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)) - 1, ((int)(player.position.y / Chunk.chunkSizeY)));
+					}
+				
 					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater())
 						return;
 					
@@ -123,6 +135,12 @@ public class Game
 							break;
 					}
 					
+					if(((int)pos.y + 1) == 16)
+					{
+						pos.y = -1;
+						c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)), ((int)(player.position.y / Chunk.chunkSizeY)) + 1);
+					}
+					
 					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater())
 						return;
 					
@@ -144,6 +162,12 @@ public class Game
 							player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
 							moveRightCount = 0;
 							break;
+					}
+					
+					if(((int)pos.x + 1) == 16)
+					{
+						pos.x = 0;
+						c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)) + 1, ((int)(player.position.y / Chunk.chunkSizeY)));
 					}
 					
 					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater())
