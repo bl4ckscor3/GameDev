@@ -87,6 +87,7 @@ public class Game
 						return;
 					
 					player.position.y--;
+					return;
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
@@ -116,6 +117,7 @@ public class Game
 						return;
 					
 					player.position.x--;
+					return;
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
@@ -145,6 +147,7 @@ public class Game
 						return;
 					
 					player.position.y++;
+					return;
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
@@ -174,6 +177,7 @@ public class Game
 						return;
 					
 					player.position.x++;
+					return;
 				}
 			}
 		}
