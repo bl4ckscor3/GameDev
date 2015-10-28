@@ -74,7 +74,10 @@ public class Key implements KeyListener
 			else if(key == 10) //enter
 			{
 				if(Menu.getState() != -1)
+				{
 					Menu.menuStates.get(Menu.getState()).onEnter();
+					Menu.setSelectedOption(0);
+				}
 			}
 		}
 	}
