@@ -30,8 +30,6 @@ public class GameThread extends Thread implements Runnable
 			{
 				if(!Menu.isOpen())
 					Game.tick(ticks);
-				else
-					Game.tickMenu(ticks);
 				
 				nextGameTick += gameSkipTicks; //makes sure to wait 16ms before updating again
 				ticks++;

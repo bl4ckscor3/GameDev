@@ -182,28 +182,6 @@ public class Game
 	}
 
 	/**
-	 * Updates the screen every tick if in a menu
-	 */
-	public static void tickMenu(int ticks)
-	{
-		if(ticks % 4 == 0)
-		{
-			for(int key : Key.keysPressed)
-			{
-				if(key == 38) //up arrow
-					Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
-				else if(key == 40) //down arrow
-					Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
-				else if(key == 10) //enter
-				{
-					if(Menu.getState() != -1)
-						Menu.menuStates.get(Menu.getState()).onEnter();
-				}
-			}
-		}
-	}
-
-	/**
 	 * Sets up the menu and starts the game
 	 */
 	public static void setupMenus()

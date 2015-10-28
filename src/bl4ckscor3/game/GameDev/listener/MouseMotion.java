@@ -9,9 +9,7 @@ public class MouseMotion implements MouseMotionListener
 	public static int mouseY;
 	
 	@Override
-	public void mouseDragged(MouseEvent event)
-	{
-	}
+	public void mouseDragged(MouseEvent event){}
 
 	@Override
 	public void mouseMoved(MouseEvent event)
