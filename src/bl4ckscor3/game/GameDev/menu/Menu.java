@@ -14,7 +14,7 @@ public class Menu
 	public static final int STATE_SETTINGS = 2;
 	public static final int STATE_LOAD = 3;
 	public static final int STATE_SAVE = 4;
-	private static final int highestOption = 4;
+	private static int highestOption = 4;
 	private static int previousState;
 	private static int currentState = STATE_MAIN; //the main menu is open when the game starts
 	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
@@ -99,6 +99,14 @@ public class Menu
 	public static boolean isOpen()
 	{
 		return Menu.getState() != Menu.STATE_OFF ? true : false;
+	}
+	
+	/**
+	 * Sets the highest option currently available.
+	 */
+	public static void setHighestOption(int highest)
+	{
+		highestOption = highest;
 	}
 	
 	/**

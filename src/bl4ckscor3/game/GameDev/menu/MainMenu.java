@@ -29,6 +29,7 @@ public class MainMenu implements IMenu
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;
 
+		Menu.setHighestOption(4);
 		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
 
