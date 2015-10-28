@@ -39,8 +39,6 @@ public class Game
 		map = new Map(seed);
 		//spawning of the entities
 		map.spawnEntity(player, 0, 0);
-		//starts the game thread
-		thread = new GameThread();
 	}
 
 	/**
@@ -208,7 +206,7 @@ public class Game
 	/**
 	 * Sets up the menu and starts the game
 	 */
-	public static void start()
+	public static void setupMenus()
 	{
 		Menu.menuStates.add(new MainMenu());
 		Menu.menuStates.add(new PauseMenu());

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.game.Screen;
 
 public class Main
@@ -68,7 +69,8 @@ public class Main
 		screen = new Screen(frame);
 		frame.add(screen);
 		frame.setVisible(true);
-		game = new Game();
-		Game.start();
+		//starts the game thread
+		Game.thread = new GameThread();
+		Game.setupMenus();
 	}
 }

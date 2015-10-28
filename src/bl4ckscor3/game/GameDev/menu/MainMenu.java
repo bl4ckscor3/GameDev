@@ -77,6 +77,7 @@ public class MainMenu implements IMenu
 			case 0: //play
 				Game.hasRunBefore = true;
 				Menu.setState(Menu.STATE_OFF);
+				Main.game = new Game();
 				break;
 			case 1: //settings
 				Menu.setState(Menu.STATE_SETTINGS);

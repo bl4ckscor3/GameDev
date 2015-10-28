@@ -44,7 +44,7 @@ public class Screen extends JPanel
 		//clears screen
 		g.clearRect(0, 0, 1920, 1080);
 		
-		if(Game.hasRunBefore)
+		if(Game.hasRunBefore && Game.map != null)
 			Game.map.render(g);
 
 		if(Menu.isOpen())
