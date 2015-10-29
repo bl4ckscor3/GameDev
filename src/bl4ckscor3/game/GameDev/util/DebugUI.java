@@ -11,6 +11,8 @@ import bl4ckscor3.game.GameDev.world.Chunk;
 
 public class DebugUI
 {
+	private static int fps = 0;
+	
 	public static void displayDebugUI(Graphics g)
 	{
 		//the space between the different strings for showing which keys are pressed
@@ -33,8 +35,8 @@ public class DebugUI
 		g.drawString("Player position X: " + Game.player.position.x, Main.width - 360, 60);
 		g.drawString("Player position Y: " + Game.player.position.y, Main.width - 360, 75);
 		
-		//fps currently not displaying correctly
-//		g.drawString("FPS: " + GameThread.fps, Main.width - 91, 15);
+		//fps
+		g.drawString("FPS: " + fps, Main.width - 91, 15);
 	}
 	
 	public static void drawChunkInfo(Graphics g, Chunk c, int posX, int posY)
@@ -45,5 +47,10 @@ public class DebugUI
 		g.drawLine(0, posY, Main.width, posY);
 		//chunk position
 		g.drawString("Chunk (" + c.chunkX + ", " + c.chunkY + ")", Utilities.ceil(posX), Utilities.ceil(posY));
+	}
+	
+	public static void setFPS(int f)
+	{
+		fps = f;
 	}
 }

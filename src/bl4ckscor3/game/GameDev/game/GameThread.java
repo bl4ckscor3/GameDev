@@ -2,53 +2,55 @@ package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.menu.Menu;
+import bl4ckscor3.game.GameDev.util.DebugUI;
 
 public class GameThread extends Thread implements Runnable
 {
-	public static int fps = 0;
-
 	@Override
 	public void run()
 	{
-		int ticksPerSecond = 50;
-		int framesPerSecond = 100;
-		int loops = 0; //amount of loops it has done before rendering
-		int ticks = 0; //variable to update TICKS_PER_SECOND
-		int frames = 0; //variable to update FRAMES_PER_SECOND
-		long gameSkipTicks = 1000 / ticksPerSecond; //amount of time the game waits until it does the next update
-		long frameSkipTicks = 1000 / framesPerSecond;
-		long maxFrameSkips = 5; //if the game runs 5 updates at the same time without updating the screen it stops updating to prevent lag
-		long nextGameTick = System.currentTimeMillis(); //next tick to update
-		long nextFrameTick = System.currentTimeMillis();
-		long time = System.currentTimeMillis();
-
+		int tick = 0;
+		int fps = 0;
+		int targetTps = 60;
+		double fpsTimer = System.currentTimeMillis();
+		double secondsPerTick = 1.0D / targetTps; //how long to wait between each update
+		double nanosecondsPerTick = secondsPerTick * 1_000_000_000.0D;
+		double then = System.nanoTime();
+		double now = System.nanoTime();
+		double unprocessed = 0;
+		
 		while(true)
 		{
-			loops = 0;
-
-			while(System.currentTimeMillis() > nextGameTick && loops < maxFrameSkips)
+			now = System.nanoTime();
+			unprocessed += (now - then) / nanosecondsPerTick;
+			then = now;
+			
+			while(unprocessed >= 1)
 			{
 				if(!Menu.isOpen())
-					Game.tick(ticks);
-				
-				nextGameTick += gameSkipTicks; //makes sure to wait 16ms before updating again
-				ticks++;
-				loops++;
+					Game.tick(tick);
+				tick++;
+				unprocessed--;
 			}
-
-			if(System.currentTimeMillis() > nextFrameTick)
+			
+			try
 			{
-				nextFrameTick += frameSkipTicks;
-				Main.screen.repaint();
-				frames++;
+				Thread.sleep(1);
 			}
-
-			if(time + 1000 <= System.currentTimeMillis())
+			catch (InterruptedException e)
 			{
-				time += 1000;
-				fps = frames;
-				ticks = 0;
-				frames = 0;
+				e.printStackTrace();
+			}
+			
+			Main.screen.repaint();
+			fps++;
+			
+			if(System.currentTimeMillis() - fpsTimer >= 1000)
+			{
+				DebugUI.setFPS(fps);
+				fps = 0;
+				tick = 0;
+				fpsTimer += 1000;
 			}
 		}
 	}
