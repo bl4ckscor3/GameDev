@@ -27,7 +27,6 @@ public class Game
 	public static int mousePosX;
 	/** The current Y position of the mouse cursor*/
 	public static int mousePosY;
-	public static boolean hasRunBefore = false; //used to stop the map from rendering if the game is still in the main menu directly after starting
 	private static int moveUpCount = 0; //used to determine texture
 	private static int moveLeftCount = 0;
 	private static int moveDownCount = 0;

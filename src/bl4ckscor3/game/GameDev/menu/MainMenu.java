@@ -19,11 +19,11 @@ public class MainMenu implements IMenu
 		//the options available to click on the screen
 		String[] options =
 			{
-				"Play",
-				"Settings",
-				"Load (currently not active)",
-				"Save (currently not active)",
-				"Exit"
+					"Play",
+					"Settings",
+					"Load (currently not active)",
+					"Save (currently not active)",
+					"Exit"
 			};
 		Font fontO = new Font("Candara", 1, 30); //options font
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
@@ -32,21 +32,10 @@ public class MainMenu implements IMenu
 		Menu.setHighestOption(4);
 		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
-
-		//determining wether the main menu was opened after stopping to play and then displaying the correct background (with/without alpha value)
-		if(!Game.hasRunBefore)
-		{
-			g.setColor(Menu.colorM);
-			g.fillRect(0, 0, 1920, 1080);
-			g.setColor(Menu.colorF);
-		}
-		else
-		{
-			g.setColor(Menu.colorMa);
-			g.fillRect(0, 0, 1920, 1080);
-			g.setColor(Menu.colorF);
-		}
-
+		
+		g.setColor(Menu.colorM);
+		g.fillRect(0, 0, 1920, 1080);
+		g.setColor(Menu.colorF);
 		Utilities.drawHeadline(g, "The Game!");
 		g.setFont(fontO);
 
@@ -75,22 +64,21 @@ public class MainMenu implements IMenu
 		//determining which option was clicked
 		switch(Menu.getSelectedOption())
 		{
-			case 0: //play
-				Main.game = new Game();
-				Game.hasRunBefore = true;
-				Menu.setState(Menu.STATE_OFF);
-				break;
-			case 1: //settings
-				Menu.setState(Menu.STATE_SETTINGS);
-				break;
-			case 2: //load
-				Menu.setState(Menu.STATE_LOAD);
-				break;
-			case 3: //save
-				Menu.setState(Menu.STATE_SAVE);
-				break;
-			case 4: //exit
-				System.exit(0);
+		case 0: //play
+			Main.game = new Game();
+			Menu.setState(Menu.STATE_OFF);
+			break;
+		case 1: //settings
+			Menu.setState(Menu.STATE_SETTINGS);
+			break;
+		case 2: //load
+			Menu.setState(Menu.STATE_LOAD);
+			break;
+		case 3: //save
+			Menu.setState(Menu.STATE_SAVE);
+			break;
+		case 4: //exit
+			System.exit(0);
 		}
 	}
 }
