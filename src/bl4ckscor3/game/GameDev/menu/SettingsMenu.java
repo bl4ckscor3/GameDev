@@ -17,4 +17,10 @@ public class SettingsMenu implements IMenu
 
 	@Override
 	public void onEnter(){}
+	
+	@Override
+	public GameState getDefinedState()
+	{
+		return GameState.SETTINGS;
+	}
 }

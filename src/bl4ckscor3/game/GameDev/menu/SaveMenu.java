@@ -17,4 +17,10 @@ public class SaveMenu implements IMenu
 
 	@Override
 	public void onEnter(){}
+	
+	@Override
+	public GameState getDefinedState()
+	{
+		return GameState.SAVE;
+	}
 }

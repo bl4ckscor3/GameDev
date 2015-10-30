@@ -62,19 +62,25 @@ public class PauseMenu implements IMenu
 				Game.unpause();
 				break;
 			case 1: //settings
-				Menu.setState(Menu.STATE_SETTINGS);
+				Menu.setState(GameState.SETTINGS);
 				break;
 			case 2: //load
-				Menu.setState(Menu.STATE_LOAD);
+				Menu.setState(GameState.LOAD);
 				break;
 			case 3: //save
-				Menu.setState(Menu.STATE_SAVE);
+				Menu.setState(GameState.SAVE);
 				break;
 			case 4: //main menu
-				Menu.setState(Menu.STATE_MAIN);
+				Menu.setState(GameState.MAIN);
 				break;
 			case 5: //exit
 				System.exit(0);
 		}
+	}
+	
+	@Override
+	public GameState getDefinedState()
+	{
+		return GameState.PAUSE;
 	}
 }

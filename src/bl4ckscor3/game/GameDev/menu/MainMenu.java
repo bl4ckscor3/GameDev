@@ -66,19 +66,25 @@ public class MainMenu implements IMenu
 		{
 		case 0: //play
 			Main.game = new Game();
-			Menu.setState(Menu.STATE_OFF);
+			Menu.setState(GameState.OFF);
 			break;
 		case 1: //settings
-			Menu.setState(Menu.STATE_SETTINGS);
+			Menu.setState(GameState.SETTINGS);
 			break;
 		case 2: //load
-			Menu.setState(Menu.STATE_LOAD);
+			Menu.setState(GameState.LOAD);
 			break;
 		case 3: //save
-			Menu.setState(Menu.STATE_SAVE);
+			Menu.setState(GameState.SAVE);
 			break;
 		case 4: //exit
 			System.exit(0);
 		}
+	}
+	
+	@Override
+	public GameState getDefinedState()
+	{
+		return GameState.MAIN;
 	}
 }

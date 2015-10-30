@@ -4,23 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.util.LinkedList;
+
+import bl4ckscor3.game.GameDev.util.CustomArrayList;
 
 public class Menu
 {
-	public static final int STATE_OFF = -1;
-	public static final int STATE_MAIN = 0;
-	public static final int STATE_PAUSE = 1;
-	public static final int STATE_SETTINGS = 2;
-	public static final int STATE_LOAD = 3;
-	public static final int STATE_SAVE = 4;
+	private static GameState previousState;
+	private static GameState currentState = GameState.MAIN; //the main menu is opened when the game starts
 	private static int highestOption = 4;
-	private static int previousState;
-	private static int currentState = STATE_MAIN; //the main menu is open when the game starts
 	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
 	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
-	public static LinkedList<IMenu> menuStates = new LinkedList<IMenu>();
+	public static CustomArrayList<IMenu> menuStates = new CustomArrayList<IMenu>();
 	public static final Color colorM = new Color(27, 72, 127); //color for the main menu
 	public static final Color colorF = new Color(255, 255, 255); //color for the font
 	
@@ -35,15 +30,15 @@ public class Menu
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(colorF);
 		
-		if(currentState != STATE_OFF)
-			menuStates.get(currentState).show(g);
+		if(currentState != GameState.OFF)
+			getMenu(currentState).show(g);
 	}
 
 	/**
 	 * Setting the menu to display. Used to display the correct menu part (main, settings etc.) and determine the actions done on clicking
 	 * @param state - The state aka menu to display
 	 */
-	public static void setState(int state)
+	public static void setState(GameState state)
 	{
 		previousState = currentState;
 		currentState = state;
@@ -52,7 +47,7 @@ public class Menu
 	/**
 	 * Getting the currently displayed menu
 	 */
-	public static int getState()
+	public static GameState getState()
 	{
 		return currentState;
 	}
@@ -61,7 +56,7 @@ public class Menu
 	 * Getting the state the menu was in before the current state
 	 * Used to determine wether ESC should bring the player back to the PauseMenu or not
 	 */
-	public static int getPreviousState()
+	public static GameState getPreviousState()
 	{
 		return previousState;
 	}
@@ -89,7 +84,7 @@ public class Menu
 	public static void closeMenu()
 	{
 		if(isOpen())
-			Menu.setState(Menu.STATE_OFF);
+			Menu.setState(GameState.OFF);
 	}
 	
 	/**
@@ -97,7 +92,7 @@ public class Menu
 	 */
 	public static boolean isOpen()
 	{
-		return Menu.getState() != Menu.STATE_OFF ? true : false;
+		return Menu.getState() != GameState.OFF ? true : false;
 	}
 	
 	/**
@@ -114,5 +109,21 @@ public class Menu
 	public static int getHighestOption()
 	{
 		return highestOption;
+	}
+	
+	/**
+	 * Gets the menu with the given state
+	 * @param state The state
+	 * @return The menu, null if none has been found
+	 */
+	public static IMenu getMenu(GameState state)
+	{
+		for(IMenu menu : menuStates)
+		{
+			if(menu.getDefinedState() == state)
+				return menu;
+		}
+		
+		return null;
 	}
 }

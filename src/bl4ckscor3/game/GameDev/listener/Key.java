@@ -6,6 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
+import bl4ckscor3.game.GameDev.menu.GameState;
 import bl4ckscor3.game.GameDev.menu.Menu;
 
 public class Key implements KeyListener
@@ -35,11 +36,11 @@ public class Key implements KeyListener
 		//pausing and unpausing, also switching to the previous menu
 		else if(key == 27) //ESC
 		{
-			if(Menu.getState() != Menu.STATE_MAIN)
+			if(Menu.getState() != GameState.MAIN)
 			{
 				if(!Menu.isOpen())
 					Game.pause();
-				else if(Menu.getState() == Menu.STATE_PAUSE)
+				else if(Menu.getState() == GameState.PAUSE)
 				{
 					if(Screen.debugWasShown)
 					{
@@ -52,12 +53,12 @@ public class Key implements KeyListener
 				else
 				{
 					//pressing escape while not being in the main (pause) menu gets you back to the main (pause) menu
-					if(Menu.getState() != Menu.STATE_PAUSE || Menu.getState() != Menu.STATE_MAIN)
+					if(Menu.getState() != GameState.PAUSE || Menu.getState() != GameState.MAIN)
 					{
-						if(Menu.getPreviousState() == Menu.STATE_MAIN)
-							Menu.setState(Menu.STATE_MAIN);
-						else if(Menu.getPreviousState() == Menu.STATE_PAUSE)
-							Menu.setState(Menu.STATE_PAUSE);
+						if(Menu.getPreviousState() == GameState.MAIN)
+							Menu.setState(GameState.MAIN);
+						else if(Menu.getPreviousState() == GameState.PAUSE)
+							Menu.setState(GameState.PAUSE);
 					}
 					else
 						Game.unpause();
@@ -73,9 +74,9 @@ public class Key implements KeyListener
 				Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
 			else if(key == 10) //enter
 			{
-				if(Menu.getState() != -1)
+				if(Menu.getState() != GameState.OFF)
 				{
-					Menu.menuStates.get(Menu.getState()).onEnter();
+					Menu.getMenu(Menu.getState()).onEnter();
 					Menu.setSelectedOption(0);
 				}
 			}

@@ -14,4 +14,9 @@ public interface IMenu
 	 * Determines the action when pressing enter in the menu
 	 */
 	public void onEnter();
+
+	/**
+	 * Determines the state this menu is defined as
+	 */
+	public GameState getDefinedState();
 }
