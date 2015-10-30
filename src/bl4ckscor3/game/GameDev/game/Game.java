@@ -75,12 +75,12 @@ public class Game
 							break;
 					}
 					
-					if(((int)pos.y - 1) == -1)
+					if((int)pos.y - 1 == -1)
 					{
 						pos.y = 16;
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) - 1);
 					}
-					
+						
 					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
 						return;
 					
@@ -105,7 +105,7 @@ public class Game
 							break;
 					}
 
-					if(((int)pos.x - 1) == -1)
+					if((int)pos.x - 1 == -1)
 					{
 						pos.x = 16;
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) - 1, (int)(player.position.y / Chunk.chunkSizeY));
@@ -135,7 +135,7 @@ public class Game
 							break;
 					}
 					
-					if(((int)pos.y + 1) == 16)
+					if((int)pos.y + 1 == 16)
 					{
 						pos.y = -1;
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) + 1);
@@ -165,7 +165,7 @@ public class Game
 							break;
 					}
 					
-					if(((int)pos.x + 1) == 16)
+					if((int)pos.x + 1 == 16)
 					{
 						pos.x = -1;
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) + 1, (int)(player.position.y / Chunk.chunkSizeY));
