@@ -9,6 +9,7 @@ import bl4ckscor3.game.GameDev.menu.Menu;
 import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
+import bl4ckscor3.game.GameDev.util.Direction;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.util.Vector2D;
 import bl4ckscor3.game.GameDev.world.Chunk;
@@ -59,18 +60,19 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerUp0", "player/"));
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerUp1", "player/"));
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerUp2", "player/"));
 							moveCount = 0;
-							break;
 					}
+
+					player.setLastMovedDir(Direction.UP);
 
 					if((int)pos.y - 1 == -1)
 					{
@@ -102,6 +104,8 @@ public class Game
 							break;
 					}
 
+					player.setLastMovedDir(Direction.LEFT);
+
 					if((int)pos.x - 1 == -1)
 					{
 						pos.x = 16;
@@ -119,18 +123,20 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerDown0", "player/"));
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerDown1", "player/"));
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
+							player.setTexture(TextureManager.loadTextureFromPath("playerDown2", "player/"));
 							moveCount = 0;
 							break;
 					}
+
+					player.setLastMovedDir(Direction.DOWN);
 
 					if((int)pos.y + 1 == 16)
 					{
@@ -162,6 +168,8 @@ public class Game
 							break;
 					}
 
+					player.setLastMovedDir(Direction.RIGHT);
+
 					if((int)pos.x + 1 == 16)
 					{
 						pos.x = -1;
@@ -175,6 +183,15 @@ public class Game
 					return;
 				}
 			}
+
+			if(player.getLastMovedDir() == Direction.UP)
+				player.setTexture(TextureManager.loadTextureFromPath("playerUp0", "player/"));
+			else if(player.getLastMovedDir() == Direction.LEFT)
+				player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+			else if(player.getLastMovedDir() == Direction.DOWN)
+				player.setTexture(TextureManager.loadTextureFromPath("playerDown0", "player/"));
+			else if(player.getLastMovedDir() == Direction.RIGHT)
+				player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
 		}
 	}
 
