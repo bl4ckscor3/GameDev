@@ -28,10 +28,7 @@ public class Game
 	public static int mousePosX;
 	/** The current Y position of the mouse cursor*/
 	public static int mousePosY;
-	private static int moveUpCount = 0; //used to determine texture
-	private static int moveLeftCount = 0;
-	private static int moveDownCount = 0;
-	private static int moveRightCount = 0;
+	private static int moveCount = 0; //used to determine texture
 
 	public Game()
 	{
@@ -59,20 +56,20 @@ public class Game
 			{
 				if(key == 87 || key == 38) //w or up arrow
 				{
-					switch(moveUpCount)
+					switch(moveCount)
 					{
-					case 0: case 2:
-						player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
-						moveUpCount++;
-						break;
-					case 1:
-						player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
-						moveUpCount++;
-						break;
-					case 3:
-						player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
-						moveUpCount = 0;
-						break;
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack0", "player/"));
+							moveCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack1", "player/"));
+							moveCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerBack2", "player/"));
+							moveCount = 0;
+							break;
 					}
 
 					if((int)pos.y - 1 == -1)
@@ -89,20 +86,20 @@ public class Game
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
-					switch(moveLeftCount)
+					switch(moveCount)
 					{
-					case 0: case 2:
-						player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
-						moveLeftCount++;
-						break;
-					case 1:
-						player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
-						moveLeftCount++;
-						break;
-					case 3:
-						player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
-						moveLeftCount = 0;
-						break;
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+							moveCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
+							moveCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
+							moveCount = 0;
+							break;
 					}
 
 					if((int)pos.x - 1 == -1)
@@ -119,20 +116,20 @@ public class Game
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
-					switch(moveDownCount)
+					switch(moveCount)
 					{
-					case 0: case 2:
-						player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
-						moveDownCount++;
-						break;
-					case 1:
-						player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
-						moveDownCount++;
-						break;
-					case 3:
-						player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
-						moveDownCount = 0;
-						break;
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing0", "player/"));
+							moveCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing1", "player/"));
+							moveCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerFacing2", "player/"));
+							moveCount = 0;
+							break;
 					}
 
 					if((int)pos.y + 1 == 16)
@@ -149,20 +146,20 @@ public class Game
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
-					switch(moveRightCount)
+					switch(moveCount)
 					{
-					case 0: case 2:
-						player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
-						moveRightCount++;
-						break;
-					case 1:
-						player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
-						moveRightCount++;
-						break;
-					case 3:
-						player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
-						moveRightCount = 0;
-						break;
+						case 0: case 2:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
+							moveCount++;
+							break;
+						case 1:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
+							moveCount++;
+							break;
+						case 3:
+							player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
+							moveCount = 0;
+							break;
 					}
 
 					if((int)pos.x + 1 == 16)
