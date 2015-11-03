@@ -17,16 +17,6 @@ public class Tile
 	public Image texture;
 	
 	/**
-	 * Loading a texture of the given material from the default resource location
-	 * @mat - Material of the texture
-	 */
-	public Tile(Material mat)
-	{
-		material = mat;
-		texture = TextureManager.loadTexture(material.getResourceID());
-	}
-	
-	/**
 	 * Loading a texture of the given material from a subfolder of the default resource location
 	 * @mat - Material of the texture
 	 * @path - Subfolder to load the texture from
@@ -35,17 +25,6 @@ public class Tile
 	{
 		material = mat;
 		texture = TextureManager.loadTextureFromPath(material.getResourceID(), path);
-	}
-	
-	/**
-	 * Loading a random texture of the given material from the default resource location
-	 * @mat - Material of the texture
-	 * @textureAmount - Amount of textures to pick one from
-	 */
-	public Tile(Material mat, int textureAmount)
-	{
-		material = mat;
-		texture = TextureManager.loadRandomTexture(material.getResourceID(), textureAmount);
 	}
 	
 	/**

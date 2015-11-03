@@ -56,22 +56,22 @@ public class Chunk
 				if(noise < 0.490F)
 				{
 					mat = Material.WATER_DEEP;
-					tiles[i][j] = new Tile(mat);
+					tiles[i][j] = new Tile(mat, "tiles/");
 				}
 				else if(noise < 0.5F)
 				{
 					mat = Material.WATER_NORMAL;
-					tiles[i][j] = new Tile(mat);
+					tiles[i][j] = new Tile(mat, "tiles/");
 				}
 				else if(noise < 0.520F)
 				{
 					mat = Material.SAND;
-					tiles[i][j] = new Tile(mat);
+					tiles[i][j] = new Tile(mat, "tiles/");
 				}
 				else
 				{
 					mat = Material.GRASS;
-					tiles[i][j] = new Tile(mat, "grass/", 12);
+					tiles[i][j] = new Tile(mat, "tiles/grass/", 12);
 				}
 
 				data[i][j] = noise;
