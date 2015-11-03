@@ -1,5 +1,6 @@
 package bl4ckscor3.game.GameDev.util;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -18,6 +19,7 @@ public class DebugUI
 		//the space between the different strings for showing which keys are pressed
 		int spaceY = 45;
 
+		g.setColor(new Color(100010000)); //some kind of red
 		g.setFont(new Font("Times New Roman", 1, 16));
 
 		//currently pressed keys

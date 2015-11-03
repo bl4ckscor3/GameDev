@@ -30,7 +30,7 @@ public class Entity
 	public void tick(){}
 
 	/**
-	 * Setting the texture of the entity. Used for directional texture changes
+	 * Setting the texture of the entity. Used for directional texture changes and animations.
 	 * @param tex - The texture to use
 	 */
 	public void setTexture(Image tex)

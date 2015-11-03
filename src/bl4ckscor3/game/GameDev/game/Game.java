@@ -1,6 +1,7 @@
 package bl4ckscor3.game.GameDev.game;
 
 import bl4ckscor3.game.GameDev.entity.Player;
+import bl4ckscor3.game.GameDev.entity.Player.PlayerTextures;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.menu.GameState;
 import bl4ckscor3.game.GameDev.menu.LoadMenu;
@@ -10,7 +11,6 @@ import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 import bl4ckscor3.game.GameDev.util.Direction;
-import bl4ckscor3.game.GameDev.util.TextureManager;
 import bl4ckscor3.game.GameDev.util.Vector2D;
 import bl4ckscor3.game.GameDev.world.Chunk;
 import bl4ckscor3.game.GameDev.world.Map;
@@ -60,15 +60,15 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerUp0", "player/"));
+							player.setTexture(PlayerTextures.UP.getStandingImage());
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerUp1", "player/"));
+							player.setTexture(PlayerTextures.UP.getFirstMovingImage());
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerUp2", "player/"));
+							player.setTexture(PlayerTextures.UP.getSecondMovingImage());
 							moveCount = 0;
 					}
 
@@ -91,15 +91,15 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+							player.setTexture(PlayerTextures.LEFT.getStandingImage());
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerLeft1", "player/"));
+							player.setTexture(PlayerTextures.LEFT.getFirstMovingImage());
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerLeft2", "player/"));
+							player.setTexture(PlayerTextures.LEFT.getSecondMovingImage());
 							moveCount = 0;
 							break;
 					}
@@ -123,15 +123,15 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerDown0", "player/"));
+							player.setTexture(PlayerTextures.DOWN.getStandingImage());
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerDown1", "player/"));
+							player.setTexture(PlayerTextures.DOWN.getFirstMovingImage());
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerDown2", "player/"));
+							player.setTexture(PlayerTextures.DOWN.getSecondMovingImage());
 							moveCount = 0;
 							break;
 					}
@@ -155,15 +155,15 @@ public class Game
 					switch(moveCount)
 					{
 						case 0: case 2:
-							player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
+							player.setTexture(PlayerTextures.RIGHT.getStandingImage());
 							moveCount++;
 							break;
 						case 1:
-							player.setTexture(TextureManager.loadTextureFromPath("playerRight1", "player/"));
+							player.setTexture(PlayerTextures.RIGHT.getFirstMovingImage());
 							moveCount++;
 							break;
 						case 3:
-							player.setTexture(TextureManager.loadTextureFromPath("playerRight2", "player/"));
+							player.setTexture(PlayerTextures.RIGHT.getSecondMovingImage());
 							moveCount = 0;
 							break;
 					}
@@ -185,13 +185,13 @@ public class Game
 			}
 
 			if(player.getLastMovedDir() == Direction.UP)
-				player.setTexture(TextureManager.loadTextureFromPath("playerUp0", "player/"));
+				player.setTexture(PlayerTextures.UP.getStandingImage());
 			else if(player.getLastMovedDir() == Direction.LEFT)
-				player.setTexture(TextureManager.loadTextureFromPath("playerLeft0", "player/"));
+				player.setTexture(PlayerTextures.LEFT.getStandingImage());
 			else if(player.getLastMovedDir() == Direction.DOWN)
-				player.setTexture(TextureManager.loadTextureFromPath("playerDown0", "player/"));
+				player.setTexture(PlayerTextures.DOWN.getStandingImage());
 			else if(player.getLastMovedDir() == Direction.RIGHT)
-				player.setTexture(TextureManager.loadTextureFromPath("playerRight0", "player/"));
+				player.setTexture(PlayerTextures.RIGHT.getStandingImage());
 		}
 	}
 
