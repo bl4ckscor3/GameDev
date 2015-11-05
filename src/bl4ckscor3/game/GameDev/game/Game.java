@@ -18,7 +18,7 @@ import bl4ckscor3.game.GameDev.world.Map;
 public class Game 
 {
 	/** The seed to generate the map from*/
-	private static int seed = 25687431;
+	private static int seed;
 	/** The map*/
 	public static Map map;
 	/** The player*/
@@ -31,8 +31,9 @@ public class Game
 	public static int mousePosY;
 	private static int moveCount = 0; //used to determine texture
 
-	public Game()
+	public Game(int s)
 	{
+		seed = s;
 		player = new Player();
 		map = new Map(seed);
 		//spawning of the entities

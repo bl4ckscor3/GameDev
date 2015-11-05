@@ -65,7 +65,7 @@ public class MainMenu implements IMenu
 		switch(Menu.getSelectedOption())
 		{
 		case 0: //play
-			Main.game = new Game();
+			Main.game = new Game(25687431);
 			Menu.setState(GameState.OFF);
 			break;
 		case 1: //settings
