@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
@@ -31,7 +30,6 @@ public class MainMenu implements IMenu
 		int i = 0;
 
 		Menu.setHighestOption(4);
-		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
 
 		g.setColor(Menu.colorM);
@@ -54,7 +52,6 @@ public class MainMenu implements IMenu
 			else
 				Utilities.drawStringAtPoint(g, s, Menu.optionLocations[i]);
 
-			Menu.optionBounds[i] = metricsO.getStringBounds(s, g).getBounds(); //writing the bounds of the string into an array to detect if the mouse is over the string later on
 			i++;
 		}
 	}

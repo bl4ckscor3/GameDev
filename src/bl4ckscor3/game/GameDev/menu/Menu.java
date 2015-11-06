@@ -3,7 +3,6 @@ package bl4ckscor3.game.GameDev.menu;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import bl4ckscor3.game.GameDev.util.CustomArrayList;
@@ -14,7 +13,6 @@ public class Menu
 	private static GameState currentState = GameState.MAIN; //the main menu is opened when the game starts
 	private static int highestOption = 4;
 	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
-	public static Rectangle[] optionBounds;
 	public static Point[] optionLocations;
 	public static CustomArrayList<IMenu> menuStates = new CustomArrayList<IMenu>();
 	public static final Color colorM = new Color(27, 72, 127); //color for the main menu

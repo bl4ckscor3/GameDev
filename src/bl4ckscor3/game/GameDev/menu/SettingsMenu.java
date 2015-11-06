@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -27,7 +26,6 @@ public class SettingsMenu implements IMenu
 		int i = 0;
 
 		Menu.setHighestOption(0);
-		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
 
 		g.setColor(Menu.colorM);
@@ -50,7 +48,6 @@ public class SettingsMenu implements IMenu
 			else
 				Utilities.drawStringAtPoint(g, s, Menu.optionLocations[i]);
 
-			Menu.optionBounds[i] = metricsO.getStringBounds(s, g).getBounds(); //writing the bounds of the string into an array to detect if the mouse is over the string later on
 			i++;
 		}
 	}
@@ -61,10 +58,7 @@ public class SettingsMenu implements IMenu
 		switch(Menu.getSelectedOption())
 		{
 			case 0:
-			{
-//				SeedMenu.setSeedNumbers();
 				Menu.setState(GameState.SEED);
-			}
 		}
 	}
 
