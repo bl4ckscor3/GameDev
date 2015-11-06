@@ -6,6 +6,9 @@ import bl4ckscor3.game.GameDev.util.DebugUI;
 
 public class GameThread extends Thread implements Runnable
 {
+	/** The seed to generate the map from*/
+	private static int seed;
+	
 	@Override
 	public void run()
 	{
@@ -29,6 +32,7 @@ public class GameThread extends Thread implements Runnable
 			{
 				if(!Menu.isOpen())
 					Game.tick(tick);
+				
 				tick++;
 				unprocessed--;
 			}
@@ -53,5 +57,15 @@ public class GameThread extends Thread implements Runnable
 				fpsTimer += 1000;
 			}
 		}
+	}
+
+	public static void setSeed(int s)
+	{
+		seed = s;
+	}
+	
+	public static int getSeed()
+	{
+		return seed;
 	}
 }

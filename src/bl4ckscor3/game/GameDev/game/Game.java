@@ -9,6 +9,7 @@ import bl4ckscor3.game.GameDev.menu.MainMenu;
 import bl4ckscor3.game.GameDev.menu.Menu;
 import bl4ckscor3.game.GameDev.menu.PauseMenu;
 import bl4ckscor3.game.GameDev.menu.SaveMenu;
+import bl4ckscor3.game.GameDev.menu.SeedMenu;
 import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 import bl4ckscor3.game.GameDev.util.Direction;
 import bl4ckscor3.game.GameDev.util.Vector2D;
@@ -17,8 +18,6 @@ import bl4ckscor3.game.GameDev.world.Map;
 
 public class Game 
 {
-	/** The seed to generate the map from*/
-	private static int seed;
 	/** The map*/
 	public static Map map;
 	/** The player*/
@@ -31,9 +30,8 @@ public class Game
 	public static int mousePosY;
 	private static int moveCount = 0; //used to determine texture
 
-	public Game(int s)
+	public Game(int seed)
 	{
-		seed = s;
 		player = new Player();
 		map = new Map(seed);
 		//spawning of the entities
@@ -45,7 +43,7 @@ public class Game
 	 */
 	public static void tick(int moveTimer)
 	{
-		map.tick(seed);
+		map.tick();
 
 		//making the player able to only move every other 4 ticks
 		if(moveTimer % 4 == 0)
@@ -205,7 +203,8 @@ public class Game
 				new PauseMenu(),
 				new SettingsMenu(),
 				new LoadMenu(),
-				new SaveMenu());
+				new SaveMenu(),
+				new SeedMenu());
 		thread.start();
 	}
 
@@ -224,10 +223,5 @@ public class Game
 	public static void unpause()
 	{
 		Menu.closeMenu();
-	}
-
-	public static void setSeed(int s)
-	{
-		seed = s;
 	}
 }

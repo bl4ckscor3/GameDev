@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import bl4ckscor3.game.GameDev.util.CustomArrayList;
 
 public class Menu
 {
-	private static GameState previousState;
+	private static final ArrayList<GameState> previousStates = new ArrayList<GameState>();
 	private static GameState currentState = GameState.MAIN; //the main menu is opened when the game starts
 	private static int highestOption = 4;
 	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
@@ -40,8 +41,11 @@ public class Menu
 	 */
 	public static void setState(GameState state)
 	{
-		previousState = currentState;
+		previousStates.add(currentState);
 		currentState = state;
+		
+		if(state == GameState.OFF)
+			previousStates.clear();
 	}
 
 	/**
@@ -54,11 +58,19 @@ public class Menu
 	
 	/**
 	 * Getting the state the menu was in before the current state
-	 * Used to determine wether ESC should bring the player back to the PauseMenu or not
 	 */
-	public static GameState getPreviousState()
+	public static GameState getLastState()
 	{
-		return previousState;
+		return previousStates.get(previousStates.size() - 1);
+	}
+	
+	/**
+	 * Sets the current state to the one which was before the current one
+	 */
+	public static void setStateToLast()
+	{
+		currentState = getLastState();
+		previousStates.remove(previousStates.size() - 1);
 	}
 	
 	/**
@@ -84,7 +96,7 @@ public class Menu
 	public static void closeMenu()
 	{
 		if(isOpen())
-			Menu.setState(GameState.OFF);
+			setState(GameState.OFF);
 	}
 	
 	/**
@@ -92,7 +104,7 @@ public class Menu
 	 */
 	public static boolean isOpen()
 	{
-		return Menu.getState() != GameState.OFF ? true : false;
+		return getState() != GameState.OFF ? true : false;
 	}
 	
 	/**

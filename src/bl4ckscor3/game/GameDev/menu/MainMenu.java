@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 
 import bl4ckscor3.game.GameDev.core.Main;
 import bl4ckscor3.game.GameDev.game.Game;
+import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class MainMenu implements IMenu
@@ -32,7 +33,7 @@ public class MainMenu implements IMenu
 		Menu.setHighestOption(4);
 		Menu.optionBounds = new Rectangle[options.length];
 		Menu.optionLocations = new Point[options.length];
-		
+
 		g.setColor(Menu.colorM);
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(Menu.colorF);
@@ -64,24 +65,24 @@ public class MainMenu implements IMenu
 		//determining which option was clicked
 		switch(Menu.getSelectedOption())
 		{
-		case 0: //play
-			Main.game = new Game(25687431);
-			Menu.setState(GameState.OFF);
-			break;
-		case 1: //settings
-			Menu.setState(GameState.SETTINGS);
-			break;
-		case 2: //load
-			Menu.setState(GameState.LOAD);
-			break;
-		case 3: //save
-			Menu.setState(GameState.SAVE);
-			break;
-		case 4: //exit
-			System.exit(0);
+			case 0: //play
+				Main.game = new Game(GameThread.getSeed());
+				Menu.setState(GameState.OFF);
+				break;
+			case 1: //settings
+				Menu.setState(GameState.SETTINGS);
+				break;
+			case 2: //load
+				Menu.setState(GameState.LOAD);
+				break;
+			case 3: //save
+				Menu.setState(GameState.SAVE);
+				break;
+			case 4: //exit
+				System.exit(0);
 		}
 	}
-	
+
 	@Override
 	public GameState getDefinedState()
 	{

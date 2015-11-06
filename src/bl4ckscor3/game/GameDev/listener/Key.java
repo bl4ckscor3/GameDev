@@ -8,6 +8,7 @@ import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.menu.GameState;
 import bl4ckscor3.game.GameDev.menu.Menu;
+import bl4ckscor3.game.GameDev.menu.SeedMenu;
 
 public class Key implements KeyListener
 {
@@ -50,20 +51,22 @@ public class Key implements KeyListener
 
 					Game.unpause();
 				}
-				else
+				else if(Menu.getState() == GameState.SEED)
 				{
-					//pressing escape while not being in the main (pause) menu gets you back to the main (pause) menu
-					if(Menu.getState() != GameState.PAUSE || Menu.getState() != GameState.MAIN)
+					try
 					{
-						if(Menu.getPreviousState() == GameState.MAIN)
-							Menu.setState(GameState.MAIN);
-						else if(Menu.getPreviousState() == GameState.PAUSE)
-							Menu.setState(GameState.PAUSE);
+						Menu.getMenu(GameState.SEED).onEnter();
 					}
-					else
-						Game.unpause();
+					catch(Exception e){}
 				}
+				else
+					Menu.setStateToLast();
 			}
+		}
+		else
+		{
+			if(Menu.getState() == GameState.SEED)
+				SeedMenu.onKeyPressed(key);
 		}
 		
 		if(Menu.isOpen())
@@ -76,7 +79,12 @@ public class Key implements KeyListener
 			{
 				if(Menu.getState() != GameState.OFF)
 				{
-					Menu.getMenu(Menu.getState()).onEnter();
+					try
+					{
+						Menu.getMenu(Menu.getState()).onEnter();
+					}
+					catch(Exception e){}
+					
 					Menu.setSelectedOption(0);
 				}
 			}

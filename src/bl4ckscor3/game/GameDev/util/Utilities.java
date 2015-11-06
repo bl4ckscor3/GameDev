@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.net.URISyntaxException;
 
 import bl4ckscor3.game.GameDev.core.Main;
 
@@ -45,7 +46,7 @@ public class Utilities
 	}
 	
 	/**
-	 * Drawing a headline for the menus
+	 * Drawing a headline for the menus with an underline
 	 * @param g - The Graphics to draw with
 	 * @param text - The text to display
 	 */
@@ -66,5 +67,32 @@ public class Utilities
 		g.setFont(fontH);
 		g.drawString(text, Main.width / 2 - metricsH.stringWidth(text) / 2, Main.height / 4);
 		g.drawString(underscores, Main.width / 2 - metricsH.stringWidth(underscores) / 2, Main.height / 4);
+	}
+	
+	/**
+	 * Draws a smaller String below the headline
+	 * @param g - The Graphics to draw with
+	 * @param text - The text to display
+	 */
+	public static void drawStringBelowHeadline(Graphics g, String text)
+	{
+		Font font = new Font("Candara", 1, 20);
+		FontMetrics metrics = g.getFontMetrics(font);
+		
+		g.setFont(font);
+		g.drawString(text, Main.width / 2 - metrics.stringWidth(text) / 2, Main.height / 4 + 50);
+	}
+	
+	/**
+	 * Gets the path of the running jar file
+	 */
+	public static String getJarLocation() throws URISyntaxException
+	{
+		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+		
+		if(path.endsWith(".jar"))
+			path = path.substring(0, path.lastIndexOf("/"));
+		
+		return path;
 	}
 }
