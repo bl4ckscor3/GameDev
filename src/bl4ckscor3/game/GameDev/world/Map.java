@@ -15,10 +15,12 @@ public class Map
 	public List<Entity> loadedEntities = new CopyOnWriteArrayList<Entity>();
 	private final int chunkAmountX = 5;
 	private final int chunkAmountY = 5;
+	private final int seed;
 	
-	public Map(int seed)
+	public Map(int s)
 	{
-		checkChunks(seed);
+		seed = s;
+		checkChunks();
 	}
 	
 	/**
@@ -40,9 +42,9 @@ public class Map
 	/**
 	 * Gets called every game tick
 	 */
-	public void tick(int seed)
+	public void tick()
 	{
-		checkChunks(seed);
+		checkChunks();
 		
 		for(Chunk c : loadedChunks)
 		{
@@ -58,14 +60,14 @@ public class Map
 	/**
 	 * Loading and unloading the chunks
 	 */
-	public void checkChunks(int seed)
+	public void checkChunks()
 	{
 		//which chunk the player is currently in
 		int playerChunkX = Utilities.floor(Game.player.position.x / (double)Chunk.chunkSizeX);
 		int playerChunkY = Utilities.floor(Game.player.position.y / (double)Chunk.chunkSizeY);
 	
 		unloadChunks(playerChunkX, playerChunkY);
-		loadChunks(playerChunkX, playerChunkY, seed);
+		loadChunks(playerChunkX, playerChunkY);
 	}
 	
 	/**
@@ -73,7 +75,7 @@ public class Map
 	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
 	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
 	 */
-	public void loadChunks(int playerChunkX, int playerChunkY, int seed)
+	public void loadChunks(int playerChunkX, int playerChunkY)
 	{
 		//checking each row from the chunk on the left to the chunk on the right (5 chunks)
 		for(int x = playerChunkX - (chunkAmountX - 1) / 2; x <= playerChunkX + (chunkAmountX - 1) / 2; x++)
@@ -120,7 +122,7 @@ public class Map
 	}
 	
 	/**
-	 * Gets the entitie's position within a chunk
+	 * Gets the entity's position within a chunk
 	 * @param e The entity to check the position of
 	 * @return The position within the chunk
 	 */
