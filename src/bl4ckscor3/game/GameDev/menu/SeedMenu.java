@@ -40,7 +40,12 @@ public class SeedMenu implements IMenu
 			seed += s;
 		}
 		
-		GameThread.setSeed(Integer.parseInt(seed));
+		try
+		{
+			GameThread.setSeed(Integer.parseInt(seed));
+		}
+		catch(NumberFormatException e){}
+			
 		Menu.setStateToLast();
 	}
 
