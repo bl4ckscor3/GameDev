@@ -3,9 +3,6 @@ package bl4ckscor3.game.GameDev.entity;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import bl4ckscor3.game.GameDev.core.Main;
-import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.util.Utilities;
 import bl4ckscor3.game.GameDev.util.Vector2D;
 
 public class Entity
@@ -15,17 +12,13 @@ public class Entity
 	/** The position of the entity*/
 	public Vector2D position;
 	
-	public Entity(Image texture)
+	public Entity(Image tex)
 	{
-		this.texture = texture;
+		texture = tex;
 		position = new Vector2D();
 	}
 
-	public void render(Graphics g)
-	{
-		//currently only rendering the player
-		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 14, 32, 41, null);	
-	}
+	public void render(Graphics g){}
 
 	public void tick(){}
 
@@ -36,5 +29,10 @@ public class Entity
 	public void setTexture(Image tex)
 	{
 		texture = tex;	
+	}
+	
+	public Image getCurrentTexture()
+	{
+		return texture;
 	}
 }

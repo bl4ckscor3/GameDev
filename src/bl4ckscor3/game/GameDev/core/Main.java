@@ -11,6 +11,8 @@ import javax.swing.SwingUtilities;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.game.Screen;
+import bl4ckscor3.game.GameDev.util.ScaleFactor;
+import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class Main
 {
@@ -20,6 +22,9 @@ public class Main
 	private boolean fullscreen = windowBorder;
 	public static int width = 1280;
 	public static int height = 720;
+//	public static int width = 1920;
+//	public static int height = 1080;
+	public static ScaleFactor scaleFactor;
 
 	public static void main(String[] args)
 	{	
@@ -67,6 +72,7 @@ public class Main
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		screen = new Screen(frame);
+		scaleFactor = new ScaleFactor(Utilities.ceil(Screen.tileSize * Screen.pixelSize * screen.pixelScaleWidth / 2), Utilities.ceil(Screen.tileSize * Screen.pixelSize * screen.pixelScaleHeight / 2));
 		frame.add(screen);
 		frame.setVisible(true);
 		//starts the game thread

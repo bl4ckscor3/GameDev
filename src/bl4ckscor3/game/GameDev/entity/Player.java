@@ -1,7 +1,10 @@
 package bl4ckscor3.game.GameDev.entity;
 
+import java.awt.Graphics;
 import java.awt.Image;
 
+import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.game.Screen;
 import bl4ckscor3.game.GameDev.util.Direction;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 
@@ -22,6 +25,17 @@ public class Player extends Entity
 	public void setLastMovedDir(Direction lmd)
 	{
 		lastMovedDir = lmd;
+	}
+	
+	@Override
+	public void render(Graphics g)
+	{
+		g.drawImage(getCurrentTexture(),
+				Main.width / 2 - Main.scaleFactor.getWidth() + Screen.tileSize / 4,
+				Main.height / 2 - Main.scaleFactor.getHeight(),
+				(Main.scaleFactor.getWidth() * 2) - ((Main.scaleFactor.getWidth() * 2) / 4),
+				Main.scaleFactor.getHeight() * 2,
+				null);	
 	}
 	
 	public enum PlayerTextures
