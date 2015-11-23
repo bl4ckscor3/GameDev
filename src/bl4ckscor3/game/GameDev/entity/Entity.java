@@ -24,9 +24,8 @@ public class Entity
 	public void render(Graphics g)
 	{
 		//currently only rendering the player
-//		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 14, 32, 41, null);
-		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 14, Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + (32 / 4), Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + ((41 / 4) + (41 / 16)), null);
-    }
+		g.drawImage(texture, Main.width / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth / 2), Main.height / 2 - Utilities.ceil(Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight / 2) - 14, 32, 41, null);	
+	}
 
 	public void tick(){}
 

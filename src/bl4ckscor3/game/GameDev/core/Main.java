@@ -18,8 +18,8 @@ public class Main
 	public static Game game;
 	private boolean windowBorder = false; //border of Windows' windows (the thing with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static int width = 1920;
-	public static int height = 1080;
+	public static int width = 1280;
+	public static int height = 720;
 
 	public static void main(String[] args)
 	{	
