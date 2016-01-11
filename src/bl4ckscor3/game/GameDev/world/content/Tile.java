@@ -55,7 +55,7 @@ public class Tile
 	 */
 	public void render(Graphics g, int x, int y)
 	{
-		g.drawImage(texture, x, y, Main.scaleFactor.getWidth(), Main.scaleFactor.getHeight(), null);
+		g.drawImage(texture, x, y, Main.scaleFactor.getWidth() * 2, Main.scaleFactor.getHeight() * 2, null);
 	}
 	
 	/**
