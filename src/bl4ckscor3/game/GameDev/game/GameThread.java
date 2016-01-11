@@ -62,6 +62,7 @@ public class GameThread extends Thread implements Runnable
 	public static void setSeed(int s)
 	{
 		seed = s;
+		Main.config.setValue("seed", "" + s);
 	}
 	
 	public static int getSeed()

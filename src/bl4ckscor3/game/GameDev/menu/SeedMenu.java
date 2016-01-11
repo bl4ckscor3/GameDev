@@ -34,18 +34,18 @@ public class SeedMenu implements IMenu
 	public void onEnter()
 	{
 		String seed = "";
-		
+
 		for(String s : numbers)
 		{
 			seed += s;
 		}
-		
+
 		try
 		{
 			GameThread.setSeed(Integer.parseInt(seed));
 		}
 		catch(NumberFormatException e){}
-			
+
 		Menu.setStateToLast();
 	}
 
@@ -108,5 +108,15 @@ public class SeedMenu implements IMenu
 		}
 
 		numbers[numbers.length - 1] = null;
+	}
+
+	public static void populateSeedArray()
+	{
+		String[] seed = Main.config.getValue("seed").split("");
+
+		for(int i = 0; i < 9; i++)
+		{
+			numbers[i] = seed[i];
+		}
 	}
 }

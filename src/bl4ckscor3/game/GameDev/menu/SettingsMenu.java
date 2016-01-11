@@ -58,7 +58,10 @@ public class SettingsMenu implements IMenu
 		switch(Menu.getSelectedOption())
 		{
 			case 0:
+			{
+				SeedMenu.populateSeedArray();
 				Menu.setState(GameState.SEED);
+			}
 		}
 	}
 
