@@ -67,6 +67,9 @@ public class SettingsMenu implements IMenu
 			case 1:
 				Menu.setState(GameState.RESOLUTION);
 				break;
+			case 2:
+				Main.config.clear();
+				break;
 			case 3:
 				Menu.setStateToLast();
 		}
