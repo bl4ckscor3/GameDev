@@ -11,7 +11,7 @@ public class Menu
 {
 	private static final ArrayList<GameState> previousStates = new ArrayList<GameState>();
 	private static GameState currentState = GameState.MAIN; //the main menu is opened when the game starts
-	private static int highestOption = 4;
+	private static int highestOption = 5;
 	private static int selectedOption = 0; //the option currently selected - 0 is the top option, the highest number is the bottom option
 	public static Point[] optionLocations;
 	public static CustomArrayList<IMenu> menuStates = new CustomArrayList<IMenu>();
@@ -106,15 +106,15 @@ public class Menu
 	}
 	
 	/**
-	 * Sets the highest option currently available.
+	 * Sets the highest option currently available
 	 */
 	public static void setHighestOption(int highest)
 	{
-		highestOption = highest;
+		highestOption = --highest;
 	}
 	
 	/**
-	 * Gets the highest option currently available.
+	 * Gets the highest option currently available
 	 */
 	public static int getHighestOption()
 	{
@@ -135,5 +135,19 @@ public class Menu
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * Sets up the menu
+	 */
+	public static void setupMenus()
+	{
+		Menu.menuStates.addEverything(new LoadMenu(),
+				new MainMenu(),
+				new PauseMenu(),
+				new ResolutionMenu(),
+				new SaveMenu(),
+				new SeedMenu(),
+				new SettingsMenu());
 	}
 }

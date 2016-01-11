@@ -4,13 +4,7 @@ import bl4ckscor3.game.GameDev.entity.Player;
 import bl4ckscor3.game.GameDev.entity.Player.PlayerTextures;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.menu.GameState;
-import bl4ckscor3.game.GameDev.menu.LoadMenu;
-import bl4ckscor3.game.GameDev.menu.MainMenu;
 import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.menu.PauseMenu;
-import bl4ckscor3.game.GameDev.menu.SaveMenu;
-import bl4ckscor3.game.GameDev.menu.SeedMenu;
-import bl4ckscor3.game.GameDev.menu.SettingsMenu;
 import bl4ckscor3.game.GameDev.util.Direction;
 import bl4ckscor3.game.GameDev.util.Vector2D;
 import bl4ckscor3.game.GameDev.world.Chunk;
@@ -192,20 +186,6 @@ public class Game
 			else if(player.getLastMovedDir() == Direction.RIGHT)
 				player.setTexture(PlayerTextures.RIGHT.getStandingImage());
 		}
-	}
-
-	/**
-	 * Sets up the menu and starts the game
-	 */
-	public static void setupMenus()
-	{
-		Menu.menuStates.addEverything(new MainMenu(),
-				new PauseMenu(),
-				new SettingsMenu(),
-				new LoadMenu(),
-				new SaveMenu(),
-				new SeedMenu());
-		thread.start();
 	}
 
 	/**

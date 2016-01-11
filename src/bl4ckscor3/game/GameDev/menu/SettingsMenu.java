@@ -20,12 +20,15 @@ public class SettingsMenu implements IMenu
 		String[] options =
 			{
 					"Seed",
+					"Resolution",
+					"Reset",
+					"Back",
 			};
 		Font fontO = new Font("Candara", 1, 30); //options font
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;
 
-		Menu.setHighestOption(0);
+		Menu.setHighestOption(options.length);
 		Menu.optionLocations = new Point[options.length];
 
 		g.setColor(Menu.colorM);
@@ -58,10 +61,14 @@ public class SettingsMenu implements IMenu
 		switch(Menu.getSelectedOption())
 		{
 			case 0:
-			{
 				SeedMenu.populateSeedArray();
 				Menu.setState(GameState.SEED);
-			}
+				break;
+			case 1:
+				Menu.setState(GameState.RESOLUTION);
+				break;
+			case 3:
+				Menu.setStateToLast();
 		}
 	}
 

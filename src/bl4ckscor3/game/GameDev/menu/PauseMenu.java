@@ -28,7 +28,7 @@ public class PauseMenu implements IMenu
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;
 
-		Menu.setHighestOption(5);
+		Menu.setHighestOption(options.length);
 		Menu.optionLocations = new Point[options.length];
 		Utilities.drawHeadline(g, "Pause");
 		g.setFont(fontO);

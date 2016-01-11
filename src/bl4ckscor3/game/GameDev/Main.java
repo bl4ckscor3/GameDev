@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.game.Screen;
+import bl4ckscor3.game.GameDev.menu.Menu;
 import bl4ckscor3.game.GameDev.util.ScaleFactor;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
@@ -78,6 +79,7 @@ public class Main
 		frame.setVisible(true);
 		//starts the game thread
 		Game.thread = new GameThread();
-		Game.setupMenus();
+		Menu.setupMenus();
+		Game.thread.start();
 	}
 }

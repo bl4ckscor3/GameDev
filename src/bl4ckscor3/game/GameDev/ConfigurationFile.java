@@ -77,7 +77,6 @@ public class ConfigurationFile
 
 			for(int i = 0; i < lines.size(); i++)
 			{
-				System.out.println(i);
 				if(lines.get(i).startsWith(option))
 					lines.set(i, option + "=" + value);
 			}
