@@ -98,9 +98,9 @@ public class ConfigurationFile
 		Collection<String> lines = new ArrayList<String>();
 
 		clear();
+		lines.add("width=1280");
 		lines.add("height=720");
 		lines.add("seed=123456789");
-		lines.add("width=1280");
 		
 		try
 		{
