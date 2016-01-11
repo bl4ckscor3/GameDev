@@ -16,6 +16,9 @@ public class ConfigurationFile
 {
 	private File config;
 
+	/**
+	 * Sets up the configuration file, if not already done
+	 */
 	public ConfigurationFile()
 	{
 		try
@@ -34,6 +37,12 @@ public class ConfigurationFile
 		}
 	}
 
+	/**
+	 * Gets the value from the given option.
+	 * Example: getValue("seed"); will return the value of seed=123456789 which is 123456789
+	 * @param option The option to get the value from
+	 * @return The value
+	 */
 	public String getValue(String option)
 	{
 		try
@@ -54,6 +63,12 @@ public class ConfigurationFile
 		return null;
 	}
 	
+	/**
+	 * Sets the value for the given option.
+	 * Example: setValue("seed", "987654321"); will set the value of seed=123456789 to 987654321 which gives seed=987654321
+	 * @param option The option to set the value for
+	 * @param value The value
+	 */
 	public void setValue(String option, String value)
 	{
 		try
@@ -76,6 +91,9 @@ public class ConfigurationFile
 		}
 	}
 	
+	/**
+	 * Writes the default values to the file
+	 */
 	public void writeDefaultValues()
 	{
 		Collection<String> lines = new ArrayList<String>();
@@ -95,6 +113,9 @@ public class ConfigurationFile
 		}
 	}
 
+	/**
+	 * Clears the file
+	 */
 	public void clear()
 	{
 		try
