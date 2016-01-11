@@ -1,4 +1,7 @@
-/target
+/target/classes/bl4ckscor3
+/target/classes/player
+/target/classes/tiles
+/target/test-classes
 /RemoteSystemsTempFiles
 /.settings
 /.project

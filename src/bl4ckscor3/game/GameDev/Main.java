@@ -21,20 +21,23 @@ public class Main
 	public static Game game;
 	private boolean windowBorder = false; //border of Windows' windows (the thing with minimize, maximize and close)
 	private boolean fullscreen = windowBorder;
-	public static ConfigurationFile config = new ConfigurationFile();
-	public static int width = Integer.parseInt(config.getValue("width"));
-	public static int height = Integer.parseInt(config.getValue("height"));
+	public static ConfigurationFile config;
+	public static int width;
+	public static int height;
 //	public static int width = 1920;
 //	public static int height = 1080;
 	public static ScaleFactor scaleFactor;
 
 	public static void main(String[] args)
-	{	
+	{
 		SwingUtilities.invokeLater(new Runnable()
 		{
 			@Override
 			public void run()
 			{
+				config = new ConfigurationFile();
+				width = Integer.parseInt(config.getValue("width"));
+				height = Integer.parseInt(config.getValue("height"));
 				new Main();
 			}
 		});
