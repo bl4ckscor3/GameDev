@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.net.URISyntaxException;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 
 public class Utilities
 {

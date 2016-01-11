@@ -1,6 +1,6 @@
 package bl4ckscor3.game.GameDev.game;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 import bl4ckscor3.game.GameDev.menu.Menu;
 import bl4ckscor3.game.GameDev.util.DebugUI;
 

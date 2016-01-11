@@ -8,7 +8,7 @@ import java.awt.Point;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 import bl4ckscor3.game.GameDev.util.Utilities;
 
 public class SettingsMenu implements IMenu

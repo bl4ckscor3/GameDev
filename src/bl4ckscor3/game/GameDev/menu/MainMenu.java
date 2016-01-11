@@ -6,7 +6,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.game.GameThread;
 import bl4ckscor3.game.GameDev.util.Utilities;

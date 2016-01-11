@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.core;
+package bl4ckscor3.game.GameDev;
 
 import java.io.File;
 import java.io.IOException;

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
 import bl4ckscor3.game.GameDev.menu.Menu;

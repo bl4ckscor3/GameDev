@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl4ckscor3.game.GameDev.core.Main;
+import bl4ckscor3.game.GameDev.Main;
 import bl4ckscor3.game.GameDev.util.TextureManager;
 
 public class Tile
