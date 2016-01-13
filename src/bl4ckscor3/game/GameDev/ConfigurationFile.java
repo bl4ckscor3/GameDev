@@ -23,7 +23,7 @@ public class ConfigurationFile
 	{
 		try
 		{
-			config = new File(Utilities.getJarLocation() + "config.txt");
+			config = new File(Utilities.getJarLocation() + "/config.txt");
 
 			if(!config.exists())
 			{
