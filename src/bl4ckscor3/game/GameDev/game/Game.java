@@ -5,6 +5,7 @@ import bl4ckscor3.game.GameDev.entity.Player.PlayerTextures;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.menu.GameState;
 import bl4ckscor3.game.GameDev.menu.Menu;
+import bl4ckscor3.game.GameDev.util.DebugUI;
 import bl4ckscor3.game.GameDev.util.Direction;
 import bl4ckscor3.game.GameDev.util.Vector2D;
 import bl4ckscor3.game.GameDev.world.Chunk;
@@ -77,6 +78,7 @@ public class Game
 						return;
 
 					player.position.y--;
+					DebugUI.setCurrentTile(c.getTile((int)pos.x, ((int)pos.y - 1)).getMaterial());
 					return;
 				}
 				else if(key == 65 || key == 37) //a or left arrow
@@ -109,6 +111,7 @@ public class Game
 						return;
 
 					player.position.x--;
+					DebugUI.setCurrentTile(c.getTile(((int)pos.x - 1), (int)pos.y).getMaterial());
 					return;
 				}
 				else if(key == 83 || key == 40) //s or down arrow
@@ -141,6 +144,7 @@ public class Game
 						return;
 
 					player.position.y++;
+					DebugUI.setCurrentTile(c.getTile((int)pos.x, ((int)pos.y + 1)).getMaterial());
 					return;
 				}
 				else if(key == 68 || key == 39) //d or right arrow
@@ -173,6 +177,7 @@ public class Game
 						return;
 
 					player.position.x++;
+					DebugUI.setCurrentTile(c.getTile(((int)pos.x + 1), (int)pos.y).getMaterial());
 					return;
 				}
 			}

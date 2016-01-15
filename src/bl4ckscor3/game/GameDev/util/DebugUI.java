@@ -9,10 +9,12 @@ import bl4ckscor3.game.GameDev.game.Game;
 import bl4ckscor3.game.GameDev.listener.Key;
 import bl4ckscor3.game.GameDev.listener.MouseMotion;
 import bl4ckscor3.game.GameDev.world.Chunk;
+import bl4ckscor3.game.GameDev.world.content.Material;
 
 public class DebugUI
 {
 	private static int fps = 0;
+	private static String currentTile = "Spawn";
 	
 	public static void displayDebugUI(Graphics g)
 	{
@@ -36,6 +38,7 @@ public class DebugUI
 		//player position
 		g.drawString("Player position X: " + Game.player.position.x, Main.width - 360, 60);
 		g.drawString("Player position Y: " + Game.player.position.y, Main.width - 360, 75);
+		g.drawString("Current tile: " + currentTile, Main.width - 360, 90);
 		
 		//fps
 		g.drawString("FPS: " + fps, Main.width - 91, 15);
@@ -54,5 +57,10 @@ public class DebugUI
 	public static void setFPS(int f)
 	{
 		fps = f;
+	}
+	
+	public static void setCurrentTile(Material m)
+	{
+		currentTile = m.getResourceID();
 	}
 }

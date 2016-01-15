@@ -33,7 +33,7 @@ public class Material
 	}
 
 	/**
-	 * Returns the resourceID of the
+	 * Returns the resourceID of the Material
 	 * @return The resource ID
 	 */
 	public String getResourceID()

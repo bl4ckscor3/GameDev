@@ -14,9 +14,9 @@ import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
 public class Chunk
 {
 	//amount of tiles horizontally
-	public static final int chunkSizeX  = 16;
+	public static final int chunkSizeX = 16;
 	//amount of tiles vertically
-	public static final int chunkSizeY  = 16;
+	public static final int chunkSizeY = 16;
 	//x position of whole chunk
 	public int chunkX;
 	//y position of whole chunk
