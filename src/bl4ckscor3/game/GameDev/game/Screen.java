@@ -34,7 +34,7 @@ public class Screen extends JPanel
 
 	/**
 	 * Drawing on the screen
-	 * @param g - The Graphics to draw with
+	 * @param g The Graphics to draw with
 	 */
 	@Override
 	public void paintComponent(Graphics g)

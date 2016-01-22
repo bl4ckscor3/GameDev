@@ -11,9 +11,9 @@ import bl4ckscor3.game.GameDev.Main;
 public class Utilities
 {
 	/**
-	 * Rounding down a double to an int
-	 * @param x - The double to round
-	 * @return - Rounded int
+	 * Rounds down a double to an int
+	 * @param x The double to round
+	 * @return Rounded int
 	 */
 	public static int floor(double x)
 	{
@@ -23,9 +23,9 @@ public class Utilities
 	}
 	
 	/**
-	 * Rounding up a double to an int
-	 * @param x - The double to round
-	 * @return - Rounded int
+	 * Rounds up a double to an int
+	 * @param x The double to round
+	 * @return Rounded int
 	 */
 	public static int ceil(double x)
 	{
@@ -36,9 +36,9 @@ public class Utilities
 	
 	/**
 	 * Draws a String on the screen using a Point instead of x y
-	 * @param g - The Graphics to draw with
-	 * @param s - The String to draw
-	 * @param p - The coordinates of the String
+	 * @param g The Graphics to draw with
+	 * @param s The String to draw
+	 * @param p The coordinates of the String
 	 */
 	public static void drawStringAtPoint(Graphics g, String s, Point p)
 	{
@@ -47,8 +47,8 @@ public class Utilities
 	
 	/**
 	 * Drawing a headline for the menus with an underline
-	 * @param g - The Graphics to draw with
-	 * @param text - The text to display
+	 * @param g The Graphics to draw with
+	 * @param text The text to display
 	 */
 	public static void drawHeadline(Graphics g, String text)
 	{
@@ -71,8 +71,8 @@ public class Utilities
 	
 	/**
 	 * Draws a smaller String below the headline
-	 * @param g - The Graphics to draw with
-	 * @param text - The text to display
+	 * @param g The Graphics to draw with
+	 * @param text The text to display
 	 */
 	public static void drawStringBelowHeadline(Graphics g, String text)
 	{

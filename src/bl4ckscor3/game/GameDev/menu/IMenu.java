@@ -6,13 +6,13 @@ public interface IMenu
 {
 	/**
 	 * Showing the menu in all its glory
-	 * @param g - The Graphics to draw with
+	 * @param g The Graphics to draw with
 	 */
 	public void show(Graphics g);
 	
 	/**
 	 * Determines the action when pressing enter in the menu
-	 * @throws - Any exception which might get thrown from any implementing methods
+	 * @throws Any exception which might get thrown from any implementing methods
 	 */
 	public void onEnter() throws Exception;
 

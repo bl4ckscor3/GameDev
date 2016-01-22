@@ -16,8 +16,8 @@ public class Tile
 	
 	/**
 	 * Loading a texture of the given material from a subfolder of the default resource location
-	 * @mat - Material of the texture
-	 * @path - Subfolder to load the texture from
+	 * @param mat Material of the texture
+	 * @param path Subfolder to load the texture from
 	 */
 	public Tile(Material mat, String path)
 	{
@@ -27,9 +27,9 @@ public class Tile
 	
 	/**
 	 * Loading a random texture of the given material from a subfolder of the default resource location
-	 * @mat - Material of the texture
-	 * @path - Subfolder to load the texture from
-	 * @textureAmount - Amount of textures to pick one from
+	 * @param mat Material of the texture
+	 * @param path Subfolder to load the texture from
+	 * @param textureAmount Amount of textures to pick one from
 	 */
 	public Tile(Material mat, String path, int textureAmount)
 	{

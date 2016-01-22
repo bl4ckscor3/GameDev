@@ -17,13 +17,12 @@ public class SettingsMenu implements IMenu
 	public void show(Graphics g)
 	{
 		//the options available to click on the screen
-		String[] options =
-			{
-					"Seed",
-					"Resolution",
-					"Reset",
-					"Back",
-			};
+		String[] options = {
+				"Seed",
+				"Resolution",
+				"Reset",
+				"Back",
+		};
 		Font fontO = new Font("Candara", 1, 30); //options font
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;

@@ -72,8 +72,8 @@ public class Map
 	
 	/**
 	 * Loads all the chunk withing the player's range
-	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
-	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
+	 * @param playerChunkX The X-Coord of the chunk the player is currently in
+	 * @param playerChunkY The Y-Coord of the chunk the player is currently in
 	 */
 	public void loadChunks(int playerChunkX, int playerChunkY)
 	{
@@ -96,8 +96,8 @@ public class Map
 	
 	/**
 	 * Unloads all the chunks outside of the player's range
-	 * @param playerChunkX - The X-Coord of the chunk the player is currently in
-	 * @param playerChunkY - The Y-Coord of the chunk the player is currently in
+	 * @param playerChunkX The X-Coord of the chunk the player is currently in
+	 * @param playerChunkY The Y-Coord of the chunk the player is currently in
 	 */
 	private void unloadChunks(int playerChunkX, int playerChunkY)
 	{
@@ -111,9 +111,9 @@ public class Map
 	
 	/**
 	 * Spawns an entity at a given position
-	 * @param e - The entity to spawn
-	 * @param x - The x position the entity spawns at
-	 * @param y - The y position the entity spawns at
+	 * @param e The entity to spawn
+	 * @param x The x position the entity spawns at
+	 * @param y The y position the entity spawns at
 	 */
 	public void spawnEntity(Entity e, int x, int y)
 	{

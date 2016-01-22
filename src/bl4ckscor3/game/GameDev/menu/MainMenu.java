@@ -17,14 +17,13 @@ public class MainMenu implements IMenu
 	public void show(Graphics g)
 	{
 		//the options available to click on the screen
-		String[] options =
-			{
-					"Play",
-					"Settings",
-					"Load (currently not active)",
-					"Save (currently not active)",
-					"Exit"
-			};
+		String[] options = {
+				"Play",
+				"Settings",
+				"Load (currently not active)",
+				"Save (currently not active)",
+				"Exit"
+		};
 		Font fontO = new Font("Candara", 1, 30); //options font
 		FontMetrics metricsO = g.getFontMetrics(fontO); //used to correctly display the middle string in the middle of the screenwidth
 		int i = 0;
