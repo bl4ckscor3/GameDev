@@ -1,8 +1,8 @@
-package bl4ckscor3.game.GameDev.game;
+package bl4ckscor3.game.gamedev.game;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.util.DebugUI;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.util.DebugUI;
 
 public class GameThread extends Thread implements Runnable
 {

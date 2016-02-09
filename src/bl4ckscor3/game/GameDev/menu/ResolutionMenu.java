@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.menu;
+package bl4ckscor3.game.gamedev.menu;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,8 +6,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 public class ResolutionMenu implements IMenu
 {

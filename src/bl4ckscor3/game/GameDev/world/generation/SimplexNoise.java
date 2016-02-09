@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.world.generation;
+package bl4ckscor3.game.gamedev.world.generation;
 
 import java.util.Random;
 

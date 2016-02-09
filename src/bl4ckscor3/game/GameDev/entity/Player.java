@@ -1,12 +1,12 @@
-package bl4ckscor3.game.GameDev.entity;
+package bl4ckscor3.game.gamedev.entity;
 
 import java.awt.Graphics;
 import java.awt.Image;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.util.Direction;
-import bl4ckscor3.game.GameDev.util.TextureManager;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.util.Direction;
+import bl4ckscor3.game.gamedev.util.TextureManager;
 
 public class Player extends Entity
 {

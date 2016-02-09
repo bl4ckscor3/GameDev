@@ -1,15 +1,15 @@
-package bl4ckscor3.game.GameDev.world;
+package bl4ckscor3.game.gamedev.world;
 
 import java.awt.Graphics;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.util.DebugUI;
-import bl4ckscor3.game.GameDev.util.Utilities;
-import bl4ckscor3.game.GameDev.world.content.Material;
-import bl4ckscor3.game.GameDev.world.content.Tile;
-import bl4ckscor3.game.GameDev.world.generation.SimplexNoise;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.Game;
+import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.util.DebugUI;
+import bl4ckscor3.game.gamedev.util.Utilities;
+import bl4ckscor3.game.gamedev.world.content.Material;
+import bl4ckscor3.game.gamedev.world.content.Tile;
+import bl4ckscor3.game.gamedev.world.generation.SimplexNoise;
 
 public class Chunk
 {

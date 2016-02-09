@@ -1,12 +1,12 @@
-package bl4ckscor3.game.GameDev.world.content;
+package bl4ckscor3.game.gamedev.world.content;
 
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.util.TextureManager;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.util.TextureManager;
 
 public class Tile
 {

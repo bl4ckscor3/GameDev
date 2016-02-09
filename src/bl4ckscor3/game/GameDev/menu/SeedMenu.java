@@ -1,10 +1,10 @@
-package bl4ckscor3.game.GameDev.menu;
+package bl4ckscor3.game.gamedev.menu;
 
 import java.awt.Graphics;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.game.GameThread;
-import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.GameThread;
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 public class SeedMenu implements IMenu
 {

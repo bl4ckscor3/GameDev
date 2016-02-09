@@ -1,14 +1,14 @@
-package bl4ckscor3.game.GameDev.listener;
+package bl4ckscor3.game.gamedev.listener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.menu.GameState;
-import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.menu.SeedMenu;
+import bl4ckscor3.game.gamedev.game.Game;
+import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.menu.GameState;
+import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.menu.SeedMenu;
 
 public class Key implements KeyListener
 {

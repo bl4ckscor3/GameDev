@@ -1,13 +1,13 @@
-package bl4ckscor3.game.GameDev.world;
+package bl4ckscor3.game.gamedev.world;
 
 import java.awt.Graphics;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import bl4ckscor3.game.GameDev.entity.Entity;
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.util.Utilities;
-import bl4ckscor3.game.GameDev.util.Vector2D;
+import bl4ckscor3.game.gamedev.entity.Entity;
+import bl4ckscor3.game.gamedev.game.Game;
+import bl4ckscor3.game.gamedev.util.Utilities;
+import bl4ckscor3.game.gamedev.util.Vector2D;
 
 public class Map
 {

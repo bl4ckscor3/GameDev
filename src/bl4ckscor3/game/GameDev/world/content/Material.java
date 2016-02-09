@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.world.content;
+package bl4ckscor3.game.gamedev.world.content;
 
 public enum Material
 {

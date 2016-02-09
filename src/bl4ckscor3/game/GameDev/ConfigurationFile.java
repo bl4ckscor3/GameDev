@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev;
+package bl4ckscor3.game.gamedev;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 public class ConfigurationFile
 {

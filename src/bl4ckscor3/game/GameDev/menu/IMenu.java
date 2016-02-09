@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.menu;
+package bl4ckscor3.game.gamedev.menu;
 
 import java.awt.Graphics;
 

@@ -1,15 +1,15 @@
-package bl4ckscor3.game.GameDev.game;
+package bl4ckscor3.game.gamedev.game;
 
-import bl4ckscor3.game.GameDev.entity.Player;
-import bl4ckscor3.game.GameDev.entity.Player.PlayerTextures;
-import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.menu.GameState;
-import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.util.DebugUI;
-import bl4ckscor3.game.GameDev.util.Direction;
-import bl4ckscor3.game.GameDev.util.Vector2D;
-import bl4ckscor3.game.GameDev.world.Chunk;
-import bl4ckscor3.game.GameDev.world.Map;
+import bl4ckscor3.game.gamedev.entity.Player;
+import bl4ckscor3.game.gamedev.entity.Player.PlayerTextures;
+import bl4ckscor3.game.gamedev.listener.Key;
+import bl4ckscor3.game.gamedev.menu.GameState;
+import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.util.DebugUI;
+import bl4ckscor3.game.gamedev.util.Direction;
+import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.world.Chunk;
+import bl4ckscor3.game.gamedev.world.Map;
 
 public class Game 
 {

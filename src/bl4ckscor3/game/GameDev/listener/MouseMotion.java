@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.listener;
+package bl4ckscor3.game.gamedev.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

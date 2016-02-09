@@ -1,15 +1,15 @@
-package bl4ckscor3.game.GameDev.util;
+package bl4ckscor3.game.gamedev.util;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.listener.MouseMotion;
-import bl4ckscor3.game.GameDev.world.Chunk;
-import bl4ckscor3.game.GameDev.world.content.Material;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.Game;
+import bl4ckscor3.game.gamedev.listener.Key;
+import bl4ckscor3.game.gamedev.listener.MouseMotion;
+import bl4ckscor3.game.gamedev.world.Chunk;
+import bl4ckscor3.game.gamedev.world.content.Material;
 
 public class DebugUI
 {

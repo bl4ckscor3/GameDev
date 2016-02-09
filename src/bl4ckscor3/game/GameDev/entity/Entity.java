@@ -1,9 +1,9 @@
-package bl4ckscor3.game.GameDev.entity;
+package bl4ckscor3.game.gamedev.entity;
 
 import java.awt.Graphics;
 import java.awt.Image;
 
-import bl4ckscor3.game.GameDev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Vector2D;
 
 public class Entity
 {

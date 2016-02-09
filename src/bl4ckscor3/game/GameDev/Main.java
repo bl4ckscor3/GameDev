@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev;
+package bl4ckscor3.game.gamedev;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -8,12 +8,12 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import bl4ckscor3.game.GameDev.game.Game;
-import bl4ckscor3.game.GameDev.game.GameThread;
-import bl4ckscor3.game.GameDev.game.Screen;
-import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.util.ScaleFactor;
-import bl4ckscor3.game.GameDev.util.Utilities;
+import bl4ckscor3.game.gamedev.game.Game;
+import bl4ckscor3.game.gamedev.game.GameThread;
+import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.util.ScaleFactor;
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 public class Main
 {

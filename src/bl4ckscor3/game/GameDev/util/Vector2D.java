@@ -1,4 +1,4 @@
-package bl4ckscor3.game.GameDev.util;
+package bl4ckscor3.game.gamedev.util;
 
 /**
  * Simplest (not)-vector ever!

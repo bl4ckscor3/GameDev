@@ -1,15 +1,15 @@
-package bl4ckscor3.game.GameDev.game;
+package bl4ckscor3.game.gamedev.game;
 
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import bl4ckscor3.game.GameDev.Main;
-import bl4ckscor3.game.GameDev.listener.Key;
-import bl4ckscor3.game.GameDev.listener.MouseMotion;
-import bl4ckscor3.game.GameDev.menu.Menu;
-import bl4ckscor3.game.GameDev.util.DebugUI;
+import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.listener.Key;
+import bl4ckscor3.game.gamedev.listener.MouseMotion;
+import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.util.DebugUI;
 
 public class Screen extends JPanel 
 {
