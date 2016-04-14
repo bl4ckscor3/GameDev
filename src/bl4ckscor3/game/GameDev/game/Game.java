@@ -74,7 +74,7 @@ public class Game
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) - 1);
 					}
 
-					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater())
+					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.y--;
@@ -107,7 +107,7 @@ public class Game
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) - 1, (int)(player.position.y / Chunk.chunkSizeY));
 					}
 
-					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater())
+					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.x--;
@@ -140,7 +140,7 @@ public class Game
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) + 1);
 					}
 
-					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater())
+					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.y++;
@@ -173,7 +173,7 @@ public class Game
 						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) + 1, (int)(player.position.y / Chunk.chunkSizeY));
 					}
 
-					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater())
+					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.x++;
