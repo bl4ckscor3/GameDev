@@ -27,6 +27,9 @@ public class DebugUI
 		//currently pressed keys
 		for(int i : Key.keysPressed)
 		{
+			if(i == 16) //because jesus
+				continue;
+			
 			g.drawString("Key Pressed: " + i, Main.width - 120, spaceY);
 			spaceY += 15;
 		}
@@ -39,6 +42,12 @@ public class DebugUI
 		g.drawString("Player position X: " + Game.player.position.x, Main.width - 360, 60);
 		g.drawString("Player position Y: " + Game.player.position.y, Main.width - 360, 75);
 		g.drawString("Current tile: " + currentTile, Main.width - 360, 90);
+		
+		//jesus
+		if(Key.keysPressed.contains(16))
+			g.drawString("Jesus: true", Main.width - 360, 105);
+		else
+			g.drawString("Jesus: false", Main.width - 360, 105);
 		
 		//fps
 		g.drawString("FPS: " + fps, Main.width - 91, 15);
