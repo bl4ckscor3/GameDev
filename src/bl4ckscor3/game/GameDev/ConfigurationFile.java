@@ -126,8 +126,7 @@ public class ConfigurationFile
 	{
 		try
 		{
-			File f = Main.config.file;
-			List<String> lines = FileUtils.readLines(f);
+			List<String> lines = FileUtils.readLines(file);
 
 			for(int i = 0; i < lines.size(); i++)
 			{
@@ -135,7 +134,7 @@ public class ConfigurationFile
 					lines.set(i, option + "=" + value);
 			}
 
-			FileUtils.writeLines(f, lines);
+			FileUtils.writeLines(file, lines);
 			values.put(option, value);
 		}
 		catch(Exception e)
