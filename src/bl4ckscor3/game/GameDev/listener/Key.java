@@ -8,7 +8,7 @@ import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
-import bl4ckscor3.game.gamedev.menu.SeedMenu;
+import bl4ckscor3.game.gamedev.menu.settings.SeedMenu;
 
 public class Key implements KeyListener
 {

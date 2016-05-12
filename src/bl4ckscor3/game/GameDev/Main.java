@@ -36,8 +36,8 @@ public class Main
 			public void run()
 			{
 				config = new ConfigurationFile();
-				width = Integer.parseInt(config.getValue("width"));
-				height = Integer.parseInt(config.getValue("height"));
+				width = Integer.parseInt(config.get("width"));
+				height = Integer.parseInt(config.get("height"));
 				new Main();
 			}
 		});

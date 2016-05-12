@@ -5,6 +5,13 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import bl4ckscor3.game.gamedev.menu.main.LoadMenu;
+import bl4ckscor3.game.gamedev.menu.main.MainMenu;
+import bl4ckscor3.game.gamedev.menu.main.PauseMenu;
+import bl4ckscor3.game.gamedev.menu.main.SaveMenu;
+import bl4ckscor3.game.gamedev.menu.settings.ResolutionMenu;
+import bl4ckscor3.game.gamedev.menu.settings.SeedMenu;
+import bl4ckscor3.game.gamedev.menu.settings.SettingsMenu;
 import bl4ckscor3.game.gamedev.util.CustomArrayList;
 
 public class Menu

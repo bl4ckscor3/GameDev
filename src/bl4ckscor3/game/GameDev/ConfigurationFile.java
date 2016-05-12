@@ -5,16 +5,27 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
-import bl4ckscor3.game.gamedev.util.Utilities;
-
+/**
+ * Use the -update command to let a new configuration take place
+ */
 public class ConfigurationFile
 {
-	private File config;
+	public File file;
+	public HashMap<String,String> values = new HashMap<String,String>();
+	private String[] defaultContent = new String[]{
+			"################################",
+			"#			Properties			#",
+			"################################",
+			"width=1280",
+			"height=720",
+			"seed=123456789"
+	};
 
 	/**
 	 * Sets up the configuration file, if not already done
@@ -23,88 +34,160 @@ public class ConfigurationFile
 	{
 		try
 		{
-			config = new File(Utilities.getJarLocation() + "/config.txt");
+			file = new File(getJarLocation() + "/config.txt");
 
-			if(!config.exists())
+			if(!file.exists())
 			{
-				config.createNewFile();
+				file.createNewFile();
 				writeDefaultValues();
+				populateHashMap();
+			}
+			else
+			{
+				populateHashMap();
+
+				int i = 0;
+				List<String> currentContent = FileUtils.readLines(file);
+				List<String> newContent = new ArrayList<String>();
+				List<String> restoredContent = new ArrayList<String>();
+
+				for(String s : defaultContent)
+				{
+					if(i >= currentContent.size()) //if the line is null, just add the new line
+						newContent.add(s);
+					else if(currentContent.get(i).split("=").length != 0) //if it's a config value
+					{
+						if(s.startsWith(currentContent.get(i).split("=")[0]) && (!currentContent.get(i).equals("") || s.equals(""))) //if the config values are equal add current one to keep settings
+							newContent.add(currentContent.get(i));
+						else //if not, add the new default value
+							newContent.add(s);
+					}
+					else
+						newContent.add(s);
+
+					i++;
+				}
+
+				i = 0;
+
+				//to prevent a ConcurrentModificationException
+				for(String s : newContent)
+				{
+					restoredContent.add(s);
+				}
+
+				//checking for anything that got reset
+				for(String s : newContent)
+				{
+					if(s.split("=").length != 0 && values.containsKey(s.split("=")[0]))
+					{
+						if(values.get(s.split("=")[0]).equals(s.split("=")[1]))
+						{
+							i++;
+							continue;
+						}
+						else
+						{
+							restoredContent.remove(i);
+							restoredContent.add(i, s.split("=")[0] + "=" + values.get(s.split("=")[0]));
+						}
+					}
+
+					i++;
+				}
+
+				clear();
+				FileUtils.writeLines(file, restoredContent);
+				populateHashMap();
 			}
 		}
-		catch(URISyntaxException | IOException e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Gets the value from the given option.
-	 * Example: getValue("seed"); will return the value of seed=123456789 which is 123456789
+	 * Gets a String value from the config file using the given option
 	 * @param option The option to get the value from
-	 * @return The value
+	 * @return The value associated with the given option
 	 */
-	public String getValue(String option)
+	public String get(String option)
 	{
-		try
-		{
-			List<String> lines = FileUtils.readLines(config);
-			
-			for(String s : lines)
-			{
-				if(s.startsWith(option))
-					return s.split("=")[1];
-			}
-		}
-		catch(IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-		return null;
+		return values.get(option);
 	}
-	
+
 	/**
-	 * Sets the value for the given option.
-	 * Example: setValue("seed", "987654321"); will set the value of seed=123456789 to 987654321 which gives seed=987654321
-	 * @param option The option to set the value for
-	 * @param value The value
+	 * Sets the given option to the specified value
+	 * @param option The option to set the value of
+	 * @param value The value to set the option to
 	 */
-	public void setValue(String option, String value)
+	public void set(String option, String value)
 	{
 		try
 		{
-			List<String> lines = FileUtils.readLines(config);
+			File f = Main.config.file;
+			List<String> lines = FileUtils.readLines(f);
 
 			for(int i = 0; i < lines.size(); i++)
 			{
-				if(lines.get(i).startsWith(option))
+				if(lines.get(i).startsWith(option + "="))
 					lines.set(i, option + "=" + value);
 			}
-			
-			clear();
-			FileUtils.writeLines(config, lines);
+
+			FileUtils.writeLines(f, lines);
+			values.put(option, value);
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Writes the default values to the file
 	 */
 	public void writeDefaultValues()
 	{
-		Collection<String> lines = new ArrayList<String>();
-
-		clear();
-		lines.add("width=1280");
-		lines.add("height=720");
-		lines.add("seed=123456789");
-		
 		try
 		{
-			FileUtils.writeLines(config, lines);
+			FileUtils.writeLines(file, Arrays.asList(defaultContent));
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Writes the current values into the 'values' HashMap
+	 */
+	public void populateHashMap()
+	{		
+		try
+		{
+			List<String> content = FileUtils.readLines(file);
+
+			values.clear();
+
+			for(String s : content)
+			{
+				if(s.contains("="))
+				{
+					String value = "";
+					int i = 0;
+
+					for(String eq : s.split("="))
+					{
+						if(i++ == 0)
+							continue;
+
+						value += eq + "=";
+					}
+
+					values.put(s.split("=")[0], value.substring(0, value.lastIndexOf('=')));
+				}
+			}
 		}
 		catch(IOException e)
 		{
@@ -119,7 +202,7 @@ public class ConfigurationFile
 	{
 		try
 		{
-			RandomAccessFile raf = new RandomAccessFile(config, "rw");
+			RandomAccessFile raf = new RandomAccessFile(file, "rw");
 
 			raf.setLength(0);
 			raf.close();
@@ -128,5 +211,18 @@ public class ConfigurationFile
 		{
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * Gets the path of the running jar file
+	 */
+	public String getJarLocation() throws URISyntaxException
+	{
+		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
+
+		if(path.endsWith(".jar"))
+			path = path.substring(0, path.lastIndexOf("/"));
+
+		return path;
 	}
 }
