@@ -7,9 +7,12 @@ import javax.swing.ImageIcon;
 
 public class TextureManager
 {
+	private static final Random r = new Random();
+	
 	/**
-	 * Loading a texture from the resources folder without subfolders
+	 * Loads a texture from the resources folder without subfolders
 	 * @param fileName The name of the file
+	 * @return The loaded image
 	 */
 	public static Image loadTexture(String fileName)
 	{
@@ -17,9 +20,10 @@ public class TextureManager
 	}
 	
 	/**
-	 * Loading a texture from the resources folder with subfolders
+	 * Loads a texture from the resources folder with subfolders
 	 * @param fileName The name of the file
 	 * @param path The folder structure in which the file can be found
+	 * @return The loaded image
 	 */
 	public static Image loadTextureFromPath(String fileName, String path)
 	{
@@ -27,27 +31,25 @@ public class TextureManager
 	}
 	
 	/**
-	 * Loading a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder without subfolders
+	 * Loads a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder without subfolders
 	 * @param fileName The name of the file
 	 * @param textureAmount How many texturefiles there are for the same Material
+	 * @return The loaded image
 	 */
 	public static Image loadRandomTexture(String fileName, int textureAmount)
 	{
-		Random r = new Random();
-		
 		return new ImageIcon("resources/" + fileName + "_" + r.nextInt(textureAmount) + ".png").getImage();
 	}
 	
 	/**
-	 * Loading a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder with subfolders
+	 * Loads a random texture of files with the same file name and appended number (e.g. tex_0, tex_1, tex_2 ...) from the resources folder with subfolders
 	 * @param fileName The name of the file
 	 * @param path The folder structure in which the file can be found
 	 * @param textureAmount How many texturefiles there are for the same Material
+	 * @return The loaded image
 	 */
 	public static Image loadRandomTextureFromPath(String fileName, String path, int textureAmount)
 	{
-		Random r = new Random();
-		
 		return new ImageIcon("resources/" + path + fileName + "_" + r.nextInt(textureAmount) + ".png").getImage();
 	}
 }

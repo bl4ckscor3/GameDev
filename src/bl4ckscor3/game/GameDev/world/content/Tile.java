@@ -15,7 +15,7 @@ public class Tile
 	public Image texture;
 	
 	/**
-	 * Loading a texture of the given material from a subfolder of the default resource location
+	 * Loads a texture of the given material from a subfolder of the default resource location
 	 * @param mat Material of the texture
 	 * @param path Subfolder to load the texture from
 	 */
@@ -26,7 +26,7 @@ public class Tile
 	}
 	
 	/**
-	 * Loading a random texture of the given material from a subfolder of the default resource location
+	 * Loads a random texture of the given material from a subfolder of the default resource location
 	 * @param mat Material of the texture
 	 * @param path Subfolder to load the texture from
 	 * @param textureAmount Amount of textures to pick one from
@@ -55,7 +55,7 @@ public class Tile
 	 */
 	public void render(Graphics g, int x, int y)
 	{
-		g.drawImage(texture, x, y, Main.scaleFactor.getWidth() * 2, Main.scaleFactor.getHeight() * 2, null);
+		render(g, x, y, Main.scaleFactor.getWidth() * 2, Main.scaleFactor.getHeight() * 2);
 	}
 	
 	/**
