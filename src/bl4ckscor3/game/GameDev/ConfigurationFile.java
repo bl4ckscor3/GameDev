@@ -3,13 +3,14 @@ package bl4ckscor3.game.gamedev;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 /**
  * Use the -update command to let a new configuration take place
@@ -34,7 +35,7 @@ public class ConfigurationFile
 	{
 		try
 		{
-			file = new File(getJarLocation() + "/config.txt");
+			file = new File(Utilities.getJarLocation() + "/config.txt");
 
 			if(!file.exists())
 			{
@@ -210,18 +211,5 @@ public class ConfigurationFile
 		{
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Gets the path of the running jar file
-	 */
-	public String getJarLocation() throws URISyntaxException
-	{
-		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-
-		if(path.endsWith(".jar"))
-			path = path.substring(0, path.lastIndexOf("/"));
-
-		return path;
 	}
 }
