@@ -52,6 +52,12 @@ public class Game
 				{
 					Vector2D newPos = map.getChunkPosition(player, 0, -1);
 					
+					player.setLastMovedDir(Direction.UP);
+					c = map.getChunk(player, 0, -1);
+
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+						return;
+
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -66,13 +72,7 @@ public class Game
 							player.setTexture(PlayerTextures.UP.getSecondMovingImage());
 							moveCount = 0;
 					}
-
-					player.setLastMovedDir(Direction.UP);
-					c = map.getChunk(player, 0, -1);
-
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
-						return;
-
+					
 					player.position.y--;
 					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
@@ -81,6 +81,12 @@ public class Game
 				{
 					Vector2D newPos = map.getChunkPosition(player, -1, 0);
 					
+					player.setLastMovedDir(Direction.LEFT);
+					c = map.getChunk(player, -1, 0);
+
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+						return;
+
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -96,13 +102,7 @@ public class Game
 							moveCount = 0;
 							break;
 					}
-
-					player.setLastMovedDir(Direction.LEFT);
-					c = map.getChunk(player, -1, 0);
-
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
-						return;
-
+					
 					player.position.x--;
 					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
@@ -111,6 +111,12 @@ public class Game
 				{
 					Vector2D newPos = map.getChunkPosition(player, 0, 1);
 					
+					player.setLastMovedDir(Direction.DOWN);
+					c = map.getChunk(player, 0, 1);
+
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+						return;
+
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -126,13 +132,7 @@ public class Game
 							moveCount = 0;
 							break;
 					}
-
-					player.setLastMovedDir(Direction.DOWN);
-					c = map.getChunk(player, 0, 1);
-
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
-						return;
-
+					
 					player.position.y++;
 					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
@@ -141,6 +141,12 @@ public class Game
 				{
 					Vector2D newPos = map.getChunkPosition(player, 1, 0);
 					
+					player.setLastMovedDir(Direction.RIGHT);
+					c = map.getChunk(player, 1, 0);
+
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+						return;
+
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -156,13 +162,7 @@ public class Game
 							moveCount = 0;
 							break;
 					}
-
-					player.setLastMovedDir(Direction.RIGHT);
-					c = map.getChunk(player, 1, 0);
-
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
-						return;
-
+					
 					player.position.x++;
 					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
