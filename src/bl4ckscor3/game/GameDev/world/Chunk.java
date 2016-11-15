@@ -7,6 +7,7 @@ import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Utilities;
+import bl4ckscor3.game.gamedev.util.Vector2D;
 import bl4ckscor3.game.gamedev.world.content.Material;
 import bl4ckscor3.game.gamedev.world.content.Tile;
 import bl4ckscor3.game.gamedev.world.generation.SimplexNoise;
@@ -117,13 +118,12 @@ public class Chunk
 
 	/**
 	 * Gets the tile at the given innerchunk position
-	 * @param x The x position
-	 * @param y The y position
+	 * @param vec The Vector2D holding the x and y position
 	 * @return The Tile
 	 */
-	public Tile getTile(int x, int y)
+	public Tile getTile(Vector2D vec)
 	{
-		return tiles[x][y];
+		return tiles[vec.x][vec.y];
 	}
 	
 	@Override

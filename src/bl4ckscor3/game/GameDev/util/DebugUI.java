@@ -8,7 +8,7 @@ import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.world.Chunk;
-import bl4ckscor3.game.gamedev.world.content.Material;
+import bl4ckscor3.game.gamedev.world.content.Tile;
 
 public class DebugUI
 {
@@ -65,8 +65,12 @@ public class DebugUI
 		fps = f;
 	}
 	
-	public static void setCurrentTile(Material m)
+	/**
+	 * Sets the current tile to the Material of the given tile
+	 * @param t The tile to set the material of
+	 */
+	public static void setCurrentTile(Tile t)
 	{
-		currentTile = m.getResourceID();
+		currentTile = t.getMaterial().getResourceID();
 	}
 }

@@ -55,7 +55,7 @@ public class Game
 					player.setLastMovedDir(Direction.UP);
 					c = map.getChunk(player, 0, -1);
 
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					switch(moveCount)
@@ -74,7 +74,7 @@ public class Game
 					}
 					
 					player.position.y--;
-					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
 				}
 				else if(key == 65 || key == 37) //a or left arrow
@@ -84,7 +84,7 @@ public class Game
 					player.setLastMovedDir(Direction.LEFT);
 					c = map.getChunk(player, -1, 0);
 
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					switch(moveCount)
@@ -104,7 +104,7 @@ public class Game
 					}
 					
 					player.position.x--;
-					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
 				}
 				else if(key == 83 || key == 40) //s or down arrow
@@ -114,7 +114,7 @@ public class Game
 					player.setLastMovedDir(Direction.DOWN);
 					c = map.getChunk(player, 0, 1);
 
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					switch(moveCount)
@@ -134,7 +134,7 @@ public class Game
 					}
 					
 					player.position.y++;
-					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
 				}
 				else if(key == 68 || key == 39) //d or right arrow
@@ -144,7 +144,7 @@ public class Game
 					player.setLastMovedDir(Direction.RIGHT);
 					c = map.getChunk(player, 1, 0);
 
-					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					switch(moveCount)
@@ -164,7 +164,7 @@ public class Game
 					}
 					
 					player.position.x++;
-					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
 				}
 			}
