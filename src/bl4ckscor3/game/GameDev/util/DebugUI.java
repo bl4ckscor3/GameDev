@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.listener.Key;
-import bl4ckscor3.game.gamedev.listener.MouseMotion;
 import bl4ckscor3.game.gamedev.world.Chunk;
 import bl4ckscor3.game.gamedev.world.content.Material;
 
@@ -30,30 +29,28 @@ public class DebugUI
 			if(i == 16) //because jesus
 				continue;
 			
-			g.drawString("Key Pressed: " + i, Main.width - 120, spaceY);
+			g.drawString("Key Pressed: " + i, Main.width - 110, spaceY);
 			spaceY += 15;
 		}
 
-		//mouse position
-		g.drawString("Horizontal mouse position: " + MouseMotion.mouseX, Main.width - 360, 15);
-		g.drawString("Vertical mouse position: " + MouseMotion.mouseY, Main.width - 360, 30);
-		
-		//player position
-		g.drawString("Player position X: " + Game.player.position.x, Main.width - 360, 60);
-		g.drawString("Player position Y: " + Game.player.position.y, Main.width - 360, 75);
-		g.drawString("Current tile: " + currentTile, Main.width - 360, 90);
+		g.drawString("Player position X: " + Game.player.position.x, 5, 15);
+		g.drawString("Player position Y: " + Game.player.position.y, 5, 30);
+		g.drawString("Chunk (X, Y): " + "(" + Game.map.getChunk(Game.player).chunkX + ", " + Game.map.getChunk(Game.player).chunkY + ")", 5, 45);
+		g.drawString("Chunk position X: " + Game.map.getChunkPosition(Game.player).x, 5, 60);
+		g.drawString("Chunk position Y: " + Game.map.getChunkPosition(Game.player).y, 5, 75);
+		g.drawString("Current tile: " + currentTile, 5, 90);
 		
 		//jesus
 		if(Key.keysPressed.contains(16))
-			g.drawString("Jesus: true", Main.width - 360, 105);
+			g.drawString("Jesus: true", 5, 105);
 		else
-			g.drawString("Jesus: false", Main.width - 360, 105);
+			g.drawString("Jesus: false", 5, 105);
 		
 		//fps
-		g.drawString("FPS: " + fps, Main.width - 91, 15);
+		g.drawString("FPS: " + fps, Main.width - 60, 15);
 	}
 	
-	public static void drawChunkInfo(Graphics g, Chunk c, int posX, int posY)
+	public static void drawChunkGrid(Graphics g, Chunk c, int posX, int posY)
 	{
 		//vertical lines
 		g.drawLine(posX, 0, posX, Main.height);

@@ -128,7 +128,39 @@ public class Map
 	 */
 	public Vector2D getChunkPosition(Entity e)
 	{
-		return new Vector2D(e.position.x % Chunk.chunkSizeX, e.position.y % Chunk.chunkSizeY);
+		return getChunkPosition(e, 0, 0);
+	}
+	
+	/**
+	 * Gets the entity's position within a chunk
+	 * @param e The entity to check the position of
+	 * @param x The x-axis modificator of this position
+	 * @param y The y-axis modificator of this position
+	 * @return The position within the chunk
+	 */
+	public Vector2D getChunkPosition(Entity e, int x, int y)
+	{
+		//modified positions
+		int xPos = e.position.x + x;
+		int yPos = e.position.y + y;
+		
+		//while xPos is negative, add chunkSizeX to it to transform it into a position within a chunk
+		while(xPos < 0)
+			xPos += Chunk.chunkSizeX;
+
+		//while xPos is above chunkSizeX - 1, subtract chunkSizeX from it to transform it into a position within a chunk
+		while(xPos > (Chunk.chunkSizeX - 1))
+			xPos -= Chunk.chunkSizeX;
+
+		//analog to x
+		while (yPos < 0)
+			yPos += Chunk.chunkSizeY;
+		
+		//analog to x
+		while(yPos > (Chunk.chunkSizeY - 1))
+			yPos -= Chunk.chunkSizeY;
+		
+		return new Vector2D(xPos % Chunk.chunkSizeX, yPos % Chunk.chunkSizeY);
 	}
 	
 	/**
@@ -142,6 +174,64 @@ public class Map
 		for(Chunk c : loadedChunks)
 		{
 			if(x == c.chunkX && y == c.chunkY)
+				return c;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Gets the chunk the given entity is in
+	 * @param e The entity
+	 * @return The chunk, null if none has been found (should never happen)
+	 */
+	public Chunk getChunk(Entity e)
+	{
+		return getChunk(e, 0, 0);
+	}
+	
+	/**
+	 * Gets the chunk the given entity is in
+	 * @param e The entity
+	 * @param x The x-axis modifier of the entity's position
+	 * @param y The y-axis modifier of the entity's position
+	 * @return The chunk, null if none has been found (should never happen)
+	 */
+	public Chunk getChunk(Entity e, int x, int y)
+	{
+		int modX = e.position.x + x; //modified x
+		int modY = e.position.y + y; //modified y
+		double divX = modX / (double)Chunk.chunkSizeX; //divided x
+		double divY = modY / (double)Chunk.chunkSizeY; //divided y
+		int cX = 0; //chunk pos x
+		int cY = 0; //chunk pos y
+		Vector2D cP = getChunkPosition(e, x, y); //player position within chunk
+		
+		if(divX < 0)
+		{
+			if(cP.x == 0 || ((modX % Chunk.chunkSizeX) + Chunk.chunkSizeX) == Chunk.chunkSizeX) //special cases for chunk border, so the correct chunk gets selected
+				cX = (int)divX;
+			else
+				cX = (int)divX - 1; //subtract one to get the correct position
+		}
+		else
+			cX = (int)divX;
+		
+		//analog to x
+		if(divY < 0)
+		{
+			if(cP.y == 0 || ((modY % Chunk.chunkSizeY) + Chunk.chunkSizeY) == Chunk.chunkSizeY)
+				cY = (int)divY;
+			else
+				cY = (int)divY - 1;
+		}
+		
+		else if(divY > 0)
+			cY = (int)divY;
+		
+		for(Chunk c : loadedChunks)
+		{
+			if(cX == c.chunkX && cY == c.chunkY)
 				return c;
 		}
 		

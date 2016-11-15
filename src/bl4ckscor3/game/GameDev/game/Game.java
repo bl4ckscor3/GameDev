@@ -43,14 +43,15 @@ public class Game
 		//making the player able to only move every other 4 ticks
 		if(moveTimer % 4 == 0)
 		{
-			Vector2D pos = map.getChunkPosition(player);
-			Chunk c = map.getChunk(((int)(player.position.x / Chunk.chunkSizeX)), ((int)(player.position.y / Chunk.chunkSizeY)));
+			Chunk c;
 
 			//update keys
 			for(int key : Key.keysPressed)
 			{
 				if(key == 87 || key == 38) //w or up arrow
 				{
+					Vector2D newPos = map.getChunkPosition(player, 0, -1);
+					
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -67,22 +68,19 @@ public class Game
 					}
 
 					player.setLastMovedDir(Direction.UP);
+					c = map.getChunk(player, 0, -1);
 
-					if((int)pos.y - 1 == -1)
-					{
-						pos.y = 16;
-						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) - 1);
-					}
-
-					if(c.getTile((int)pos.x, ((int)pos.y) - 1).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.y--;
-					DebugUI.setCurrentTile(c.getTile((int)pos.x, ((int)pos.y - 1)).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
 				}
 				else if(key == 65 || key == 37) //a or left arrow
 				{
+					Vector2D newPos = map.getChunkPosition(player, -1, 0);
+					
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -100,22 +98,19 @@ public class Game
 					}
 
 					player.setLastMovedDir(Direction.LEFT);
+					c = map.getChunk(player, -1, 0);
 
-					if((int)pos.x - 1 == -1)
-					{
-						pos.x = 16;
-						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) - 1, (int)(player.position.y / Chunk.chunkSizeY));
-					}
-
-					if(c.getTile(((int)pos.x - 1), (int)pos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.x--;
-					DebugUI.setCurrentTile(c.getTile(((int)pos.x - 1), (int)pos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
 				}
 				else if(key == 83 || key == 40) //s or down arrow
 				{
+					Vector2D newPos = map.getChunkPosition(player, 0, 1);
+					
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -133,22 +128,19 @@ public class Game
 					}
 
 					player.setLastMovedDir(Direction.DOWN);
+					c = map.getChunk(player, 0, 1);
 
-					if((int)pos.y + 1 == 16)
-					{
-						pos.y = -1;
-						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX), (int)(player.position.y / Chunk.chunkSizeY) + 1);
-					}
-
-					if(c.getTile((int)pos.x, ((int)pos.y) + 1).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.y++;
-					DebugUI.setCurrentTile(c.getTile((int)pos.x, ((int)pos.y + 1)).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
 				}
 				else if(key == 68 || key == 39) //d or right arrow
 				{
+					Vector2D newPos = map.getChunkPosition(player, 1, 0);
+					
 					switch(moveCount)
 					{
 						case 0: case 2:
@@ -166,18 +158,13 @@ public class Game
 					}
 
 					player.setLastMovedDir(Direction.RIGHT);
+					c = map.getChunk(player, 1, 0);
 
-					if((int)pos.x + 1 == 16)
-					{
-						pos.x = -1;
-						c = map.getChunk((int)(player.position.x / Chunk.chunkSizeX) + 1, (int)(player.position.y / Chunk.chunkSizeY));
-					}
-
-					if(c.getTile(((int)pos.x + 1), (int)pos.y).isWater() && !Key.keysPressed.contains(16))
+					if(c.getTile(newPos.x, newPos.y).isWater() && !Key.keysPressed.contains(16))
 						return;
 
 					player.position.x++;
-					DebugUI.setCurrentTile(c.getTile(((int)pos.x + 1), (int)pos.y).getMaterial());
+					DebugUI.setCurrentTile(c.getTile(newPos.x, newPos.y).getMaterial());
 					return;
 				}
 			}

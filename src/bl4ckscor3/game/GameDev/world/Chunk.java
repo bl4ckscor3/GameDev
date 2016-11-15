@@ -98,7 +98,7 @@ public class Chunk
 		}
 
 		if(Screen.displayDebug)
-			DebugUI.drawChunkInfo(g, this, posX, posY);
+			DebugUI.drawChunkGrid(g, this, posX, posY);
 	}
 	
 	/**

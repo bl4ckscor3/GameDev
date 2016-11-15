@@ -5,17 +5,17 @@ package bl4ckscor3.game.gamedev.util;
 */
 public class Vector2D
 {
-	public float x;
-	public float y;
+	public int x;
+	public int y;
 	
 	public Vector2D(){};
 	
-	public Vector2D(float fX, float fY)
+	public Vector2D(int fX, int fY)
 	{
 		set(fX, fY);
 	}
 	
-	public void set(float fX, float fY)
+	public void set(int fX, int fY)
 	{
 		x = fX;
 		y = fY;
