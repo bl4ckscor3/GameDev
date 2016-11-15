@@ -225,8 +225,7 @@ public class Map
 			else
 				cY = (int)divY - 1;
 		}
-		
-		else if(divY > 0)
+		else
 			cY = (int)divY;
 		
 		for(Chunk c : loadedChunks)
