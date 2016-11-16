@@ -57,22 +57,22 @@ public class Chunk
 				if(noise < 0.490F)
 				{
 					mat = Material.WATER_DEEP;
-					tiles[i][j] = new Tile(mat, "tiles/");
+					tiles[i][j] = new Tile(mat);
 				}
 				else if(noise < 0.5F)
 				{
 					mat = Material.WATER_NORMAL;
-					tiles[i][j] = new Tile(mat, "tiles/");
+					tiles[i][j] = new Tile(mat);
 				}
 				else if(noise < 0.520F)
 				{
 					mat = Material.SAND;
-					tiles[i][j] = new Tile(mat, "tiles/");
+					tiles[i][j] = new Tile(mat);
 				}
 				else
 				{
 					mat = Material.GRASS;
-					tiles[i][j] = new Tile(mat, "tiles/grass/", 12);
+					tiles[i][j] = new Tile(mat, "grass/", 12);
 				}
 
 				data[i][j] = noise;
@@ -121,9 +121,19 @@ public class Chunk
 	 * @param vec The Vector2D holding the x and y position
 	 * @return The Tile
 	 */
-	public Tile getTile(Vector2D vec)
+	public Tile getTile(Vector2D pos)
 	{
-		return tiles[vec.x][vec.y];
+		return tiles[pos.x][pos.y];
+	}
+
+	/**
+	 * Sets the tile at the given position to the given material
+	 * @param pos The position of the tile to change the material of
+	 * @param m The material to change the tile to
+	 */
+	public void setTile(Vector2D pos, Material m)
+	{
+		tiles[pos.x][pos.y] = new Tile(m);
 	}
 	
 	@Override

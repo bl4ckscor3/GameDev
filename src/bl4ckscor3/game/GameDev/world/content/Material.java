@@ -10,9 +10,9 @@ public enum Material
 	/** The ID of the Material (used to determine which material it is)*/
 	private String resourceID;
 
-	private Material(String resourceID)
+	private Material(String rID)
 	{
-		this.resourceID = resourceID;
+		resourceID = rID;
 	}
 	
 	/**
