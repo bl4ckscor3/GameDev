@@ -54,7 +54,8 @@ public class Tile
 	public void tick(){}
 	
 	/**
-	 * Test rendering
+	 * Renders the tile at the position 0 0
+	 * @param g The graphics to render the tile with
 	 */
 	public void render(Graphics g)
 	{
@@ -62,7 +63,10 @@ public class Tile
 	}
 	
 	/**
-	 * Rendering the tile without the width and height
+	 * Renders the tile at the x and y position
+	 * @param g The graphics to render the tile with
+	 * @param x The x position at which to render the tile
+	 * @param y The y position at which to render the tile
 	 */
 	public void render(Graphics g, int x, int y)
 	{
@@ -70,7 +74,12 @@ public class Tile
 	}
 	
 	/**
-	 * Rendering the tile
+	 * Renders the tile at the x and y position with the given width and height
+	 * @param g The graphics to render the tile with
+	 * @param x The x position at which to render the tile
+	 * @param y The y position at which to render the tile
+	 * @param width The width of the tile to render
+	 * @param height The height of the tile to render
 	 */
 	public void render(Graphics g, int x, int y, int width, int height)
 	{
@@ -78,9 +87,8 @@ public class Tile
 	}
 	
 	/**
-	 * Checks if this Material is water
-	 * @param m The Material to check
-	 * @return Wether the Material is water or not
+	 * Checks if this Tile is water
+	 * @return true if this Tile is water, false otherwise
 	 */
 	public boolean isWater()
 	{
@@ -88,7 +96,7 @@ public class Tile
 	}
 	
 	/**
-	 * Gets the Material of this Tile
+	 * @return the Material of this Tile
 	 */
 	public Material getMaterial()
 	{

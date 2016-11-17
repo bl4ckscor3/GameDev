@@ -10,6 +10,8 @@ import bl4ckscor3.game.gamedev.util.Direction;
 import bl4ckscor3.game.gamedev.util.Vector2D;
 import bl4ckscor3.game.gamedev.world.Chunk;
 import bl4ckscor3.game.gamedev.world.Map;
+import bl4ckscor3.game.gamedev.world.content.Material;
+import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 
 public class Game 
 {
@@ -56,7 +58,12 @@ public class Game
 					c = map.getChunk(player, 0, -1);
 
 					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						return;
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+						
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
 
 					switch(moveCount)
 					{
@@ -85,7 +92,12 @@ public class Game
 					c = map.getChunk(player, -1, 0);
 
 					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						return;
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+						
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
 
 					switch(moveCount)
 					{
@@ -115,7 +127,12 @@ public class Game
 					c = map.getChunk(player, 0, 1);
 
 					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						return;
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+						
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
 
 					switch(moveCount)
 					{
@@ -145,7 +162,12 @@ public class Game
 					c = map.getChunk(player, 1, 0);
 
 					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						return;
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+						
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
 
 					switch(moveCount)
 					{
@@ -166,6 +188,42 @@ public class Game
 					player.position.x++;
 					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
+				}
+				else if(key == 32) //space
+				{
+					Vector2D newPos;
+					
+					switch(player.getLastMovedDir())
+					{
+						case UP:
+							newPos = map.getChunkPosition(player, 0, -1);
+							c = map.getChunk(player, 0, -1);
+							
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+							break;
+						case LEFT:
+							newPos = map.getChunkPosition(player, -1, 0);
+							c = map.getChunk(player, -1, 0);
+							
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+							break;
+						case DOWN:
+							newPos = map.getChunkPosition(player, 0, 1);
+							c = map.getChunk(player, 0, 1);
+							
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+							break;
+						case RIGHT:
+							newPos = map.getChunkPosition(player, 1, 0);
+							c = map.getChunk(player, 1, 0);
+							
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+							break;
+					}
 				}
 			}
 

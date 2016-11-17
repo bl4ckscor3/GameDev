@@ -17,8 +17,7 @@ public class DebugUI
 	
 	public static void displayDebugUI(Graphics g)
 	{
-		//the space between the different strings for showing which keys are pressed
-		int spaceY = 45;
+		int spaceY = 45; //the space between the different strings for showing which keys are pressed
 
 		g.setColor(new Color(100010000)); //some kind of red
 		g.setFont(new Font("Times New Roman", 1, 16));

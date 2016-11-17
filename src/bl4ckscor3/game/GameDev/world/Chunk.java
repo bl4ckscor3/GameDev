@@ -1,6 +1,7 @@
 package bl4ckscor3.game.gamedev.world;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
@@ -9,9 +10,11 @@ import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Utilities;
 import bl4ckscor3.game.gamedev.util.Vector2D;
 import bl4ckscor3.game.gamedev.world.content.Material;
+import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 import bl4ckscor3.game.gamedev.world.content.Tile;
 import bl4ckscor3.game.gamedev.world.generation.SimplexNoise;
 
+@SuppressWarnings("unchecked")
 public class Chunk
 {
 	//amount of tiles horizontally
@@ -22,7 +25,8 @@ public class Chunk
 	public int chunkX;
 	//y position of whole chunk
 	public int chunkY;
-	public Tile[][] tiles = new Tile[chunkSizeX][chunkSizeY];;
+	public Tile[][] tiles = new Tile[chunkSizeX][chunkSizeY];
+	public ArrayList<PlaceableObject> placedObjects = new ArrayList<PlaceableObject>();
 
 	public Chunk(int x, int y)
 	{
@@ -91,11 +95,16 @@ public class Chunk
 
 		for(int x = 0; x < tiles.length; x++)
 		{
-			for(int y = 0; y < tiles[0].length; y++)
+			for(int y = 0; y < tiles[x].length; y++)
 			{
 				//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
 				tiles[x][y].render(g, Utilities.ceil(x * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(y * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
 			}
+		}
+
+		for(PlaceableObject po : (ArrayList<PlaceableObject>)placedObjects.clone())
+		{
+			po.render(g, Utilities.ceil(po.getPos().x * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(po.getPos().y * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
 		}
 
 		if(Screen.displayDebug)
@@ -113,6 +122,11 @@ public class Chunk
 			{
 				tiles[x][y].tick();
 			}
+		}
+		
+		for(PlaceableObject po : placedObjects)
+		{
+			po.tick();
 		}
 	}
 
@@ -134,6 +148,31 @@ public class Chunk
 	public void setTile(Vector2D pos, Material m)
 	{
 		tiles[pos.x][pos.y] = new Tile(m);
+	}
+	
+	/**
+	 * Places a PlaceableObject into the world
+	 * @param po The PlaceableObject to place
+	 */
+	public void placeObject(PlaceableObject po)
+	{
+		placedObjects.add(po);
+	}
+	
+	/**
+	 * Checks wether this Chunk has a PlaceableObject on the given position
+	 * @param pos The position to check
+	 * @return The PlaceableObject on the given position if there is one, null otherwise
+	 */
+	public PlaceableObject getPlaceableObject(Vector2D pos)
+	{
+		for(PlaceableObject po : (ArrayList<PlaceableObject>)placedObjects.clone())
+		{
+			if(po.getPos().x == pos.x && po.getPos().y == pos.y)
+				return po;
+		}
+		
+		return null;
 	}
 	
 	@Override
