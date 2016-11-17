@@ -189,7 +189,8 @@ public class Game
 					DebugUI.setCurrentTile(c.getTile(newPos));
 					return;
 				}
-				else if(key == 32) //space
+				
+				if(key == 32) //space
 				{
 					Vector2D newPos;
 					
