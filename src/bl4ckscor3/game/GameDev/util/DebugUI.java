@@ -25,9 +25,6 @@ public class DebugUI
 		//currently pressed keys
 		for(int i : Key.keysPressed)
 		{
-			if(i == 16) //because jesus
-				continue;
-			
 			g.drawString("Key Pressed: " + i, Main.width - 110, spaceY);
 			spaceY += 15;
 		}

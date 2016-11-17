@@ -41,19 +41,20 @@ public class Map
 	
 	/**
 	 * Gets called every game tick
+	 * @param tick The current tick
 	 */
-	public void tick()
+	public void tick(int tick)
 	{
 		checkChunks();
 		
 		for(Chunk c : loadedChunks)
 		{
-			c.tick();
+			c.tick(tick);
 		}
 		
 		for(Entity e : loadedEntities)
 		{
-			e.tick();
+			e.tick(tick);
 		}
 	}
 	

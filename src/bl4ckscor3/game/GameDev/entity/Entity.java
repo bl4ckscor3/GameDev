@@ -21,9 +21,17 @@ public class Entity
 		position = new Vector2D();
 	}
 
+	/**
+	 * Renders the entity
+	 * @param g The Graphics to render the entity with
+	 */
 	public void render(Graphics g){}
 
-	public void tick(){}
+	/**
+	 * Gets called every game tick
+	 * @param tick The current tick	
+	 */
+	public void tick(int tick){}
 	
 	/**
 	 * Starts an animation in the specified direction
@@ -31,6 +39,9 @@ public class Entity
 	 */
 	public void startAnimation(Direction dir){}
 	
+	/**
+	 * Stops the current animation
+	 */
 	public void stopAnimation(){}
 
 	/**

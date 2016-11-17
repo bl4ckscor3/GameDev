@@ -113,8 +113,9 @@ public class Chunk
 	
 	/**
 	 * Gets called every gametick
+	 * @param tick The current tick
 	 */
-	public void tick()
+	public void tick(int tick)
 	{
 		for(int x = 0; x < tiles.length; x++)
 		{
