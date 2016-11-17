@@ -137,28 +137,28 @@ public class Player extends Entity
 								c = Game.map.getChunk(this, 0, -1);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_vertical", "bridge/"));
 								break;
 							case LEFT:
 								newPos = Game.map.getChunkPosition(this, -1, 0);
 								c = Game.map.getChunk(this, -1, 0);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_horizontal", "bridge/"));
 								break;
 							case DOWN:
 								newPos = Game.map.getChunkPosition(this, 0, 1);
 								c = Game.map.getChunk(this, 0, 1);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_vertical", "bridge/"));
 								break;
 							case RIGHT:
 								newPos = Game.map.getChunkPosition(this, 1, 0);
 								c = Game.map.getChunk(this, 1, 0);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos));
+									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_horizontal", "bridge/"));
 								break;
 						}
 					}

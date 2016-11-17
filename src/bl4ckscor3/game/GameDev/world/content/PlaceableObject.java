@@ -16,14 +16,24 @@ public class PlaceableObject
 	/**
 	 * Sets up an object that can be placed in the world
 	 * @param mat The Material of the texture to use
-	 * @param chunkX The x-coordinate of the chunk this object is placed in
-	 * @param chunkY The y-coordinate of the chunk this object is placed in
 	 * @param pos The x and y coordinates within the chunk that this object is placed in
 	 */
 	public PlaceableObject(Material mat, Vector2D pos)
 	{
+		this(mat, pos, "", "");
+	}
+	
+	/**
+	 * Sets up an object that can be placed in the world
+	 * @param mat Material of the texture
+	 * @param pos The x and y coordinates within the chunk that this object is placed in
+	 * @param appendix The appendix to the file name
+	 * @param path Subfolder to load the texture from
+	 */
+	public PlaceableObject(Material mat, Vector2D pos, String appendix, String path)
+	{
 		material = mat;
-		texture = TextureManager.loadTextureFromPath(mat.getResourceID(), "tiles/");
+		texture = TextureManager.loadTextureFromPath(material.getResourceID() + appendix, "tiles/" + path);
 		this.pos = pos;
 	}
 	

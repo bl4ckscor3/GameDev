@@ -161,15 +161,29 @@ public class Chunk
 	}
 	
 	/**
-	 * Checks wether this Chunk has a PlaceableObject on the given position
+	 * Checks wether the Chunk has a PlaceableObject on the given position
+	 * (The correct chunk is being calculated within the method)
 	 * @param pos The position to check
 	 * @return The PlaceableObject on the given position if there is one, null otherwise
 	 */
 	public PlaceableObject getPlaceableObject(Vector2D pos)
 	{
+		return getPlaceableObject(pos, 0, 0);
+	}
+	
+	/**
+	 * Checks wether the Chunk has a PlaceableObject on the given position
+	 * (The correct chunk is being calculated within the method)
+	 * @param pos The position to check
+	 * @param x x-coordinate modifier of the position to check
+	 * @param y y-coordinate modifier of the position to check
+	 * @return The PlaceableObject on the given position if there is one, null otherwise
+	 */
+	public PlaceableObject getPlaceableObject(Vector2D pos, int x, int y)
+	{
 		for(PlaceableObject po : (ArrayList<PlaceableObject>)placedObjects.clone())
 		{
-			if(po.getPos().x == pos.x && po.getPos().y == pos.y)
+			if(po.getPos().x == pos.x + x && po.getPos().y == pos.y + y)
 				return po;
 		}
 		
