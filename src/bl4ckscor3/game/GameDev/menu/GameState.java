@@ -7,7 +7,7 @@ public enum GameState
 	/**Main menu*/
 	MAIN,
 	/**Playing*/
-	OFF,
+	PLAYING,
 	/**Pause menu*/
 	PAUSE,
 	/**Resolution menu within the settings menu*/

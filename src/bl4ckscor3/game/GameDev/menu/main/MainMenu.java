@@ -66,7 +66,7 @@ public class MainMenu implements IMenu
 		{
 			case 0: //play
 				Main.game = new Game(GameThread.getSeed());
-				Menu.setState(GameState.OFF);
+				Menu.setState(GameState.PLAYING);
 				break;
 			case 1: //settings
 				Menu.setState(GameState.SETTINGS);

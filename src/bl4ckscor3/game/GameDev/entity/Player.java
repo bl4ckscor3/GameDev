@@ -10,6 +10,8 @@ import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.listener.Key;
+import bl4ckscor3.game.gamedev.menu.GameState;
+import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Direction;
 import bl4ckscor3.game.gamedev.util.Position;
@@ -191,7 +193,10 @@ public class Player extends Entity
 			prevDir = getLastMovedDir();
 		}
 		else
-			stopAnimation();
+		{
+			if(isAnimating())
+				stopAnimation();
+		}
 
 		g.drawImage(getCurrentTexture(), Main.width / 2 - Main.scaleFactor.getWidth() + Screen.tileSize / 4, Main.height / 2 - Main.scaleFactor.getHeight() * 2, (Main.scaleFactor.getWidth() * 2) - ((Main.scaleFactor.getWidth() * 2) / 4), Main.scaleFactor.getHeight() * 2, null);	
 	}
@@ -217,6 +222,10 @@ public class Player extends Entity
 
 				if(currentTexture == 3)
 					currentTexture = 0;
+				
+				if(Menu.getState() == GameState.PAUSE)
+					stopAnimation();
+					
 			}
 		};
 
@@ -228,7 +237,7 @@ public class Player extends Entity
 	@Override
 	public void stopAnimation()
 	{
-		if(animating)
+		if(isAnimating())
 		{
 			animating = false;
 			ses.shutdownNow();

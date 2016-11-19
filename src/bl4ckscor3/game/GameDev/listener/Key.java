@@ -77,7 +77,7 @@ public class Key implements KeyListener
 				Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
 			else if(key == 10) //enter
 			{
-				if(Menu.getState() != GameState.OFF)
+				if(Menu.getState() != GameState.PLAYING)
 				{
 					try
 					{

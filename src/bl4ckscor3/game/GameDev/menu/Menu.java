@@ -36,7 +36,7 @@ public class Menu
 		g.fillRect(0, 0, 1920, 1080);
 		g.setColor(colorF);
 		
-		if(currentState != GameState.OFF)
+		if(currentState != GameState.PLAYING)
 			getMenu(currentState).show(g);
 	}
 
@@ -49,7 +49,7 @@ public class Menu
 		previousStates.add(currentState);
 		currentState = state;
 		
-		if(state == GameState.OFF)
+		if(state == GameState.PLAYING)
 			previousStates.clear();
 	}
 
@@ -101,7 +101,7 @@ public class Menu
 	public static void closeMenu()
 	{
 		if(isOpen())
-			setState(GameState.OFF);
+			setState(GameState.PLAYING);
 	}
 	
 	/**
@@ -109,7 +109,7 @@ public class Menu
 	 */
 	public static boolean isOpen()
 	{
-		return getState() != GameState.OFF ? true : false;
+		return getState() != GameState.PLAYING ? true : false;
 	}
 	
 	/**
