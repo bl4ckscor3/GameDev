@@ -13,7 +13,7 @@ import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Direction;
 import bl4ckscor3.game.gamedev.util.TextureManager;
-import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Position;
 import bl4ckscor3.game.gamedev.world.Chunk;
 import bl4ckscor3.game.gamedev.world.content.Material;
 import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
@@ -45,7 +45,7 @@ public class Player extends Entity
 				{
 					if(key == 87 || key == 38) //w or up arrow
 					{
-						Vector2D newPos = Game.map.getChunkPosition(this, 0, -1);
+						Position newPos = Game.map.getChunkPosition(this, 0, -1);
 
 						setLastMovedDir(Direction.UP);
 						setWalking(true);
@@ -65,7 +65,7 @@ public class Player extends Entity
 					}
 					else if(key == 65 || key == 37) //a or left arrow
 					{
-						Vector2D newPos = Game.map.getChunkPosition(this, -1, 0);
+						Position newPos = Game.map.getChunkPosition(this, -1, 0);
 
 						setLastMovedDir(Direction.LEFT);
 						setWalking(true);
@@ -85,7 +85,7 @@ public class Player extends Entity
 					}
 					else if(key == 83 || key == 40) //s or down arrow
 					{
-						Vector2D newPos = Game.map.getChunkPosition(this, 0, 1);
+						Position newPos = Game.map.getChunkPosition(this, 0, 1);
 
 						setLastMovedDir(Direction.DOWN);
 						setWalking(true);
@@ -105,7 +105,7 @@ public class Player extends Entity
 					}
 					else if(key == 68 || key == 39) //d or right arrow
 					{
-						Vector2D newPos = Game.map.getChunkPosition(this, 1, 0);
+						Position newPos = Game.map.getChunkPosition(this, 1, 0);
 
 						setLastMovedDir(Direction.RIGHT);
 						setWalking(true);
@@ -128,7 +128,7 @@ public class Player extends Entity
 
 					if(key == 32) //space
 					{
-						Vector2D newPos;
+						Position newPos;
 
 						switch(getLastMovedDir())
 						{

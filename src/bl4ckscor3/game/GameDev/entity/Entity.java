@@ -4,21 +4,21 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import bl4ckscor3.game.gamedev.util.Direction;
-import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Position;
 
 public class Entity
 {
 	/** The texture of the entity*/
 	private Image texture;
 	/** The position of the entity*/
-	public Vector2D position;
+	public Position position;
 	/** Wether an animation is currently ongoing or not*/
 	protected boolean animating = false;
 	
 	public Entity(Image tex)
 	{
 		texture = tex;
-		position = new Vector2D();
+		position = new Position();
 	}
 
 	/**

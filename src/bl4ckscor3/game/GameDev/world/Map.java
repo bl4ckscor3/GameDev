@@ -7,7 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import bl4ckscor3.game.gamedev.entity.Entity;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.util.Utilities;
-import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Position;
 
 public class Map
 {
@@ -127,7 +127,7 @@ public class Map
 	 * @param e The entity to check the position of
 	 * @return The position within the chunk
 	 */
-	public Vector2D getChunkPosition(Entity e)
+	public Position getChunkPosition(Entity e)
 	{
 		return getChunkPosition(e, 0, 0);
 	}
@@ -139,7 +139,7 @@ public class Map
 	 * @param y The y-axis modificator of this position
 	 * @return The position within the chunk
 	 */
-	public Vector2D getChunkPosition(Entity e, int x, int y)
+	public Position getChunkPosition(Entity e, int x, int y)
 	{
 		//modified positions
 		int xPos = e.position.x + x;
@@ -161,7 +161,7 @@ public class Map
 		while(yPos > (Chunk.chunkSizeY - 1))
 			yPos -= Chunk.chunkSizeY;
 		
-		return new Vector2D(xPos % Chunk.chunkSizeX, yPos % Chunk.chunkSizeY);
+		return new Position(xPos % Chunk.chunkSizeX, yPos % Chunk.chunkSizeY);
 	}
 	
 	/**
@@ -206,7 +206,7 @@ public class Map
 		double divY = modY / (double)Chunk.chunkSizeY; //divided y
 		int cX = 0; //chunk pos x
 		int cY = 0; //chunk pos y
-		Vector2D cP = getChunkPosition(e, x, y); //player position within chunk
+		Position cP = getChunkPosition(e, x, y); //player position within chunk
 		
 		if(divX < 0)
 		{

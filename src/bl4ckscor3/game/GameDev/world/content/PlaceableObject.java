@@ -5,20 +5,20 @@ import java.awt.Image;
 
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.util.TextureManager;
-import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Position;
 
 public class PlaceableObject
 {
 	private Material material;
 	public Image texture;
-	private Vector2D pos;
+	private Position pos;
 	
 	/**
 	 * Sets up an object that can be placed in the world
 	 * @param mat The Material of the texture to use
 	 * @param pos The x and y coordinates within the chunk that this object is placed in
 	 */
-	public PlaceableObject(Material mat, Vector2D pos)
+	public PlaceableObject(Material mat, Position pos)
 	{
 		this(mat, pos, "", "");
 	}
@@ -30,7 +30,7 @@ public class PlaceableObject
 	 * @param appendix The appendix to the file name
 	 * @param path Subfolder to load the texture from
 	 */
-	public PlaceableObject(Material mat, Vector2D pos, String appendix, String path)
+	public PlaceableObject(Material mat, Position pos, String appendix, String path)
 	{
 		material = mat;
 		texture = TextureManager.loadTextureFromPath(material.getResourceID() + appendix, "tiles/" + path);
@@ -86,7 +86,7 @@ public class PlaceableObject
 	/**
 	 * @return The x and y coordinates within the chunk that this object is placed in
 	 */
-	public Vector2D getPos()
+	public Position getPos()
 	{
 		return pos;
 	}

@@ -8,7 +8,7 @@ import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Utilities;
-import bl4ckscor3.game.gamedev.util.Vector2D;
+import bl4ckscor3.game.gamedev.util.Position;
 import bl4ckscor3.game.gamedev.world.content.Material;
 import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 import bl4ckscor3.game.gamedev.world.content.Tile;
@@ -136,7 +136,7 @@ public class Chunk
 	 * @param vec The Vector2D holding the x and y position
 	 * @return The Tile
 	 */
-	public Tile getTile(Vector2D pos)
+	public Tile getTile(Position pos)
 	{
 		return tiles[pos.x][pos.y];
 	}
@@ -146,7 +146,7 @@ public class Chunk
 	 * @param pos The position of the tile to change the material of
 	 * @param m The material to change the tile to
 	 */
-	public void setTile(Vector2D pos, Material m)
+	public void setTile(Position pos, Material m)
 	{
 		tiles[pos.x][pos.y] = new Tile(m);
 	}
@@ -166,7 +166,7 @@ public class Chunk
 	 * @param pos The position to check
 	 * @return The PlaceableObject on the given position if there is one, null otherwise
 	 */
-	public PlaceableObject getPlaceableObject(Vector2D pos)
+	public PlaceableObject getPlaceableObject(Position pos)
 	{
 		return getPlaceableObject(pos, 0, 0);
 	}
@@ -179,7 +179,7 @@ public class Chunk
 	 * @param y y-coordinate modifier of the position to check
 	 * @return The PlaceableObject on the given position if there is one, null otherwise
 	 */
-	public PlaceableObject getPlaceableObject(Vector2D pos, int x, int y)
+	public PlaceableObject getPlaceableObject(Position pos, int x, int y)
 	{
 		for(PlaceableObject po : (ArrayList<PlaceableObject>)placedObjects.clone())
 		{
