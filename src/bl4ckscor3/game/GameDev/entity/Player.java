@@ -25,7 +25,7 @@ public class Player extends Entity
 	private boolean walking = false;
 	private ScheduledExecutorService ses;
 	private Direction prevDir;
-	/** The path of the bridge textures*/
+	/** The path of the player textures*/
 	private static final String texturePath = "entities/player/";
 	
 	public Player()
@@ -44,6 +44,43 @@ public class Player extends Entity
 			//update keys
 			if(Key.keysPressed.size() != 0)
 			{
+				if(Key.keysPressed.contains(32)) //space
+				{
+					Position newPos;
+
+					switch(getLastMovedDir())
+					{
+						case UP:
+							newPos = Game.map.getChunkPosition(this, 0, -1);
+							c = Game.map.getChunk(this, 0, -1);
+
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new Bridge(c, newPos, "_vertical"));
+							break;
+						case LEFT:
+							newPos = Game.map.getChunkPosition(this, -1, 0);
+							c = Game.map.getChunk(this, -1, 0);
+
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new Bridge(c, newPos, "_horizontal"));
+							break;
+						case DOWN:
+							newPos = Game.map.getChunkPosition(this, 0, 1);
+							c = Game.map.getChunk(this, 0, 1);
+
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new Bridge(c, newPos, "_vertical"));
+							break;
+						case RIGHT:
+							newPos = Game.map.getChunkPosition(this, 1, 0); 
+							c = Game.map.getChunk(this, 1, 0);
+
+							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+								c.placeObject(new Bridge(c, newPos, "_horizontal"));
+							break;
+					}
+				}
+				
 				for(int key : Key.keysPressed)
 				{
 					if(key == 87 || key == 38) //w or up arrow
@@ -128,43 +165,6 @@ public class Player extends Entity
 					}
 					else
 						setWalking(false);
-
-					if(key == 32) //space
-					{
-						Position newPos;
-
-						switch(getLastMovedDir())
-						{
-							case UP:
-								newPos = Game.map.getChunkPosition(this, 0, -1);
-								c = Game.map.getChunk(this, 0, -1);
-
-								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new Bridge(c, newPos, "_vertical"));
-								break;
-							case LEFT:
-								newPos = Game.map.getChunkPosition(this, -1, 0);
-								c = Game.map.getChunk(this, -1, 0);
-
-								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new Bridge(c, newPos, "_horizontal"));
-								break;
-							case DOWN:
-								newPos = Game.map.getChunkPosition(this, 0, 1);
-								c = Game.map.getChunk(this, 0, 1);
-
-								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new Bridge(c, newPos, "_vertical"));
-								break;
-							case RIGHT:
-								newPos = Game.map.getChunkPosition(this, 1, 0); 
-								c = Game.map.getChunk(this, 1, 0);
-
-								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new Bridge(c, newPos, "_horizontal"));
-								break;
-						}
-					}
 				}
 			}
 			else
