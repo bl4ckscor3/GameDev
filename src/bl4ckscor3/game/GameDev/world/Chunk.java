@@ -200,4 +200,10 @@ public class Chunk
 
 		return chunkX == c.chunkX && chunkY == c.chunkY;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "(" + chunkX + "," + chunkY + ")";
+	}
 }

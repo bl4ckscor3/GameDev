@@ -12,9 +12,10 @@ import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 import bl4ckscor3.game.gamedev.util.Direction;
-import bl4ckscor3.game.gamedev.util.TextureManager;
 import bl4ckscor3.game.gamedev.util.Position;
+import bl4ckscor3.game.gamedev.util.TextureManager;
 import bl4ckscor3.game.gamedev.world.Chunk;
+import bl4ckscor3.game.gamedev.world.content.Bridge;
 import bl4ckscor3.game.gamedev.world.content.Material;
 import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 
@@ -24,10 +25,12 @@ public class Player extends Entity
 	private boolean walking = false;
 	private ScheduledExecutorService ses;
 	private Direction prevDir;
-
+	/** The path of the bridge textures*/
+	private static final String texturePath = "entities/player/";
+	
 	public Player()
 	{
-		super(TextureManager.loadTextureFromPath("playerDown0", "player/"));
+		super(TextureManager.loadTextureFromPath("playerDown0", texturePath));
 	}
 
 	@Override
@@ -137,28 +140,28 @@ public class Player extends Entity
 								c = Game.map.getChunk(this, 0, -1);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_vertical", "bridge/"));
+									c.placeObject(new Bridge(c, newPos, "_vertical"));
 								break;
 							case LEFT:
 								newPos = Game.map.getChunkPosition(this, -1, 0);
 								c = Game.map.getChunk(this, -1, 0);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_horizontal", "bridge/"));
+									c.placeObject(new Bridge(c, newPos, "_horizontal"));
 								break;
 							case DOWN:
 								newPos = Game.map.getChunkPosition(this, 0, 1);
 								c = Game.map.getChunk(this, 0, 1);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_vertical", "bridge/"));
+									c.placeObject(new Bridge(c, newPos, "_vertical"));
 								break;
 							case RIGHT:
-								newPos = Game.map.getChunkPosition(this, 1, 0);
+								newPos = Game.map.getChunkPosition(this, 1, 0); 
 								c = Game.map.getChunk(this, 1, 0);
 
 								if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-									c.placeObject(new PlaceableObject(Material.BRIDGE, newPos, "_horizontal", "bridge/"));
+									c.placeObject(new Bridge(c, newPos, "_horizontal"));
 								break;
 						}
 					}
@@ -284,10 +287,10 @@ public class Player extends Entity
 
 	public enum PlayerAnimations
 	{
-		UP(TextureManager.loadTextureFromPath("playerUp0", "player/"), TextureManager.loadTextureFromPath("playerUp1", "player/"), TextureManager.loadTextureFromPath("playerUp2", "player/")),
-		LEFT(TextureManager.loadTextureFromPath("playerLeft0", "player/"), TextureManager.loadTextureFromPath("playerLeft1", "player/"), TextureManager.loadTextureFromPath("playerLeft2", "player/")),
-		DOWN(TextureManager.loadTextureFromPath("playerDown0", "player/"), TextureManager.loadTextureFromPath("playerDown1", "player/"), TextureManager.loadTextureFromPath("playerDown2", "player/")),
-		RIGHT(TextureManager.loadTextureFromPath("playerRight0", "player/"), TextureManager.loadTextureFromPath("playerRight1", "player/"), TextureManager.loadTextureFromPath("playerRight2", "player/"));
+		UP(TextureManager.loadTextureFromPath("playerUp0", texturePath), TextureManager.loadTextureFromPath("playerUp1", texturePath), TextureManager.loadTextureFromPath("playerUp2", texturePath)),
+		LEFT(TextureManager.loadTextureFromPath("playerLeft0", texturePath), TextureManager.loadTextureFromPath("playerLeft1", texturePath), TextureManager.loadTextureFromPath("playerLeft2", texturePath)),
+		DOWN(TextureManager.loadTextureFromPath("playerDown0", texturePath), TextureManager.loadTextureFromPath("playerDown1", texturePath), TextureManager.loadTextureFromPath("playerDown2", texturePath)),
+		RIGHT(TextureManager.loadTextureFromPath("playerRight0", texturePath), TextureManager.loadTextureFromPath("playerRight1", texturePath), TextureManager.loadTextureFromPath("playerRight2", texturePath));
 
 		private Image[] images;
 

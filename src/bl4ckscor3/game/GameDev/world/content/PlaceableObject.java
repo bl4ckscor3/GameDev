@@ -4,42 +4,44 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import bl4ckscor3.game.gamedev.Main;
-import bl4ckscor3.game.gamedev.util.TextureManager;
 import bl4ckscor3.game.gamedev.util.Position;
+import bl4ckscor3.game.gamedev.util.TextureManager;
+import bl4ckscor3.game.gamedev.world.Chunk;
 
 public class PlaceableObject
 {
-	private Material material;
-	public Image texture;
-	private Position pos;
+	protected Material material;
+	protected Image texture;
+	public Chunk chunk;
+	protected Position pos;
 	
 	/**
 	 * Sets up an object that can be placed in the world
 	 * @param mat The Material of the texture to use
+	 * @param c The Chunk this PlaceableObject is in
 	 * @param pos The x and y coordinates within the chunk that this object is placed in
 	 */
-	public PlaceableObject(Material mat, Position pos)
+	public PlaceableObject(Material mat, Chunk c, Position pos)
 	{
-		this(mat, pos, "", "");
+		this(mat, c, pos, "", "");
 	}
 	
 	/**
 	 * Sets up an object that can be placed in the world
 	 * @param mat Material of the texture
+	 * @param chunk The Chunk this PlaceableObject is in
 	 * @param pos The x and y coordinates within the chunk that this object is placed in
 	 * @param appendix The appendix to the file name
 	 * @param path Subfolder to load the texture from
 	 */
-	public PlaceableObject(Material mat, Position pos, String appendix, String path)
+	public PlaceableObject(Material mat, Chunk c, Position pos, String appendix, String path)
 	{
 		material = mat;
-		texture = TextureManager.loadTextureFromPath(material.getResourceID() + appendix, "tiles/" + path);
+		texture = TextureManager.loadTextureFromPath(material.getResourceID() + appendix, "objects/" + path);
+		chunk = c;
 		this.pos = pos;
 	}
-	
-	/**
-	 * Gets called every game tick
-	 */
+
 	public void tick(){}
 	
 	/**
@@ -83,6 +85,14 @@ public class PlaceableObject
 		return material;
 	}
 
+	/**
+	 * @return The Chunk this PlaceableObject is in
+	 */
+	public Chunk getChunk()
+	{
+		return chunk;
+	}
+	
 	/**
 	 * @return The x and y coordinates within the chunk that this object is placed in
 	 */

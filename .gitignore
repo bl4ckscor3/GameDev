@@ -1,5 +1,6 @@
 /target/classes/bl4ckscor3
-/target/classes/player
+/target/classes/objects
+/target/classes/entities
 /target/classes/tiles
 /target/test-classes
 /RemoteSystemsTempFiles

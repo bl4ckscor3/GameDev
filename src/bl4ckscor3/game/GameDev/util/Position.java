@@ -56,4 +56,30 @@ public class Position
 		y += modY;
 		return this;
 	}
+	
+	/**
+	 * Clones this position and gives the option to modify it with the given x and y values
+	 * @param modX The amount to modify the x coordinate
+	 * @param modY The amount to modify the x coordinate
+	 * @return This new Position
+	 */
+	public Position clone(int modX, int modY)
+	{
+		return new Position(x, y).modify(modX, modY);
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if(!(obj instanceof Position))
+			return false;
+		
+		return x == ((Position)obj).x && y == ((Position)obj).y;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "(" + x + "," + y + ")";
+	}
 }
