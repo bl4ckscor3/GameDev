@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.listener.MouseMotion;
+import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 
@@ -51,6 +52,9 @@ public class Screen extends JPanel
 				debugWasShown = true;
 			}
 
+			if(Menu.getState() == GameState.PAUSE)
+				DebugUI.displayDebugUI(g);
+			
 			Menu.displayMenu(g);
 			return; //no need to check if the debug menu is open, since it's closed in menus anyways
 		}

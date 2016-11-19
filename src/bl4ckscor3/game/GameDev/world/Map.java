@@ -83,11 +83,11 @@ public class Map
 		{
 			for(int y = playerChunkY - (chunkAmountY - 1) / 2; y <= playerChunkY + (chunkAmountY - 1) / 2; y++)
 			{
+				Chunk c = new Chunk(x, y);
+				
 				//loaded chunk at this position?
-				if(!loadedChunks.contains(new Chunk(x, y)))
+				if(!loadedChunks.contains(c))
 				{
-					Chunk c = new Chunk(x, y);
-					
 					c.populate(seed);
 					loadedChunks.add(c);
 				}

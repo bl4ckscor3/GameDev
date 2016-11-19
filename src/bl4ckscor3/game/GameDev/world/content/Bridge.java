@@ -57,6 +57,9 @@ public class Bridge extends PlaceableObject
 		else
 			c = chunk;
 		
+		if(c == null) //the chunk is unloaded
+			return;
+		
 		po = c.getPlaceableObject(up);
 		
 		if(po != null && po.getMaterial() == Material.BRIDGE)
@@ -70,6 +73,9 @@ public class Bridge extends PlaceableObject
 		}
 		else
 			c = chunk;
+
+		if(c == null) //the chunk is unloaded
+			return;
 		
 		po = c.getPlaceableObject(left);
 		
@@ -84,9 +90,12 @@ public class Bridge extends PlaceableObject
 		}
 		else
 			c = chunk;
+
+		if(c == null) //the chunk is unloaded
+			return;
 		
 		po = c.getPlaceableObject(down);
-		
+
 		if(po != null && po.getMaterial() == Material.BRIDGE)
 			isDown = true;
 		
@@ -98,6 +107,9 @@ public class Bridge extends PlaceableObject
 		}
 		else
 			c = chunk;
+
+		if(c == null) //the chunk is unloaded
+			return;
 		
 		po = c.getPlaceableObject(right);
 		
