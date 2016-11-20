@@ -83,6 +83,7 @@ public class Player extends Entity
 					}
 				}
 				
+				//movement
 				for(int key : Key.keysPressed)
 				{
 					if(key == 87 || key == 38) //w or up arrow
@@ -204,34 +205,12 @@ public class Player extends Entity
 	@Override
 	public void startAnimation(Direction dir)
 	{
-		PlayerAnimations[] constants = PlayerAnimations.class.getEnumConstants();
-		Runnable r = new Runnable()
-		{
-			int currentTexture = 0;
-
-			@Override
-			public void run()
-			{
-				for(PlayerAnimations tex : constants)
-				{
-					if(tex.name().equals(dir.name()))
-						setTexture(tex.getImages()[currentTexture]);
-				}
-
-				currentTexture++;
-
-				if(currentTexture == 3)
-					currentTexture = 0;
-				
-				if(Menu.getState() == GameState.PAUSE)
-					stopAnimation();
-					
-			}
-		};
+		Animation animation = new Animation();
 
 		animating = true;
 		ses = Executors.newSingleThreadScheduledExecutor();
-		ses.scheduleAtFixedRate(r, 0, 67, TimeUnit.MILLISECONDS); //roughly every four ticks
+		animation.setup(dir);
+		ses.scheduleAtFixedRate(animation, 0, 67, TimeUnit.MILLISECONDS); //roughly every four ticks
 	}
 
 	@Override
@@ -294,6 +273,35 @@ public class Player extends Entity
 		return walking;
 	}
 
+	private class Animation implements Runnable
+	{
+		Image[] currentAnimation;
+		int currentTexture = 0;
+		
+		public void setup(Direction dir)
+		{
+			for(PlayerAnimations tex : PlayerAnimations.class.getEnumConstants())
+			{
+				if(tex.name().equals(dir.name()))
+					currentAnimation = tex.getImages();
+			}
+		}
+		
+		@Override
+		public void run()
+		{
+			setTexture(currentAnimation[currentTexture]);
+			currentTexture++;
+
+			if(currentTexture == 3)
+				currentTexture = 0;
+			
+			if(Menu.getState() == GameState.PAUSE)
+				stopAnimation();
+				
+		}
+	}
+	
 	public enum PlayerAnimations
 	{
 		UP(TextureManager.loadTextureFromPath("playerUp0", texturePath), TextureManager.loadTextureFromPath("playerUp1", texturePath), TextureManager.loadTextureFromPath("playerUp2", texturePath)),
