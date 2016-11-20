@@ -2,32 +2,37 @@ package bl4ckscor3.game.gamedev.world;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Random;
 
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.util.DebugUI;
-import bl4ckscor3.game.gamedev.util.Utilities;
 import bl4ckscor3.game.gamedev.util.Position;
+import bl4ckscor3.game.gamedev.util.Utilities;
 import bl4ckscor3.game.gamedev.world.content.Material;
 import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 import bl4ckscor3.game.gamedev.world.content.Tile;
+import bl4ckscor3.game.gamedev.world.content.Tree;
 import bl4ckscor3.game.gamedev.world.generation.SimplexNoise;
 
 @SuppressWarnings("unchecked")
 public class Chunk
 {
-	//amount of tiles horizontally
+	private static final Random r = new Random();
+	/** Amount of tiles horizontally per chunk*/
 	public static final int chunkSizeX = 16;
-	//amount of tiles vertically
+	/** Amount of tiles vertically per chunk*/
 	public static final int chunkSizeY = 16;
-	//x position of whole chunk
+	/** The chunk's x position*/
 	public int chunkX;
-	//y position of whole chunk
+	/** The chunk's y position*/
 	public int chunkY;
+	/** All tiles in this chunk*/
 	public Tile[][] tiles = new Tile[chunkSizeX][chunkSizeY];
+	/** All PlaceableObjects in this chunk*/
 	public ArrayList<PlaceableObject> placedObjects = new ArrayList<PlaceableObject>();
-
+	
 	public Chunk(int x, int y)
 	{
 		chunkX = x;
@@ -75,10 +80,15 @@ public class Chunk
 				}
 				else
 				{
+					double rand = r.nextDouble();
+					
 					mat = Material.GRASS;
 					tiles[i][j] = new Tile(mat, "grass/", 12);
+					
+					if(rand >= 0.5 && rand <= 0.51)
+						placeObject(new Tree(Material.TREE, this, new Position(i, j)));
 				}
-
+				
 				data[i][j] = noise;
 			}
 		}
@@ -158,6 +168,15 @@ public class Chunk
 	public void placeObject(PlaceableObject po)
 	{
 		placedObjects.add(po);
+	}
+	
+	/**
+	 * Removes a PlaceableObject from the world
+	 * @param po The PlaceableObject to remove
+	 */
+	public void removeObject(PlaceableObject po)
+	{
+		placedObjects.remove(po);
 	}
 	
 	/**

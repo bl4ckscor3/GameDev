@@ -6,7 +6,8 @@ public enum Material
 	SAND("sand"),
 	WATER_NORMAL("water_normal"),
 	WATER_DEEP("water_deep"),
-	BRIDGE("bridge");
+	BRIDGE("bridge"),
+	TREE("tree");
 
 	/** The ID of the Material (used to determine which material it is)*/
 	private String resourceID;

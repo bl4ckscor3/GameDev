@@ -100,4 +100,10 @@ public class PlaceableObject
 	{
 		return pos;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return pos + "-" + chunk + "-" + material;
+	}
 }
