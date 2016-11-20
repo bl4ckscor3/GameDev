@@ -29,7 +29,7 @@ public class Player extends Entity
 	private Direction prevDir;
 	/** The path of the player textures*/
 	private static final String texturePath = "entities/player/";
-	
+
 	public Player()
 	{
 		super(TextureManager.loadTextureFromPath("playerDown0", texturePath));
@@ -82,93 +82,104 @@ public class Player extends Entity
 							break;
 					}
 				}
-				
+
+				int lastMovementKey = 0;
+
 				//movement
 				for(int key : Key.keysPressed)
 				{
 					if(key == 87 || key == 38) //w or up arrow
-					{
-						Position newPos = Game.map.getChunkPosition(this, 0, -1);
-
-						setLastMovedDir(Direction.UP);
-						setWalking(true);
-						c = Game.map.getChunk(this, 0, -1);
-
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						{
-							PlaceableObject po = c.getPlaceableObject(newPos);
-
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-
-						position.y--;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
+						lastMovementKey = key;
 					else if(key == 65 || key == 37) //a or left arrow
-					{
-						Position newPos = Game.map.getChunkPosition(this, -1, 0);
-
-						setLastMovedDir(Direction.LEFT);
-						setWalking(true);
-						c = Game.map.getChunk(this, -1, 0);
-
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						{
-							PlaceableObject po = c.getPlaceableObject(newPos);
-
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-
-						position.x--;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
+						lastMovementKey = key;
 					else if(key == 83 || key == 40) //s or down arrow
-					{
-						Position newPos = Game.map.getChunkPosition(this, 0, 1);
-
-						setLastMovedDir(Direction.DOWN);
-						setWalking(true);
-						c = Game.map.getChunk(this, 0, 1);
-
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						{
-							PlaceableObject po = c.getPlaceableObject(newPos);
-
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-
-						position.y++;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
+						lastMovementKey = key;
 					else if(key == 68 || key == 39) //d or right arrow
-					{
-						Position newPos = Game.map.getChunkPosition(this, 1, 0);
-
-						setLastMovedDir(Direction.RIGHT);
-						setWalking(true);
-						c = Game.map.getChunk(this, 1, 0);
-
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
-						{
-							PlaceableObject po = c.getPlaceableObject(newPos);
-
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-
-						position.x++;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
-					else
-						setWalking(false);
+						lastMovementKey = key;
 				}
+
+				if(lastMovementKey == 87 || lastMovementKey == 38) //w or up arrow
+				{
+					Position newPos = Game.map.getChunkPosition(this, 0, -1);
+
+					setLastMovedDir(Direction.UP);
+					setWalking(true);
+					c = Game.map.getChunk(this, 0, -1);
+
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
+
+					position.y--;
+					DebugUI.setCurrentTile(c.getTile(newPos));
+					return;
+				}
+				else if(lastMovementKey == 65 || lastMovementKey == 37) //a or left arrow
+				{
+					Position newPos = Game.map.getChunkPosition(this, -1, 0);
+
+					setLastMovedDir(Direction.LEFT);
+					setWalking(true);
+					c = Game.map.getChunk(this, -1, 0);
+
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
+
+					position.x--;
+					DebugUI.setCurrentTile(c.getTile(newPos));
+					return;
+				}
+				else if(lastMovementKey == 83 || lastMovementKey == 40) //s or down arrow
+				{
+					Position newPos = Game.map.getChunkPosition(this, 0, 1);
+
+					setLastMovedDir(Direction.DOWN);
+					setWalking(true);
+					c = Game.map.getChunk(this, 0, 1);
+
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
+
+					position.y++;
+					DebugUI.setCurrentTile(c.getTile(newPos));
+					return;
+				}
+				else if(lastMovementKey == 68 || lastMovementKey == 39) //d or right arrow
+				{
+					Position newPos = Game.map.getChunkPosition(this, 1, 0);
+
+					setLastMovedDir(Direction.RIGHT);
+					setWalking(true);
+					c = Game.map.getChunk(this, 1, 0);
+
+					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(16))
+					{
+						PlaceableObject po = c.getPlaceableObject(newPos);
+
+						if(!(po != null && po.getMaterial() == Material.BRIDGE))
+							return;
+					}
+
+					position.x++;
+					DebugUI.setCurrentTile(c.getTile(newPos));
+					return;
+				}
+				else
+					setWalking(false);
 			}
 			else
 				setWalking(false);
@@ -277,7 +288,7 @@ public class Player extends Entity
 	{
 		Image[] currentAnimation;
 		int currentTexture = 0;
-		
+
 		public void setup(Direction dir)
 		{
 			for(PlayerAnimations tex : PlayerAnimations.class.getEnumConstants())
@@ -286,7 +297,7 @@ public class Player extends Entity
 					currentAnimation = tex.getImages();
 			}
 		}
-		
+
 		@Override
 		public void run()
 		{
@@ -295,13 +306,13 @@ public class Player extends Entity
 
 			if(currentTexture == 3)
 				currentTexture = 0;
-			
+
 			if(Menu.getState() == GameState.PAUSE)
 				stopAnimation();
-				
+
 		}
 	}
-	
+
 	public enum PlayerAnimations
 	{
 		UP(TextureManager.loadTextureFromPath("playerUp0", texturePath), TextureManager.loadTextureFromPath("playerUp1", texturePath), TextureManager.loadTextureFromPath("playerUp2", texturePath)),
