@@ -47,6 +47,7 @@ public class Bridge extends PlaceableObject
 		boolean isRight = false;
 		Chunk c;
 		PlaceableObject po;
+		Tile t;
 		
 		//checking up
 		if(up.y == -1)
@@ -61,8 +62,9 @@ public class Bridge extends PlaceableObject
 			return;
 		
 		po = c.getPlaceableObject(up);
-		
-		if(po != null && po.getMaterial() == Material.BRIDGE)
+		t = c.getTile(up);
+
+		if((po != null && po.getMaterial() == Material.BRIDGE) || t.getMaterial() == Material.SAND)
 			isUp = true;
 		
 		//checking left
@@ -78,10 +80,11 @@ public class Bridge extends PlaceableObject
 			return;
 		
 		po = c.getPlaceableObject(left);
+		t = c.getTile(left);
 		
-		if(po != null && po.getMaterial() == Material.BRIDGE)
+		if((po != null && po.getMaterial() == Material.BRIDGE) || t.getMaterial() == Material.SAND)
 			isLeft = true;
-		
+
 		//checking down
 		if(down.y == 16)
 		{
@@ -95,8 +98,9 @@ public class Bridge extends PlaceableObject
 			return;
 		
 		po = c.getPlaceableObject(down);
+		t = c.getTile(down);
 
-		if(po != null && po.getMaterial() == Material.BRIDGE)
+		if((po != null && po.getMaterial() == Material.BRIDGE) || t.getMaterial() == Material.SAND)
 			isDown = true;
 		
 		//checking right
@@ -112,10 +116,11 @@ public class Bridge extends PlaceableObject
 			return;
 		
 		po = c.getPlaceableObject(right);
+		t = c.getTile(right);
 		
-		if(po != null && po.getMaterial() == Material.BRIDGE)
+		if((po != null && po.getMaterial() == Material.BRIDGE) || t.getMaterial() == Material.SAND)
 			isRight = true;
-		
+
 		//setting the correct textures
 		if(isUp && isLeft && isDown && isRight)
 			texture = TextureManager.loadTextureFromPath(material.getResourceID() + "_intersection_full", texturePath);
