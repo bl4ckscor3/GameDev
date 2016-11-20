@@ -90,21 +90,21 @@ public class Chunk
 	public void render(Graphics g)
 	{
 		//drawing chunks
-		int posX = Utilities.ceil((chunkX * chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.player.position.x * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) * Main.screen.pixelScaleWidth + Main.width / 2);
-		int posY = Utilities.ceil((chunkY * chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.player.position.y * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) * Main.screen.pixelScaleHeight + Main.height / 2);
+		int posX = Utilities.ceil((chunkX * chunkSizeX * Screen.tileSize * Screen.pixelSize - Game.player.position.x * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) / 1.25 + Main.width / 2);
+		int posY = Utilities.ceil((chunkY * chunkSizeY * Screen.tileSize * Screen.pixelSize - Game.player.position.y * Screen.tileSize * Screen.pixelSize - Screen.tileSize * Screen.pixelSize / 2) / 1.25 + Main.height / 2);
 
 		for(int x = 0; x < tiles.length; x++)
 		{
 			for(int y = 0; y < tiles[x].length; y++)
 			{
 				//texture to use, pos inside of chunk + pos x of chunk, same for y, width of chunk, height of chunk
-				tiles[x][y].render(g, Utilities.ceil(x * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(y * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
+				tiles[x][y].render(g, Utilities.ceil(x * Screen.tileSize * Screen.pixelSize / 1.25) + posX, Utilities.ceil(y * Screen.tileSize * Screen.pixelSize / 1.25) + posY);
 			}
 		}
 
 		for(PlaceableObject po : (ArrayList<PlaceableObject>)placedObjects.clone())
 		{
-			po.render(g, Utilities.ceil(po.getPos().x * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleWidth) + posX, Utilities.ceil(po.getPos().y * Screen.tileSize * Screen.pixelSize * Main.screen.pixelScaleHeight) + posY);
+			po.render(g, Utilities.ceil(po.getPos().x * Screen.tileSize * Screen.pixelSize / 1.25) + posX, Utilities.ceil(po.getPos().y * Screen.tileSize * Screen.pixelSize / 1.25) + posY);
 		}
 
 		if(Screen.displayDebug)

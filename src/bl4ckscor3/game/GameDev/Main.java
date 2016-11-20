@@ -77,7 +77,7 @@ public class Main
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		screen = new Screen(frame);
-		scaleFactor = new ScaleFactor(Utilities.ceil(Screen.tileSize * Screen.pixelSize * screen.pixelScaleWidth / 2), Utilities.ceil(Screen.tileSize * Screen.pixelSize * screen.pixelScaleHeight / 2));
+		scaleFactor = new ScaleFactor(Utilities.ceil(Screen.tileSize * Screen.pixelSize / 1.25 / 2), Utilities.ceil(Screen.tileSize * Screen.pixelSize / 1.25 / 2));
 		frame.add(screen);
 		frame.setVisible(true);
 		//starts the game thread
