@@ -1,7 +1,5 @@
-/target/classes/bl4ckscor3
-/target/classes/objects
-/target/classes/entities
-/target/classes/tiles
+/target/classes/*
+!/target/classes/config.txt
 /target/test-classes
 /RemoteSystemsTempFiles
 /.settings

@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.inventory.PlayerInventory;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
@@ -23,13 +24,14 @@ import bl4ckscor3.game.gamedev.world.content.PlaceableObject;
 
 public class Player extends Entity
 {
+	/** The path of the player textures*/
+	private static final String texturePath = "entities/player/";
 	private Direction lastMovedDir = Direction.DOWN;
 	private boolean walking = false;
 	private ScheduledExecutorService ses;
 	private Direction prevDir;
-	/** The path of the player textures*/
-	private static final String texturePath = "entities/player/";
-
+	private PlayerInventory inventory = new PlayerInventory();
+	
 	public Player()
 	{
 		super(TextureManager.loadTextureFromPath("playerDown0", texturePath));
@@ -122,115 +124,118 @@ public class Player extends Entity
 					}
 				}
 				
-				int lastMovementKey = 0;
-
-				//movement
-				for(int key : Key.keysPressed)
+				if(!inventory.isOpen())
 				{
-					if(key == 87 || key == 38) //w or up arrow
-						lastMovementKey = key;
-					else if(key == 65 || key == 37) //a or left arrow
-						lastMovementKey = key;
-					else if(key == 83 || key == 40) //s or down arrow
-						lastMovementKey = key;
-					else if(key == 68 || key == 39) //d or right arrow
-						lastMovementKey = key;
+					int lastMovementKey = 0;
+	
+					//movement
+					for(int key : Key.keysPressed)
+					{
+						if(key == 87 || key == 38) //w or up arrow
+							lastMovementKey = key;
+						else if(key == 65 || key == 37) //a or left arrow
+							lastMovementKey = key;
+						else if(key == 83 || key == 40) //s or down arrow
+							lastMovementKey = key;
+						else if(key == 68 || key == 39) //d or right arrow
+							lastMovementKey = key;
+					}
+	
+					if(lastMovementKey == 87 || lastMovementKey == 38) //w or up arrow
+					{
+						newPos = Game.map.getChunkPosition(this, 0, -1);
+						setLastMovedDir(Direction.UP);
+						setWalking(true);
+						c = Game.map.getChunk(this, 0, -1);
+						po = c.getPlaceableObject(newPos);
+						
+						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
+						{
+							if(!(po != null && po.getMaterial() == Material.BRIDGE))
+								return;
+						}
+						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
+						{
+							if(po != null && po.getMaterial() == Material.TREE)
+								return;
+						}
+	
+						position.y--;
+						DebugUI.setCurrentTile(c.getTile(newPos));
+						return;
+					}
+					else if(lastMovementKey == 65 || lastMovementKey == 37) //a or left arrow
+					{
+						newPos = Game.map.getChunkPosition(this, -1, 0);
+						setLastMovedDir(Direction.LEFT);
+						setWalking(true);
+						c = Game.map.getChunk(this, -1, 0);
+						po = c.getPlaceableObject(newPos);
+						
+						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
+						{
+							if(!(po != null && po.getMaterial() == Material.BRIDGE))
+								return;
+						}
+						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
+						{
+							if(po != null && po.getMaterial() == Material.TREE)
+								return;
+						}
+	
+						position.x--;
+						DebugUI.setCurrentTile(c.getTile(newPos));
+						return;
+					}
+					else if(lastMovementKey == 83 || lastMovementKey == 40) //s or down arrow
+					{
+						newPos = Game.map.getChunkPosition(this, 0, 1);
+						setLastMovedDir(Direction.DOWN);
+						setWalking(true);
+						c = Game.map.getChunk(this, 0, 1);
+						po = c.getPlaceableObject(newPos);
+						
+						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
+						{
+							if(!(po != null && po.getMaterial() == Material.BRIDGE))
+								return;
+						}
+						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
+						{
+							if(po != null && po.getMaterial() == Material.TREE)
+								return;
+						}
+	
+						position.y++;
+						DebugUI.setCurrentTile(c.getTile(newPos));
+						return;
+					}
+					else if(lastMovementKey == 68 || lastMovementKey == 39) //d or right arrow
+					{
+						newPos = Game.map.getChunkPosition(this, 1, 0);
+						setLastMovedDir(Direction.RIGHT);
+						setWalking(true);
+						c = Game.map.getChunk(this, 1, 0);
+						po = c.getPlaceableObject(newPos);
+						
+						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
+						{
+							if(!(po != null && po.getMaterial() == Material.BRIDGE))
+								return;
+						}
+						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
+						{
+							if(po != null && po.getMaterial() == Material.TREE)
+								return;
+						}
+	
+						position.x++;
+						DebugUI.setCurrentTile(c.getTile(newPos));
+						return;
+					}
+					else
+						setWalking(false);
 				}
-
-				if(lastMovementKey == 87 || lastMovementKey == 38) //w or up arrow
-				{
-					newPos = Game.map.getChunkPosition(this, 0, -1);
-					setLastMovedDir(Direction.UP);
-					setWalking(true);
-					c = Game.map.getChunk(this, 0, -1);
-					po = c.getPlaceableObject(newPos);
-					
-					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-					{
-						if(!(po != null && po.getMaterial() == Material.BRIDGE))
-							return;
-					}
-					else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-					{
-						if(po != null && po.getMaterial() == Material.TREE)
-							return;
-					}
-
-					position.y--;
-					DebugUI.setCurrentTile(c.getTile(newPos));
-					return;
-				}
-				else if(lastMovementKey == 65 || lastMovementKey == 37) //a or left arrow
-				{
-					newPos = Game.map.getChunkPosition(this, -1, 0);
-					setLastMovedDir(Direction.LEFT);
-					setWalking(true);
-					c = Game.map.getChunk(this, -1, 0);
-					po = c.getPlaceableObject(newPos);
-					
-					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-					{
-						if(!(po != null && po.getMaterial() == Material.BRIDGE))
-							return;
-					}
-					else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-					{
-						if(po != null && po.getMaterial() == Material.TREE)
-							return;
-					}
-
-					position.x--;
-					DebugUI.setCurrentTile(c.getTile(newPos));
-					return;
-				}
-				else if(lastMovementKey == 83 || lastMovementKey == 40) //s or down arrow
-				{
-					newPos = Game.map.getChunkPosition(this, 0, 1);
-					setLastMovedDir(Direction.DOWN);
-					setWalking(true);
-					c = Game.map.getChunk(this, 0, 1);
-					po = c.getPlaceableObject(newPos);
-					
-					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-					{
-						if(!(po != null && po.getMaterial() == Material.BRIDGE))
-							return;
-					}
-					else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-					{
-						if(po != null && po.getMaterial() == Material.TREE)
-							return;
-					}
-
-					position.y++;
-					DebugUI.setCurrentTile(c.getTile(newPos));
-					return;
-				}
-				else if(lastMovementKey == 68 || lastMovementKey == 39) //d or right arrow
-				{
-					newPos = Game.map.getChunkPosition(this, 1, 0);
-					setLastMovedDir(Direction.RIGHT);
-					setWalking(true);
-					c = Game.map.getChunk(this, 1, 0);
-					po = c.getPlaceableObject(newPos);
-					
-					if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-					{
-						if(!(po != null && po.getMaterial() == Material.BRIDGE))
-							return;
-					}
-					else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-					{
-						if(po != null && po.getMaterial() == Material.TREE)
-							return;
-					}
-
-					position.x++;
-					DebugUI.setCurrentTile(c.getTile(newPos));
-					return;
-				}
-				else
-					setWalking(false);
 			}
 			else
 				setWalking(false);
@@ -335,6 +340,14 @@ public class Player extends Entity
 		return walking;
 	}
 
+	/**
+	 * @return This player's inventory
+	 */
+	public PlayerInventory getInventory()
+	{
+		return inventory;
+	}
+	
 	private class Animation implements Runnable
 	{
 		Image[] currentAnimation;

@@ -45,10 +45,13 @@ public class Screen extends JPanel
 			}
 
 			Menu.displayMenu(g);
-			return; //no need to check if the debug menu is open, since it's closed in menus anyways
 		}
-
-		if(displayDebug)
-			DebugUI.displayDebugUI(g);
+		else
+		{
+			Game.player.getInventory().render(g);
+			
+			if(displayDebug)
+				DebugUI.displayDebugUI(g);	
+		}
 	}
 }

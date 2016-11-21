@@ -40,7 +40,12 @@ public class Key implements KeyListener
 			if(Menu.getState() != GameState.MAIN)
 			{
 				if(!Menu.isOpen())
-					Game.pause();
+				{
+					if(Game.player.getInventory().isOpen())
+						Game.player.getInventory().close();
+					else
+						Game.pause();
+				}
 				else if(Menu.getState() == GameState.PAUSE)
 				{
 					if(Screen.debugWasShown)
@@ -61,6 +66,16 @@ public class Key implements KeyListener
 				}
 				else
 					Menu.setStateToLast();
+			}
+		}
+		else if(key == 67) //c
+		{
+			if(!Menu.isOpen()) //disallow inventory to be opened paused
+			{
+				if(Game.player.getInventory().isOpen())
+					Game.player.getInventory().close();
+				else
+					Game.player.getInventory().open();
 			}
 		}
 		else
