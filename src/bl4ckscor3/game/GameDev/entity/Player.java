@@ -115,18 +115,10 @@ public class Player extends Entity
 						setWalking(true);
 						c = Game.map.getChunk(this, 0, -1);
 						po = c.getPlaceableObject(newPos);
+
+						if(!checkContent(c, newPos, po))
+							return;
 						
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-						{
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-						{
-							if(po != null && po.getMaterial() == Material.TREE)
-								return;
-						}
-	
 						position.y--;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
@@ -138,18 +130,10 @@ public class Player extends Entity
 						setWalking(true);
 						c = Game.map.getChunk(this, -1, 0);
 						po = c.getPlaceableObject(newPos);
+
+						if(!checkContent(c, newPos, po))
+							return;
 						
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-						{
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-						{
-							if(po != null && po.getMaterial() == Material.TREE)
-								return;
-						}
-	
 						position.x--;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
@@ -161,18 +145,10 @@ public class Player extends Entity
 						setWalking(true);
 						c = Game.map.getChunk(this, 0, 1);
 						po = c.getPlaceableObject(newPos);
+
+						if(!checkContent(c, newPos, po))
+							return;
 						
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-						{
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-						{
-							if(po != null && po.getMaterial() == Material.TREE)
-								return;
-						}
-	
 						position.y++;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
@@ -185,17 +161,9 @@ public class Player extends Entity
 						c = Game.map.getChunk(this, 1, 0);
 						po = c.getPlaceableObject(newPos);
 						
-						if(c.getTile(newPos).isWater() && !Key.keysPressed.contains(17))
-						{
-							if(!(po != null && po.getMaterial() == Material.BRIDGE))
-								return;
-						}
-						else if(c.getTile(newPos).getMaterial() == Material.GRASS)
-						{
-							if(po != null && po.getMaterial() == Material.TREE)
-								return;
-						}
-	
+						if(!checkContent(c, newPos, po))
+							return;
+						
 						position.x++;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
@@ -207,6 +175,29 @@ public class Player extends Entity
 			else
 				setWalking(false);
 		}
+	}
+
+	/**
+	 * Checks for any special conditions that could occur at a specific positon within a chunk
+	 * @param c The Chunk to check in
+	 * @param pos The position within the chunk to check
+	 * @param po The PlaceableObject of the position within the chunk, can be null
+	 * @return false if a specific conditon is met and the caller shouldn't continue, true otherwise
+	 */
+	private boolean checkContent(Chunk c, Position pos, PlaceableObject po)
+	{
+		if(c.getTile(pos).isWater() && !Key.keysPressed.contains(17))
+		{
+			if(!(po != null && po.getMaterial() == Material.BRIDGE))
+				return false;
+		}
+		else if(c.getTile(pos).getMaterial() == Material.GRASS)
+		{
+			if(po != null && po.getMaterial() == Material.TREE)
+				return false;
+		}
+		
+		return true;
 	}
 
 	@Override
