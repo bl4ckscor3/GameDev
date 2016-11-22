@@ -43,87 +43,54 @@ public class Player extends Entity
 		//making the player able to only move every other 4 ticks
 		if(tick % 4 == 0)
 		{
-			Chunk c;
-			Position newPos;
-			PlaceableObject po;
+			Chunk c = null;
+			Position newPos = null;
+			PlaceableObject po = null;
+			String bridge = "";
 			
 			//update keys
 			if(Key.keysPressed.size() != 0)
 			{
-				if(Key.keysPressed.contains(32)) //space
+				switch(getLastMovedDir())
 				{
-					switch(getLastMovedDir())
-					{
-						case UP:
-							newPos = Game.map.getChunkPosition(this, 0, -1);
-							c = Game.map.getChunk(this, 0, -1);
-
-							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-								c.placeObject(new Bridge(c, newPos, "_vertical"));
-							break;
-						case LEFT:
-							newPos = Game.map.getChunkPosition(this, -1, 0);
-							c = Game.map.getChunk(this, -1, 0);
-
-							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-								c.placeObject(new Bridge(c, newPos, "_horizontal"));
-							break;
-						case DOWN:
-							newPos = Game.map.getChunkPosition(this, 0, 1);
-							c = Game.map.getChunk(this, 0, 1);
-
-							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-								c.placeObject(new Bridge(c, newPos, "_vertical"));
-							break;
-						case RIGHT:
-							newPos = Game.map.getChunkPosition(this, 1, 0); 
-							c = Game.map.getChunk(this, 1, 0);
-
-							if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
-								c.placeObject(new Bridge(c, newPos, "_horizontal"));
-							break;
-					}
-				}
-
-				if(Key.keysPressed.contains(16)) //shift
-				{
-					switch(getLastMovedDir())
-					{
-						case UP:
-							newPos = Game.map.getChunkPosition(this, 0, -1);
-							c = Game.map.getChunk(this, 0, -1);
-							po = c.getPlaceableObject(newPos);
-							
-							if(po != null && po.getMaterial() == Material.TREE)
-								c.removeObject(po);
-							break;
-						case LEFT:
-							newPos = Game.map.getChunkPosition(this, -1, 0);
-							c = Game.map.getChunk(this, -1, 0);
-							po = c.getPlaceableObject(newPos);
-							
-							if(po != null && po.getMaterial() == Material.TREE)
-								c.removeObject(po);
-							break;
-						case DOWN:
-							newPos = Game.map.getChunkPosition(this, 0, 1);
-							c = Game.map.getChunk(this, 0, 1);
-							po = c.getPlaceableObject(newPos);
-							
-							if(po != null && po.getMaterial() == Material.TREE)
-								c.removeObject(po);
-							break;
-						case RIGHT:
-							newPos = Game.map.getChunkPosition(this, 1, 0); 
-							c = Game.map.getChunk(this, 1, 0);
-							po = c.getPlaceableObject(newPos);
-
-							if(po != null && po.getMaterial() == Material.TREE)
-								c.removeObject(po);
-							break;
-					}
+					case UP:
+						newPos = Game.map.getChunkPosition(this, 0, -1);
+						c = Game.map.getChunk(this, 0, -1);
+						po = c.getPlaceableObject(newPos);
+						bridge = "_vertical";
+						break;
+					case LEFT:
+						newPos = Game.map.getChunkPosition(this, -1, 0);
+						c = Game.map.getChunk(this, -1, 0);
+						po = c.getPlaceableObject(newPos);
+						bridge = "_horizontal";
+						break;
+					case DOWN:
+						newPos = Game.map.getChunkPosition(this, 0, 1);
+						c = Game.map.getChunk(this, 0, 1);
+						po = c.getPlaceableObject(newPos);
+						bridge = "_vertical";
+						break;
+					case RIGHT:
+						newPos = Game.map.getChunkPosition(this, 1, 0); 
+						c = Game.map.getChunk(this, 1, 0);
+						po = c.getPlaceableObject(newPos);
+						bridge = "_horizontal";
+						break;
 				}
 				
+				if(Key.keysPressed.contains(32))
+				{
+					if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+						c.placeObject(new Bridge(c, newPos, bridge));
+				}
+				
+				if(Key.keysPressed.contains(16))
+				{
+					if(po != null && po.getMaterial() == Material.TREE)
+						c.removeObject(po);
+				}
+
 				if(!inventory.isOpen())
 				{
 					int lastMovementKey = 0;
