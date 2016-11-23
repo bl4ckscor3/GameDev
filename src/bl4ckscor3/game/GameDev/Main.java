@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.GameThread;
 import bl4ckscor3.game.gamedev.game.Screen;
@@ -83,6 +84,7 @@ public class Main
 		//starts the game thread
 		Game.thread = new GameThread();
 		Menu.setupMenus();
+		Controls.load();
 		Game.thread.start();
 	}
 }

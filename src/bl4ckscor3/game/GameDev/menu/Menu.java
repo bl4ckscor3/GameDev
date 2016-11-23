@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.menu.main.LoadMenu;
 import bl4ckscor3.game.gamedev.menu.main.MainMenu;
 import bl4ckscor3.game.gamedev.menu.main.PauseMenu;
 import bl4ckscor3.game.gamedev.menu.main.SaveMenu;
+import bl4ckscor3.game.gamedev.menu.settings.ControlsMenu;
 import bl4ckscor3.game.gamedev.menu.settings.ResolutionMenu;
 import bl4ckscor3.game.gamedev.menu.settings.SeedMenu;
 import bl4ckscor3.game.gamedev.menu.settings.SettingsMenu;
@@ -149,7 +151,8 @@ public class Menu
 	 */
 	public static void setupMenus()
 	{
-		Menu.menuStates.addEverything(new LoadMenu(),
+		Menu.menuStates.addEverything(Key.cm = new ControlsMenu(),
+				new LoadMenu(),
 				new MainMenu(),
 				new PauseMenu(),
 				new ResolutionMenu(),

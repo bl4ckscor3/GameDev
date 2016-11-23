@@ -4,15 +4,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
+import bl4ckscor3.game.gamedev.menu.settings.ControlsMenu;
 import bl4ckscor3.game.gamedev.menu.settings.SeedMenu;
 
 public class Key implements KeyListener
 {
 	public static CopyOnWriteArrayList<Integer> keysPressed = new CopyOnWriteArrayList<Integer>();
+	public static ControlsMenu cm;
 	
 	@Override
 	public void keyTyped(KeyEvent event){}
@@ -68,9 +71,9 @@ public class Key implements KeyListener
 					Menu.setStateToLast();
 			}
 		}
-		else if(key == 67) //c
+		else if(key == Controls.INVENTORY)
 		{
-			if(!Menu.isOpen()) //disallow inventory to be opened paused
+			if(!Menu.isOpen()) //disallow inventory to be opened when paused
 			{
 				if(Game.player.getInventory().isOpen())
 					Game.player.getInventory().close();
@@ -86,9 +89,9 @@ public class Key implements KeyListener
 		
 		if(Menu.isOpen())
 		{
-			if(key == 38) //up arrow
+			if(key == 38 && !cm.isSelecting) //up arrow
 				Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
-			else if(key == 40) //down arrow
+			else if(key == 40 && !cm.isSelecting) //down arrow
 				Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
 			else if(key == 10) //enter
 			{
@@ -99,8 +102,14 @@ public class Key implements KeyListener
 						Menu.getMenu(Menu.getState()).onEnter();
 					}
 					catch(Exception e){}
-					
-					Menu.setSelectedOption(0);
+				}
+			}
+			else
+			{
+				if(Menu.getState() == GameState.CONTROLS && cm.isSelecting)
+				{
+					cm.selectedKey = key;
+					cm.onEnter();
 				}
 			}
 		}

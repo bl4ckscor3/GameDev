@@ -49,8 +49,9 @@ public class Utilities
 	 * Drawing a headline for the menus with an underline
 	 * @param g The Graphics to draw with
 	 * @param text The text to display
+	 * @return The x position of the text
 	 */
-	public static void drawHeadline(Graphics g, String text)
+	public static int drawHeadline(Graphics g, String text)
 	{
 		Font fontH = new Font("Candara", 1, 60); //header font
 		FontMetrics metricsH = g.getFontMetrics(fontH); //used to correctly display the middle of the string in the middle of the screenwidth
@@ -67,6 +68,7 @@ public class Utilities
 		g.setFont(fontH);
 		g.drawString(text, Main.width / 2 - metricsH.stringWidth(text) / 2, Main.height / 4);
 		g.drawString(underscores, Main.width / 2 - metricsH.stringWidth(underscores) / 2, Main.height / 4);
+		return Main.width / 2 - metricsH.stringWidth(underscores) / 2;
 	}
 	
 	/**

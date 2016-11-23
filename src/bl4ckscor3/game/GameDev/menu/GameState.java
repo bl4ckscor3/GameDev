@@ -2,20 +2,22 @@ package bl4ckscor3.game.gamedev.menu;
 
 public enum GameState
 {
-	/**Load menu*/
+	/** Controls menu within the settings menu*/
+	CONTROLS,
+	/** Load menu*/
 	LOAD,
-	/**Main menu*/
+	/** Main menu*/
 	MAIN,
-	/**Playing*/
+	/** Playing*/
 	PLAYING,
-	/**Pause menu*/
+	/** Pause menu*/
 	PAUSE,
-	/**Resolution menu within the settings menu*/
+	/** Resolution menu within the settings menu*/
 	RESOLUTION,
-	/**Save menu*/
+	/** Save menu*/
 	SAVE,
-	/**Seed menu within the settings menu*/
+	/** Seed menu within the settings menu*/
 	SEED,
-	/**Settings menu*/
+	/** Settings menu*/
 	SETTINGS;
 }

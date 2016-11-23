@@ -25,7 +25,15 @@ public class ConfigurationFile
 			"################################",
 			"width=1280",
 			"height=720",
-			"seed=123456789"
+			"seed=123456789",
+			"up=87",
+			"left=65",
+			"down=83",
+			"right=68",
+			"place=32",
+			"destroy=16",
+			"inventory=67",
+			"jesus=17"
 	};
 
 	/**
@@ -118,6 +126,16 @@ public class ConfigurationFile
 		return values.get(option);
 	}
 
+	/**
+	 * Gets an Integer value from the config file using the given option
+	 * @param option The option to get the value from
+	 * @return The value associated with the given option
+	 */
+	public int getInt(String option)
+	{
+		return Integer.parseInt(values.get(option));
+	}
+	
 	/**
 	 * Sets the given option to the specified value
 	 * @param option The option to set the value of

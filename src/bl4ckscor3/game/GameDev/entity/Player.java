@@ -7,6 +7,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 import bl4ckscor3.game.gamedev.inventory.PlayerInventory;
@@ -79,13 +80,13 @@ public class Player extends Entity
 						break;
 				}
 				
-				if(Key.keysPressed.contains(32))
+				if(Key.keysPressed.contains(Controls.PLACE))
 				{
 					if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
 						c.placeObject(new Bridge(c, newPos, bridge));
 				}
 				
-				if(Key.keysPressed.contains(16))
+				if(Key.keysPressed.contains(Controls.DESTROY))
 				{
 					if(po != null && po.getMaterial() == Material.TREE)
 						c.removeObject(po);
@@ -98,17 +99,17 @@ public class Player extends Entity
 					//movement
 					for(int key : Key.keysPressed)
 					{
-						if(key == 87 || key == 38) //w or up arrow
+						if(key == Controls.UP)
 							lastMovementKey = key;
-						else if(key == 65 || key == 37) //a or left arrow
+						else if(key == Controls.LEFT)
 							lastMovementKey = key;
-						else if(key == 83 || key == 40) //s or down arrow
+						else if(key == Controls.DOWN)
 							lastMovementKey = key;
-						else if(key == 68 || key == 39) //d or right arrow
+						else if(key == Controls.RIGHT)
 							lastMovementKey = key;
 					}
 	
-					if(lastMovementKey == 87 || lastMovementKey == 38) //w or up arrow
+					if(lastMovementKey == Controls.UP)
 					{
 						newPos = Game.map.getChunkPosition(this, 0, -1);
 						setLastMovedDir(Direction.UP);
@@ -123,7 +124,7 @@ public class Player extends Entity
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
-					else if(lastMovementKey == 65 || lastMovementKey == 37) //a or left arrow
+					else if(lastMovementKey == Controls.LEFT)
 					{
 						newPos = Game.map.getChunkPosition(this, -1, 0);
 						setLastMovedDir(Direction.LEFT);
@@ -138,7 +139,7 @@ public class Player extends Entity
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
-					else if(lastMovementKey == 83 || lastMovementKey == 40) //s or down arrow
+					else if(lastMovementKey == Controls.DOWN)
 					{
 						newPos = Game.map.getChunkPosition(this, 0, 1);
 						setLastMovedDir(Direction.DOWN);
@@ -153,7 +154,7 @@ public class Player extends Entity
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
-					else if(lastMovementKey == 68 || lastMovementKey == 39) //d or right arrow
+					else if(lastMovementKey == Controls.RIGHT)
 					{
 						newPos = Game.map.getChunkPosition(this, 1, 0);
 						setLastMovedDir(Direction.RIGHT);
@@ -186,7 +187,7 @@ public class Player extends Entity
 	 */
 	private boolean checkContent(Chunk c, Position pos, PlaceableObject po)
 	{
-		if(c.getTile(pos).isWater() && !Key.keysPressed.contains(17))
+		if(c.getTile(pos).isWater() && !Key.keysPressed.contains(Controls.JESUS))
 		{
 			if(!(po != null && po.getMaterial() == Material.BRIDGE))
 				return false;

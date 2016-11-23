@@ -66,15 +66,19 @@ public class MainMenu implements IMenu
 		{
 			case 0: //play
 				Main.game = new Game(GameThread.getSeed());
+				Menu.setSelectedOption(0);
 				Menu.setState(GameState.PLAYING);
 				break;
 			case 1: //settings
+				Menu.setSelectedOption(0);
 				Menu.setState(GameState.SETTINGS);
 				break;
 			case 2: //load
+				Menu.setSelectedOption(0);
 				Menu.setState(GameState.LOAD);
 				break;
 			case 3: //save
+				Menu.setSelectedOption(0);
 				Menu.setState(GameState.SAVE);
 				break;
 			case 4: //exit
