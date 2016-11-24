@@ -6,8 +6,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import bl4ckscor3.game.gamedev.entity.Entity;
 import bl4ckscor3.game.gamedev.game.Game;
-import bl4ckscor3.game.gamedev.util.Utilities;
+import bl4ckscor3.game.gamedev.util.Direction;
 import bl4ckscor3.game.gamedev.util.Position;
+import bl4ckscor3.game.gamedev.util.Utilities;
 
 public class Map
 {
@@ -132,6 +133,37 @@ public class Map
 		return getChunkPosition(e, 0, 0);
 	}
 	
+	
+	/**
+	 * Gets the entity's position within a chunk
+	 * @param e The entity to check the position of
+	 * @param dir The Direction in which to translate the entity's position by one
+	 * @return The position within the chunk
+	 */
+	public Position getChunkPosition(Entity e, Direction dir)
+	{
+		int x = 0;
+		int y = 0;
+		
+		switch(dir)
+		{
+			case UP:
+				y = -1;
+				break;
+			case LEFT:
+				x = -1;
+				break;
+			case DOWN:
+				y = 1;
+				break;
+			case RIGHT:
+				x = 1;
+				break;
+		}
+		
+		return getChunkPosition(e, x, y);
+	}
+	
 	/**
 	 * Gets the entity's position within a chunk
 	 * @param e The entity to check the position of
@@ -189,6 +221,36 @@ public class Map
 	public Chunk getChunk(Entity e)
 	{
 		return getChunk(e, 0, 0);
+	}
+	
+	/**
+	 * Gets the chunk the given entity is in
+	 * @param e The entity
+	 * @param dir The Direction in which to translate the entity's position by one
+	 * @return The chunk, null if none has been found (should never happen)
+	 */
+	public Chunk getChunk(Entity e, Direction dir)
+	{
+		int x = 0;
+		int y = 0;
+		
+		switch(dir)
+		{
+			case UP:
+				y = -1;
+				break;
+			case LEFT:
+				x = -1;
+				break;
+			case DOWN:
+				y = 1;
+				break;
+			case RIGHT:
+				x = 1;
+				break;
+		}
+		
+		return getChunk(e, x, y);
 	}
 	
 	/**

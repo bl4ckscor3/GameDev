@@ -48,41 +48,35 @@ public class Player extends Entity
 			Position newPos = null;
 			PlaceableObject po = null;
 			String bridge = "";
+			Direction dir;
 			
 			//update keys
 			if(Key.keysPressed.size() != 0)
 			{
-				switch(getLastMovedDir())
+				dir = getLastMovedDir();
+				newPos = Game.map.getChunkPosition(this, dir);
+				c = Game.map.getChunk(this, dir);
+				po = c.getPlaceableObject(newPos);
+				
+				switch(dir)
 				{
 					case UP:
-						newPos = Game.map.getChunkPosition(this, 0, -1);
-						c = Game.map.getChunk(this, 0, -1);
-						po = c.getPlaceableObject(newPos);
 						bridge = "_vertical";
 						break;
 					case LEFT:
-						newPos = Game.map.getChunkPosition(this, -1, 0);
-						c = Game.map.getChunk(this, -1, 0);
-						po = c.getPlaceableObject(newPos);
 						bridge = "_horizontal";
 						break;
 					case DOWN:
-						newPos = Game.map.getChunkPosition(this, 0, 1);
-						c = Game.map.getChunk(this, 0, 1);
-						po = c.getPlaceableObject(newPos);
 						bridge = "_vertical";
 						break;
 					case RIGHT:
-						newPos = Game.map.getChunkPosition(this, 1, 0); 
-						c = Game.map.getChunk(this, 1, 0);
-						po = c.getPlaceableObject(newPos);
 						bridge = "_horizontal";
 						break;
 				}
 				
 				if(Key.keysPressed.contains(Controls.PLACE))
 				{
-					if(c.getPlaceableObject(newPos) == null && c.getTile(newPos).isWater())
+					if(po == null && c.getTile(newPos).isWater())
 						c.placeObject(new Bridge(c, newPos, bridge));
 				}
 				
@@ -100,71 +94,59 @@ public class Player extends Entity
 					for(int key : Key.keysPressed)
 					{
 						if(key == Controls.UP)
+						{
 							lastMovementKey = key;
+							dir = Direction.UP;
+						}
 						else if(key == Controls.LEFT)
+						{
 							lastMovementKey = key;
+							dir = Direction.LEFT;
+						}
 						else if(key == Controls.DOWN)
+						{
 							lastMovementKey = key;
+							dir = Direction.DOWN;
+						}
 						else if(key == Controls.RIGHT)
+						{
 							lastMovementKey = key;
+							dir = Direction.RIGHT;
+						}
 					}
 	
+					newPos = Game.map.getChunkPosition(this, dir);
+					c = Game.map.getChunk(this, dir);
+					po = c.getPlaceableObject(newPos);
+					DebugUI.setCurrentTile(c.getTile(newPos));
+					
+					if(!checkContent(c, newPos, po))
+						return;
+					
 					if(lastMovementKey == Controls.UP)
 					{
-						newPos = Game.map.getChunkPosition(this, 0, -1);
-						setLastMovedDir(Direction.UP);
 						setWalking(true);
-						c = Game.map.getChunk(this, 0, -1);
-						po = c.getPlaceableObject(newPos);
-
-						if(!checkContent(c, newPos, po))
-							return;
-						
+						setLastMovedDir(Direction.UP);						
 						position.y--;
-						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
 					else if(lastMovementKey == Controls.LEFT)
 					{
-						newPos = Game.map.getChunkPosition(this, -1, 0);
-						setLastMovedDir(Direction.LEFT);
-						setWalking(true);
-						c = Game.map.getChunk(this, -1, 0);
-						po = c.getPlaceableObject(newPos);
-
-						if(!checkContent(c, newPos, po))
-							return;
-						
+						setWalking(true);						
 						position.x--;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
 					else if(lastMovementKey == Controls.DOWN)
 					{
-						newPos = Game.map.getChunkPosition(this, 0, 1);
-						setLastMovedDir(Direction.DOWN);
-						setWalking(true);
-						c = Game.map.getChunk(this, 0, 1);
-						po = c.getPlaceableObject(newPos);
-
-						if(!checkContent(c, newPos, po))
-							return;
-						
+						setWalking(true);						
 						position.y++;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
 					}
 					else if(lastMovementKey == Controls.RIGHT)
 					{
-						newPos = Game.map.getChunkPosition(this, 1, 0);
-						setLastMovedDir(Direction.RIGHT);
-						setWalking(true);
-						c = Game.map.getChunk(this, 1, 0);
-						po = c.getPlaceableObject(newPos);
-						
-						if(!checkContent(c, newPos, po))
-							return;
-						
+						setWalking(true);						
 						position.x++;
 						DebugUI.setCurrentTile(c.getTile(newPos));
 						return;
