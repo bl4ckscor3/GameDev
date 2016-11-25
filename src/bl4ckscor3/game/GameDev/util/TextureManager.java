@@ -2,9 +2,10 @@ package bl4ckscor3.game.gamedev.util;
 
 import java.awt.Image;
 import java.util.HashMap;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
+
+import bl4ckscor3.game.gamedev.game.Game;
 
 /**
  * Contains useful methods for loading textures in different ways
@@ -12,7 +13,6 @@ import javax.swing.ImageIcon;
  */
 public class TextureManager
 {
-	private static final Random r = new Random();
 	private static final HashMap<String,Image> loadedTextures = new HashMap<String,Image>(); //resource location, image itself
 	
 	/**
@@ -54,7 +54,7 @@ public class TextureManager
 	 */
 	public static Image loadRandomTexture(String fileName, int textureAmount)
 	{
-		String loc = "resources/" + fileName + "_" + r.nextInt(textureAmount) + ".png";
+		String loc = "resources/" + fileName + "_" + Game.r.nextInt(textureAmount) + ".png";
 		
 		if(!loadedTextures.containsKey(loc))
 			loadedTextures.put(loc, new ImageIcon(loc).getImage());
@@ -71,7 +71,7 @@ public class TextureManager
 	 */
 	public static Image loadRandomTextureFromPath(String fileName, String path, int textureAmount)
 	{
-		String loc = "resources/" + path + fileName + "_" + r.nextInt(textureAmount) + ".png";
+		String loc = "resources/" + path + fileName + "_" + Game.r.nextInt(textureAmount) + ".png";
 		
 		if(!loadedTextures.containsKey(loc))
 			loadedTextures.put(loc, new ImageIcon(loc).getImage());

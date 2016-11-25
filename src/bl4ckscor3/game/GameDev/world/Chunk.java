@@ -2,7 +2,6 @@ package bl4ckscor3.game.gamedev.world;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Random;
 
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Game;
@@ -19,7 +18,6 @@ import bl4ckscor3.game.gamedev.world.generation.SimplexNoise;
 @SuppressWarnings("unchecked")
 public class Chunk
 {
-	private static final Random r = new Random();
 	/** Amount of tiles horizontally per chunk*/
 	public static final int chunkSizeX = 16;
 	/** Amount of tiles vertically per chunk*/
@@ -80,7 +78,7 @@ public class Chunk
 				}
 				else
 				{
-					double rand = r.nextDouble();
+					double rand = Game.r.nextDouble();
 					
 					mat = Material.GRASS;
 					tiles[i][j] = new Tile(mat, "grass/", 12);

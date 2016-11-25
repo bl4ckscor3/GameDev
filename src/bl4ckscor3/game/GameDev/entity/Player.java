@@ -10,6 +10,7 @@ import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.inventory.Item;
 import bl4ckscor3.game.gamedev.inventory.PlayerInventory;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.menu.GameState;
@@ -32,6 +33,7 @@ public class Player extends Entity
 	private ScheduledExecutorService ses;
 	private Direction prevDir;
 	private PlayerInventory inventory = new PlayerInventory();
+	private Image[] currentAnimation;
 	
 	public Player()
 	{
@@ -82,8 +84,11 @@ public class Player extends Entity
 				
 				if(Key.keysPressed.contains(Controls.DESTROY))
 				{
-					if(po != null && po.getMaterial() == Material.TREE && !isWalking())
+					if(po != null && po.getMaterial() == Material.TREE && !isWalking() && inventory.getTool().getItem() == Item.AXE)
+					{
+						inventory.addItem(Item.WOOD, Game.r.nextInt(2) + 1); //between 1 and 3
 						c.removeObject(po);
+					}
 				}
 
 				if(!inventory.isOpen())
@@ -131,8 +136,6 @@ public class Player extends Entity
 					
 					if(!checkContent(c, newPos, po))
 						return;
-					
-					System.out.println(lastMovementKey);
 					
 					if(lastMovementKey == Controls.UP)
 						position.y--;
@@ -219,22 +222,7 @@ public class Player extends Entity
 		{
 			animating = false;
 			ses.shutdownNow();
-
-			switch(getLastMovedDir())
-			{
-				case UP:
-					setTexture(PlayerAnimations.UP.images[0]);
-					break;
-				case LEFT:
-					setTexture(PlayerAnimations.LEFT.images[0]);
-					break;
-				case DOWN:
-					setTexture(PlayerAnimations.DOWN.images[0]);
-					break;
-				case RIGHT:
-					setTexture(PlayerAnimations.RIGHT.images[0]);
-					break;
-			}
+			setTexture(currentAnimation[0]);
 		}
 	}
 
@@ -282,7 +270,6 @@ public class Player extends Entity
 	
 	private class Animation implements Runnable
 	{
-		Image[] currentAnimation;
 		int currentTexture = 0;
 
 		public void setup(Direction dir)

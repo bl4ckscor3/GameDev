@@ -1,5 +1,7 @@
 package bl4ckscor3.game.gamedev.game;
 
+import java.util.Random;
+
 import bl4ckscor3.game.gamedev.entity.Player;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
@@ -7,6 +9,8 @@ import bl4ckscor3.game.gamedev.world.Map;
 
 public class Game 
 {
+	/** Random number generator*/
+	public static final Random r = new Random();
 	/** The map*/
 	public static Map map;
 	/** The player*/

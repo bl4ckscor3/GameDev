@@ -28,6 +28,29 @@ public class PlayerInventory
 	}
 
 	/**
+	 * Adds the given amount of the given item to the inventory
+	 * @param item The item to add
+	 * @param amount How many of the item to add
+	 */
+	public void addItem(Item item, int amount)
+	{
+		for(int i = 0; i < inventory.length; i++)
+		{
+			if(inventory[i].getItem() == item && inventory[i].getAmount() <= 128 - amount)
+			{
+				inventory[i].setAmount(inventory[i].getAmount() + amount);
+				return;
+			}
+			else if(inventory[i].getItem() == null)
+			{
+				inventory[i].setItem(item);
+				inventory[i].setAmount(amount);
+				return;
+			}
+		}
+	}
+	
+	/**
 	 * Renders the inventory's slots
 	 * @param g The Graphics to render with
 	 */
