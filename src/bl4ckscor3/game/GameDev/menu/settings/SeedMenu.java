@@ -84,6 +84,10 @@ public class SeedMenu implements IMenu
 			removeLastArrayObject();
 	}
 
+	/**
+	 * Sets the first numbers array position that is null to the given value
+	 * @param value The value to set
+	 */
 	private static void populateNextArrayPosition(int value)
 	{
 		for(int i = 0; i < numbers.length; i++)
@@ -96,6 +100,9 @@ public class SeedMenu implements IMenu
 		}
 	}
 
+	/**
+	 * Removes the last object in the numbers array, aka the object with index numbers.length - 1
+	 */
 	private static void removeLastArrayObject()
 	{
 		if(numbers[0] == null)
@@ -113,6 +120,9 @@ public class SeedMenu implements IMenu
 		numbers[numbers.length - 1] = null;
 	}
 
+	/**
+	 * Puts each number of the seed into a seperate array position
+	 */
 	public static void populateSeedArray()
 	{
 		String[] seed = Main.config.get("seed").split("");

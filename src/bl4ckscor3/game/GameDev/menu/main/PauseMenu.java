@@ -55,26 +55,23 @@ public class PauseMenu implements IMenu
 	@Override
 	public void onEnter()
 	{
+		Menu.setSelectedOption(0);
+		
 		switch(Menu.getSelectedOption())
 		{
 			case 0: //play
-				Menu.setSelectedOption(0);
 				Game.unpause();
 				break;
 			case 1: //settings
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.SETTINGS);
 				break;
 			case 2: //load
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.LOAD);
 				break;
 			case 3: //save
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.SAVE);
 				break;
 			case 4: //main menu
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.MAIN);
 				break;
 			case 5: //exit

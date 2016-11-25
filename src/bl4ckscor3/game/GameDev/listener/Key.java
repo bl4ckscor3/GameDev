@@ -118,7 +118,7 @@ public class Key implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent event)
 	{
-		//removing the keys if they are no longer being pressed
+		//removing the key if it's  no longer being pressed
 		keysPressed.remove((Object)event.getKeyCode());
 	}
 }

@@ -60,7 +60,7 @@ public class Map
 	}
 	
 	/**
-	 * Loading and unloading the chunks
+	 * Loads and unloads the chunks
 	 */
 	public void checkChunks()
 	{
@@ -73,9 +73,9 @@ public class Map
 	}
 	
 	/**
-	 * Loads all the chunk withing the player's range
-	 * @param playerChunkX The X-Coord of the chunk the player is currently in
-	 * @param playerChunkY The Y-Coord of the chunk the player is currently in
+	 * Loads all the chunk within the player's range
+	 * @param playerChunkX The x coordinate of the chunk the player is currently in
+	 * @param playerChunkY The y corrdinate of the chunk the player is currently in
 	 */
 	public void loadChunks(int playerChunkX, int playerChunkY)
 	{
@@ -98,8 +98,8 @@ public class Map
 	
 	/**
 	 * Unloads all the chunks outside of the player's range
-	 * @param playerChunkX The X-Coord of the chunk the player is currently in
-	 * @param playerChunkY The Y-Coord of the chunk the player is currently in
+	 * @param playerChunkX The x coordinate of the chunk the player is currently in
+	 * @param playerChunkY The y corrdinate of the chunk the player is currently in
 	 */
 	private void unloadChunks(int playerChunkX, int playerChunkY)
 	{
@@ -114,8 +114,8 @@ public class Map
 	/**
 	 * Spawns an entity at a given position
 	 * @param e The entity to spawn
-	 * @param x The x position the entity spawns at
-	 * @param y The y position the entity spawns at
+	 * @param x The x position the entity should spawn at
+	 * @param y The y position the entity should spawn at
 	 */
 	public void spawnEntity(Entity e, int x, int y)
 	{
@@ -126,7 +126,7 @@ public class Map
 	/**
 	 * Gets the entity's position within a chunk
 	 * @param e The entity to check the position of
-	 * @return The position within the chunk
+	 * @return The entity's position within the chunk
 	 */
 	public Position getChunkPosition(Entity e)
 	{
@@ -138,7 +138,7 @@ public class Map
 	 * Gets the entity's position within a chunk
 	 * @param e The entity to check the position of
 	 * @param dir The Direction in which to translate the entity's position by one
-	 * @return The position within the chunk
+	 * @return The entity's position within the chunk
 	 */
 	public Position getChunkPosition(Entity e, Direction dir)
 	{
@@ -169,7 +169,7 @@ public class Map
 	 * @param e The entity to check the position of
 	 * @param x The x-axis modificator of this position
 	 * @param y The y-axis modificator of this position
-	 * @return The position within the chunk
+	 * @return The entity's position within the chunk
 	 */
 	public Position getChunkPosition(Entity e, int x, int y)
 	{
@@ -198,8 +198,8 @@ public class Map
 	
 	/**
 	 * Gets the chunk at the given chunk coordinates
-	 * @param x Chunk coord x
-	 * @param y Chunk coord y
+	 * @param x The chunk's x coordinate
+	 * @param y The chunk's y coordinate
 	 * @return The chunk, null if no chunk has been found
 	 */
 	public Chunk getChunk(int x, int y)

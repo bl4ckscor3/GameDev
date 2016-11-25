@@ -272,6 +272,10 @@ public class Player extends Entity
 	{
 		int currentTexture = 0;
 
+		/**
+		 * Sets up the corresponding animation
+		 * @param dir The Direction, of which the animation is to be started
+		 */
 		public void setup(Direction dir)
 		{
 			for(PlayerAnimations tex : PlayerAnimations.class.getEnumConstants())

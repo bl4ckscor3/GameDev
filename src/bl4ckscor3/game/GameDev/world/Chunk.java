@@ -94,6 +94,7 @@ public class Chunk
 
 	/**
 	 * Renders the current chunk
+	 * @param g The Graphics to draw with
 	 */
 	public void render(Graphics g)
 	{

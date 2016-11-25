@@ -29,7 +29,6 @@ public class ControlsMenu implements IMenu
 			"Jesus:"
 	};
 	
-	
 	@Override
 	public void show(Graphics g)
 	{

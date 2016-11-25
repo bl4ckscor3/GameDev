@@ -23,10 +23,6 @@ public class Screen extends JPanel
 		frame.addMouseMotionListener(new MouseMotion());
 	}
 
-	/**
-	 * Drawing on the screen
-	 * @param g The Graphics to draw with
-	 */
 	@Override
 	public void paintComponent(Graphics g)
 	{

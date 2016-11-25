@@ -46,6 +46,13 @@ public class DebugUI
 		g.drawString("FPS: " + fps, Main.width - 60, 15);
 	}
 	
+	/**
+	 * Draws the chunk's borders onto the screen
+	 * @param g The graphics to draw with
+	 * @param c The chunk of which the bounds should be drawn
+	 * @param posX The x position of the chunk on the screen
+	 * @param posY The y position of the chunk on the screen
+	 */
 	public static void drawChunkGrid(Graphics g, Chunk c, int posX, int posY)
 	{
 		//vertical lines
@@ -56,6 +63,10 @@ public class DebugUI
 		g.drawString("Chunk (" + c.chunkX + ", " + c.chunkY + ")", Utilities.ceil(posX), Utilities.ceil(posY));
 	}
 	
+	/**
+	 * Sets the current FPS of the game so they can be drawn onto the screen
+	 * @param f The fps to set
+	 */
 	public static void setFPS(int f)
 	{
 		fps = f;

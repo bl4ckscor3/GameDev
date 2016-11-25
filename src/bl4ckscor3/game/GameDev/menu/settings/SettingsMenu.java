@@ -61,27 +61,24 @@ public class SettingsMenu implements IMenu
 	@Override
 	public void onEnter() throws URISyntaxException, IOException
 	{
+		Menu.setSelectedOption(0);
+		
 		switch(Menu.getSelectedOption())
 		{
 			case 0:
 				SeedMenu.populateSeedArray();
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.SEED);
 				break;
 			case 1:
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.RESOLUTION);
 				break;
 			case 2:
-				Menu.setSelectedOption(0);
 				Menu.setState(GameState.CONTROLS);
 				break;
 			case 3:
-				Menu.setSelectedOption(0);
 				Main.config.writeDefaultValues();
 				break;
 			case 4:
-				Menu.setSelectedOption(0);
 				Menu.setStateToLast();
 		}
 	}

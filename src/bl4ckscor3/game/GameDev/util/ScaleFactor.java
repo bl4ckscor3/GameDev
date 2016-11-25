@@ -11,11 +11,17 @@ public class ScaleFactor
 		height = h;
 	}
 	
+	/**
+	 * @return The scale factor width
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 	
+	/**
+	 * @return The scale factor height
+	 */
 	public int getHeight()
 	{
 		return height;

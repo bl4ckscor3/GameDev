@@ -12,12 +12,12 @@ public interface IMenu
 	
 	/**
 	 * Determines the action when pressing enter in the menu
-	 * @throws Any exception which might get thrown from any implementing methods
 	 */
 	public void onEnter() throws Exception;
 
 	/**
 	 * Determines the state this menu is defined as
+	 * @return This menu's state
 	 */
 	public GameState getDefinedState();
 }

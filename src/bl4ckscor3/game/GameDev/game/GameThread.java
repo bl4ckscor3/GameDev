@@ -59,12 +59,19 @@ public class GameThread extends Thread implements Runnable
 		}
 	}
 
+	/**
+	 * Sets the seed to be used for the map
+	 * @param s The seed to use
+	 */
 	public static void setSeed(int s)
 	{
 		seed = s;
 		Main.config.set("seed", "" + s);
 	}
 	
+	/**
+	 * @return The seed of the map
+	 */
 	public static int getSeed()
 	{
 		return seed;
