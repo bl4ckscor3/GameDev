@@ -82,7 +82,7 @@ public class Player extends Entity
 				
 				if(Key.keysPressed.contains(Controls.DESTROY))
 				{
-					if(po != null && po.getMaterial() == Material.TREE)
+					if(po != null && po.getMaterial() == Material.TREE && !isWalking())
 						c.removeObject(po);
 				}
 
@@ -120,37 +120,28 @@ public class Player extends Entity
 					po = c.getPlaceableObject(newPos);
 					DebugUI.setCurrentTile(c.getTile(newPos));
 					
+					if(lastMovementKey == 0)
+					{
+						setWalking(false);
+						return;
+					}
+					
+					setLastMovedDir(dir);
+					setWalking(true);
+					
 					if(!checkContent(c, newPos, po))
 						return;
 					
+					System.out.println(lastMovementKey);
+					
 					if(lastMovementKey == Controls.UP)
-					{
-						setWalking(true);
-						setLastMovedDir(Direction.UP);						
 						position.y--;
-						return;
-					}
 					else if(lastMovementKey == Controls.LEFT)
-					{
-						setWalking(true);						
 						position.x--;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
 					else if(lastMovementKey == Controls.DOWN)
-					{
-						setWalking(true);						
 						position.y++;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
 					else if(lastMovementKey == Controls.RIGHT)
-					{
-						setWalking(true);						
 						position.x++;
-						DebugUI.setCurrentTile(c.getTile(newPos));
-						return;
-					}
 					else
 						setWalking(false);
 				}

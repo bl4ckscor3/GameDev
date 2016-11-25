@@ -4,10 +4,10 @@
 width=1280
 height=720
 seed=123456789
-up=87
-left=65
-down=83
-right=68
+up=38
+left=37
+down=40
+right=39
 place=32
 destroy=16
 inventory=67
