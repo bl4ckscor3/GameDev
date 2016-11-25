@@ -78,6 +78,12 @@ public class Position
 	}
 	
 	@Override
+	public int hashCode()
+	{
+		return x + y; //nice hash function, but makes sure only equal positions have equal hash codes
+	}
+	
+	@Override
 	public String toString()
 	{
 		return "(" + x + "," + y + ")";

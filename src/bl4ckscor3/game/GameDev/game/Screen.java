@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import bl4ckscor3.game.gamedev.listener.Key;
-import bl4ckscor3.game.gamedev.listener.MouseMotion;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 
@@ -20,7 +19,6 @@ public class Screen extends JPanel
 	public Screen(JFrame frame)
 	{
 		frame.addKeyListener(new Key());
-		frame.addMouseMotionListener(new MouseMotion());
 	}
 
 	@Override

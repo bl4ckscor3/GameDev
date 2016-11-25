@@ -220,6 +220,12 @@ public class Chunk
 	}
 	
 	@Override
+	public int hashCode()
+	{
+		return chunkX + chunkY; //nice hash function, but makes sure only equal chunks have equal hash codes
+	}
+	
+	@Override
 	public String toString()
 	{
 		return "(" + chunkX + "," + chunkY + ")";
