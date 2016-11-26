@@ -8,14 +8,15 @@ import bl4ckscor3.game.gamedev.game.Screen;
 
 public class PlayerInventory
 {
+	private final int size = 3;
+	private final int completeWidth = (Main.scaleFactor.getWidth() * size + 2) * 5 - 2; //5 slots per row with 2 pixels space inbetween, the last two extra pixels left out
+	private final int completeHeight = (Main.scaleFactor.getHeight() * size + 2) * 4 - 2; //4 slots per column with 2 pixels space inbetween, the last two extra pixels left out
+	private final int startX = Main.width / 2 - completeWidth / 2; //x position of the top left corner of the inventory
+	private final int startY = Main.height / 2 - completeHeight / 2; //y position of the top left corner of the inventory
 	private Slot tool;
 	private Slot[] inventory = new Slot[20];
 	private boolean isOpen = false;
-	private final int size = 3;
-	private final int completeWidth = (Main.scaleFactor.getWidth() * size + 2) * 5 - 2; //5 rows with 2 pixels space inbetween
-	private final int completeHeight = (Main.scaleFactor.getHeight() * size + 2) * 4 - 2; //4 columns with 2 pixels space inbetween
-	private final int startX = Main.width / 2 - completeWidth / 2; //x position of the top left corner of the inventory
-	private final int startY = Main.height / 2 - completeHeight / 2; //y position of the top left corner of the inventory
+	private int selectedSlot = 0;
 	
 	public PlayerInventory()
 	{
@@ -81,7 +82,7 @@ public class PlayerInventory
 				{
 					Item i = inventory[currentSlot].getItem();
 					
-					g.drawImage(Slot.texture, x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+					g.drawImage(selectedSlot == currentSlot ? Slot.texture_selected : Slot.texture, x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 					
 					if(i != null)
 					{
@@ -95,8 +96,51 @@ public class PlayerInventory
 					currentSlot++;
 				}	
 			}
-			
 		}
+	}
+	
+	/**
+	 * Handles pressing the up arrow
+	 */
+	public void up()
+	{
+		if(selectedSlot < 5)
+			selectedSlot += 15;
+		else
+			selectedSlot -= 5;
+	}
+	
+	/**
+	 * Handles pressing the left arrow
+	 */
+	public void left()
+	{
+		if(selectedSlot % 5 == 0)
+			selectedSlot += 4;
+		else
+			selectedSlot--;
+	}
+	
+	/**
+	 * Handles pressing the down arrow
+	 */
+	public void down()
+	{
+		if(selectedSlot > 14)
+			selectedSlot -= 15;
+		else
+			selectedSlot += 5;
+	}
+	
+	/**
+	 * Handles pressing the right arrow
+	 */
+	public void right()
+	{
+		if((selectedSlot + 1) % 5 == 0)
+			selectedSlot -= 4;
+		else
+			selectedSlot++;
 	}
 	
 	/**

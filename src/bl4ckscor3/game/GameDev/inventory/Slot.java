@@ -7,6 +7,7 @@ import bl4ckscor3.game.gamedev.util.TextureManager;
 public class Slot
 {
 	public static final Image texture = TextureManager.loadTextureFromPath("slot", "gui/");
+	public static final Image texture_selected = TextureManager.loadTextureFromPath("slot_selected", "gui/");
 	private Item item;
 	private int amount;
 	

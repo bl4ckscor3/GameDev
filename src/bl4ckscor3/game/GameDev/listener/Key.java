@@ -87,7 +87,18 @@ public class Key implements KeyListener
 				SeedMenu.onKeyPressed(key);
 		}
 		
-		if(Menu.isOpen())
+		if(Game.player != null && Game.player.getInventory().isOpen())
+		{
+			if(key == KeyEvent.VK_UP)
+				Game.player.getInventory().up();
+			else if(key == KeyEvent.VK_LEFT)
+				Game.player.getInventory().left();
+			else if(key == KeyEvent.VK_DOWN)
+				Game.player.getInventory().down();
+			else if(key == KeyEvent.VK_RIGHT)
+				Game.player.getInventory().right();	
+		}
+		else if(Menu.isOpen())
 		{
 			if(key == KeyEvent.VK_UP && !cm.isSelecting)
 				Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
@@ -118,7 +129,7 @@ public class Key implements KeyListener
 	@Override
 	public void keyReleased(KeyEvent event)
 	{
-		//removing the key if it's  no longer being pressed
+		//removing the key if it's no longer being pressed
 		keysPressed.remove((Object)event.getKeyCode());
 	}
 }
