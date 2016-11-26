@@ -1,6 +1,7 @@
 package bl4ckscor3.game.gamedev.menu.settings;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.GameThread;
@@ -34,7 +35,7 @@ public class SeedMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter()
+	public void onEnter(int option)
 	{
 		String seed = "";
 
@@ -58,29 +59,33 @@ public class SeedMenu implements IMenu
 		return GameState.SEED;
 	}
 
+	/**
+	 * Gets called when a key in this menu is pressed
+	 * @param key The key code
+	 */
 	public static void onKeyPressed(int key)
 	{
-		if(key == 48 || key == 96) //0 - numpad0
+		if(key == KeyEvent.VK_0 || key == KeyEvent.VK_NUMPAD0)
 			populateNextArrayPosition(0);
-		else if(key == 49 || key == 97) //1 - numpad1
+		else if(key == KeyEvent.VK_1 || key == KeyEvent.VK_NUMPAD1)
 			populateNextArrayPosition(1);
-		else if(key == 50 || key == 98) //2 - numpad2
+		else if(key == KeyEvent.VK_2 || key == KeyEvent.VK_NUMPAD2)
 			populateNextArrayPosition(2);
-		else if(key == 51 || key == 99) //3 - numpad3
+		else if(key == KeyEvent.VK_3 || key == KeyEvent.VK_NUMPAD3)
 			populateNextArrayPosition(3);
-		else if(key == 52 || key == 100) //4 - numpad4
+		else if(key == KeyEvent.VK_4 || key == KeyEvent.VK_NUMPAD4)
 			populateNextArrayPosition(4);
-		else if(key == 53 || key == 101) //5 - numpad5
+		else if(key == KeyEvent.VK_5 || key == KeyEvent.VK_NUMPAD5)
 			populateNextArrayPosition(5);
-		else if(key == 54 || key == 102) //6 - numpad6
+		else if(key == KeyEvent.VK_6 || key == KeyEvent.VK_NUMPAD6)
 			populateNextArrayPosition(6);
-		else if(key == 55 || key == 103) //7 - numpad7
+		else if(key == KeyEvent.VK_7 || key == KeyEvent.VK_NUMPAD7)
 			populateNextArrayPosition(7);
-		else if(key == 56 || key == 104) //8 - numpad8
+		else if(key == KeyEvent.VK_8 || key == KeyEvent.VK_NUMPAD8)
 			populateNextArrayPosition(8);
-		else if(key == 57 || key == 105) //9 - numpad9
+		else if(key == KeyEvent.VK_9 || key == KeyEvent.VK_NUMPAD9)
 			populateNextArrayPosition(9);
-		else if(key == 8) //backspace
+		else if(key == KeyEvent.VK_BACK_SPACE)
 			removeLastArrayObject();
 	}
 

@@ -59,11 +59,11 @@ public class SettingsMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter() throws URISyntaxException, IOException
+	public void onEnter(int option) throws URISyntaxException, IOException
 	{
 		Menu.setSelectedOption(0);
 		
-		switch(Menu.getSelectedOption())
+		switch(option)
 		{
 			case 0:
 				SeedMenu.populateSeedArray();

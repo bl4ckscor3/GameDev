@@ -77,7 +77,7 @@ public class ControlsMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter()
+	public void onEnter(int option)
 	{
 		if(!isSelecting)
 			isSelecting = true;
@@ -90,7 +90,7 @@ public class ControlsMenu implements IMenu
 				controls[i] = 0;
 			}
 			
-			controls[Menu.getSelectedOption()] = selectedKey;
+			controls[option] = selectedKey;
 			Controls.setControls(controls);
 			
 			isSelecting = false;

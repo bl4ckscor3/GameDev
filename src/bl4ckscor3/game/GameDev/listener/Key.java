@@ -63,7 +63,7 @@ public class Key implements KeyListener
 				{
 					try
 					{
-						Menu.getMenu(GameState.SEED).onEnter();
+						Menu.getMenu(GameState.SEED).onEnter(Menu.getSelectedOption());
 					}
 					catch(Exception e){}
 				}
@@ -89,9 +89,9 @@ public class Key implements KeyListener
 		
 		if(Menu.isOpen())
 		{
-			if(key == 38 && !cm.isSelecting) //up arrow
+			if(key == KeyEvent.VK_UP && !cm.isSelecting)
 				Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
-			else if(key == 40 && !cm.isSelecting) //down arrow
+			else if(key == KeyEvent.VK_DOWN && !cm.isSelecting)
 				Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
 			else if(key == 10) //enter
 			{
@@ -99,7 +99,7 @@ public class Key implements KeyListener
 				{
 					try
 					{
-						Menu.getMenu(Menu.getState()).onEnter();
+						Menu.getMenu(Menu.getState()).onEnter(Menu.getSelectedOption());
 					}
 					catch(Exception e){}
 				}
@@ -109,7 +109,7 @@ public class Key implements KeyListener
 				if(Menu.getState() == GameState.CONTROLS && cm.isSelecting)
 				{
 					cm.selectedKey = key;
-					cm.onEnter();
+					cm.onEnter(Menu.getSelectedOption());
 				}
 			}
 		}

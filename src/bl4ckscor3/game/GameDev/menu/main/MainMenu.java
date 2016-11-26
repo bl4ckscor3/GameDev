@@ -59,10 +59,8 @@ public class MainMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter()
+	public void onEnter(int option)
 	{
-		Menu.setSelectedOption(0);
-		
 		//determining which option was clicked
 		switch(Menu.getSelectedOption())
 		{
@@ -82,6 +80,8 @@ public class MainMenu implements IMenu
 			case 4: //exit
 				System.exit(0);
 		}
+		
+		Menu.setSelectedOption(0);
 	}
 
 	@Override

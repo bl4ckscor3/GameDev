@@ -65,10 +65,10 @@ public class ResolutionMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter() throws Exception
+	public void onEnter(int option) throws Exception
 	{
-		Main.config.set("width", options[Menu.getSelectedOption()].split("x")[0]);
-		Main.config.set("height", options[Menu.getSelectedOption()].split("x")[1]);
+		Main.config.set("width", options[option].split("x")[0]);
+		Main.config.set("height", options[option].split("x")[1]);
 		Menu.setStateToLast();
 	}
 

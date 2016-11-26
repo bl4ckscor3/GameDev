@@ -12,8 +12,9 @@ public interface IMenu
 	
 	/**
 	 * Determines the action when pressing enter in the menu
+	 * @param The currently selected option
 	 */
-	public void onEnter() throws Exception;
+	public void onEnter(int option) throws Exception;
 
 	/**
 	 * Determines the state this menu is defined as

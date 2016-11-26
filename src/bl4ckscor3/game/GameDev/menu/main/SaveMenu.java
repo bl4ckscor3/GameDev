@@ -19,7 +19,7 @@ public class SaveMenu implements IMenu
 	}
 
 	@Override
-	public void onEnter(){}
+	public void onEnter(int option){}
 	
 	@Override
 	public GameState getDefinedState()
