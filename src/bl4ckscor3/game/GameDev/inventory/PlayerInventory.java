@@ -79,6 +79,18 @@ public class PlayerInventory
 		{
 			int currentSlot = 0;
 
+			if(held != null)
+			{
+				int x = startX + completeWidth / 2 - (Main.scaleFactor.getWidth() * size) / 2;
+				int y = startY - Main.scaleFactor.getHeight() * size;
+				
+				g.drawImage(held.getItem().getTexture(),  x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+				g.setColor(Color.WHITE);
+				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
+				g.setColor(Color.GRAY);
+				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
+			}
+			
 			for(int y = startY; y < startY + completeHeight; y += Main.scaleFactor.getHeight() * size + 2)
 			{
 				for(int x = startX; x < startX + completeWidth; x += Main.scaleFactor.getWidth() * size + 2)
@@ -173,29 +185,16 @@ public class PlayerInventory
 		}
 		else if(key == KeyEvent.VK_DOWN)
 		{
-			if(held != null)
+			if(held != null && inventory[selectedSlot].getItem() == held.getItem())
 			{
-				if(inventory[selectedSlot].getItem() == held.getItem())
-				{
-					if(inventory[selectedSlot].getAmount() + 1 <= 128)
-					{
-						inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + 1);
-						held.setAmount(held.getAmount() - 1);
-						
-						if(held.getAmount() == 0)
-							held = null;
-					}
-				}
-				else if(inventory[selectedSlot].getItem() == null)
-				{
-					inventory[selectedSlot].setItem(held.getItem());
-					inventory[selectedSlot].setAmount(1);
-					held.setAmount(held.getAmount() - 1);
-					
-					if(held.getAmount() == 0)
-						held = null;
-				}
+				inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() - 1);
+				held.setAmount(held.getAmount() + 1);
+				
+				if(inventory[selectedSlot].getAmount() == 0)
+					inventory[selectedSlot].destroy();
 			}
+			else if(held == null && inventory[selectedSlot].getItem() != null)
+				held = new Slot(inventory[selectedSlot].getItem(), 1);
 		}
 	}
 	
