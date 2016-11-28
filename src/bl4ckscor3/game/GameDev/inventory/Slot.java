@@ -25,7 +25,7 @@ public class Slot
 	 */
 	public Slot(Item i)
 	{
-		this(i, 1);
+		this(i, 0);
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Slot
 	public Slot(Item i, int a)
 	{
 		item = i;
-		amount = a > 1 ? (a < 128 ? a : 128) : 1;
+		amount = a > 0 ? (a < 128 ? a : 128) : 0;
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class Slot
 	 */
 	public void setAmount(int a)
 	{
-		amount = a > 1 ? (a < 128 ? a : 128) : 1;
+		amount = a > 0 ? (a < 128 ? a : 128) : 0;
 	}
 	
 	/**
@@ -80,5 +80,13 @@ public class Slot
 	{
 		item = null;
 		amount = 0;
+	}
+	
+	/**
+	 * Copies this slot
+	 */
+	public Slot copy()
+	{
+		return new Slot(getItem(), getAmount());
 	}
 }

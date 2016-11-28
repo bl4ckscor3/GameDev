@@ -2,8 +2,10 @@ package bl4ckscor3.game.gamedev.inventory;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import bl4ckscor3.game.gamedev.Main;
+import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
 
 public class PlayerInventory
@@ -17,14 +19,15 @@ public class PlayerInventory
 	private Slot[] inventory = new Slot[20];
 	private boolean isOpen = false;
 	private int selectedSlot = 0;
-	
+	private Slot held;
+
 	public PlayerInventory()
 	{
 		setTool(new Slot(Item.AXE));
-		
+
 		for(int i = 0; i < inventory.length; i++)
 		{
-			inventory[i] = new Slot();
+			inventory[i] = new Slot(Item.WOOD, Game.r.nextInt(64));
 		}
 	}
 
@@ -50,7 +53,7 @@ public class PlayerInventory
 			}
 		}
 	}
-	
+
 	/**
 	 * Renders the inventory's slots
 	 * @param g The Graphics to render with
@@ -71,19 +74,19 @@ public class PlayerInventory
 			if(tool.getItem() != null)
 				g.drawImage(tool.getItem().getTexture(), 16, 16, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 		}
-		
+
 		if(isOpen)
 		{
 			int currentSlot = 0;
-			
+
 			for(int y = startY; y < startY + completeHeight; y += Main.scaleFactor.getHeight() * size + 2)
 			{
 				for(int x = startX; x < startX + completeWidth; x += Main.scaleFactor.getWidth() * size + 2)
 				{
 					Item i = inventory[currentSlot].getItem();
-					
+
 					g.drawImage(selectedSlot == currentSlot ? Slot.texture_selected : Slot.texture, x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
-					
+
 					if(i != null)
 					{
 						g.drawImage(i.getTexture(), x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
@@ -92,9 +95,106 @@ public class PlayerInventory
 						g.setColor(Color.GRAY);
 						g.drawString("" + inventory[currentSlot].getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
 					}
-					
+
 					currentSlot++;
 				}	
+			}
+		}
+	}
+
+	/**
+	 * Picks up or drops the item in the currently selected slot
+	 */
+	public void selectCurrentSlot()
+	{		
+		if(held != null)
+		{
+			if(inventory[selectedSlot].getItem() == held.getItem())
+			{
+				if(inventory[selectedSlot].getAmount() + held.getAmount() <= 128)
+				{
+					inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + held.getAmount());
+					held = null;
+				}
+				else if(inventory[selectedSlot].getAmount() + held.getAmount() > 128)
+				{
+					int previousAmount = inventory[selectedSlot].getAmount();
+
+					inventory[selectedSlot].setAmount(128);
+					held.setAmount(held.getAmount() - (128 - previousAmount));
+				}
+			}
+			else if(inventory[selectedSlot].getItem() == null)
+			{
+				inventory[selectedSlot].setItem(held.getItem());
+				inventory[selectedSlot].setAmount(held.getAmount());
+				held = null;
+			}
+		}
+		else if(inventory[selectedSlot].getItem() != null)
+		{
+			held = inventory[selectedSlot].copy();
+			inventory[selectedSlot].setItem(null);
+			inventory[selectedSlot].setAmount(0);
+		}
+	}
+
+	/**
+	 * Modifies the held stack by 1 each time this method is called
+	 * @param key The key that is pressed (up or down)
+	 */
+	public void modifyStack(int key)
+	{
+		if(key == KeyEvent.VK_UP)
+		{
+			if(held != null)
+			{
+				if(inventory[selectedSlot].getItem() == held.getItem())
+				{
+					if(inventory[selectedSlot].getAmount() + 1 <= 128)
+					{
+						inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + 1);
+						held.setAmount(held.getAmount() - 1);
+						
+						if(held.getAmount() == 0)
+							held = null;
+					}
+				}
+				else if(inventory[selectedSlot].getItem() == null)
+				{
+					inventory[selectedSlot].setItem(held.getItem());
+					inventory[selectedSlot].setAmount(1);
+					held.setAmount(held.getAmount() - 1);
+					
+					if(held.getAmount() == 0)
+						held = null;
+				}
+			}
+		}
+		else if(key == KeyEvent.VK_DOWN)
+		{
+			if(held != null)
+			{
+				if(inventory[selectedSlot].getItem() == held.getItem())
+				{
+					if(inventory[selectedSlot].getAmount() + 1 <= 128)
+					{
+						inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + 1);
+						held.setAmount(held.getAmount() - 1);
+						
+						if(held.getAmount() == 0)
+							held = null;
+					}
+				}
+				else if(inventory[selectedSlot].getItem() == null)
+				{
+					inventory[selectedSlot].setItem(held.getItem());
+					inventory[selectedSlot].setAmount(1);
+					held.setAmount(held.getAmount() - 1);
+					
+					if(held.getAmount() == 0)
+						held = null;
+				}
 			}
 		}
 	}
@@ -109,7 +209,7 @@ public class PlayerInventory
 		else
 			selectedSlot -= 5;
 	}
-	
+
 	/**
 	 * Handles pressing the left arrow
 	 */
@@ -120,7 +220,7 @@ public class PlayerInventory
 		else
 			selectedSlot--;
 	}
-	
+
 	/**
 	 * Handles pressing the down arrow
 	 */
@@ -131,7 +231,7 @@ public class PlayerInventory
 		else
 			selectedSlot += 5;
 	}
-	
+
 	/**
 	 * Handles pressing the right arrow
 	 */
@@ -142,7 +242,7 @@ public class PlayerInventory
 		else
 			selectedSlot++;
 	}
-	
+
 	/**
 	 * @return The tool slot
 	 */
@@ -158,7 +258,7 @@ public class PlayerInventory
 	{
 		return inventory;
 	}
-	
+
 	/**
 	 * Sets the tool slot
 	 * @param t The slot to set
@@ -167,7 +267,7 @@ public class PlayerInventory
 	{
 		tool = t;
 	}
-	
+
 	/**
 	 * Sets the Slot at the given position
 	 * @param slot The slot to set
@@ -182,7 +282,7 @@ public class PlayerInventory
 			inventory[slot].setAmount(amount);
 		}
 	}
-	
+
 	/**
 	 * @return true if this inventory is open, false otherwise
 	 */
@@ -190,7 +290,7 @@ public class PlayerInventory
 	{
 		return isOpen;
 	}
-	
+
 	/**
 	 * Opens this inventory
 	 */

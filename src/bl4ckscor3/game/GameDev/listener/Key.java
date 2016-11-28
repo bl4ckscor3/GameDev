@@ -90,13 +90,25 @@ public class Key implements KeyListener
 		if(Game.player != null && Game.player.getInventory().isOpen())
 		{
 			if(key == KeyEvent.VK_UP)
-				Game.player.getInventory().up();
+			{
+				if(keysPressed.contains(KeyEvent.VK_SHIFT))
+					Game.player.getInventory().modifyStack(key);
+				else
+					Game.player.getInventory().up();
+			}
 			else if(key == KeyEvent.VK_LEFT)
 				Game.player.getInventory().left();
 			else if(key == KeyEvent.VK_DOWN)
-				Game.player.getInventory().down();
+			{
+				if(keysPressed.contains(KeyEvent.VK_SHIFT))
+					Game.player.getInventory().modifyStack(key);
+				else
+					Game.player.getInventory().down();
+			}
 			else if(key == KeyEvent.VK_RIGHT)
-				Game.player.getInventory().right();	
+				Game.player.getInventory().right();
+			else if(key == KeyEvent.VK_ENTER)
+				Game.player.getInventory().selectCurrentSlot();
 		}
 		else if(Menu.isOpen())
 		{
