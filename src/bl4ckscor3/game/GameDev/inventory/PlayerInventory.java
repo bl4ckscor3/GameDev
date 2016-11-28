@@ -146,8 +146,7 @@ public class PlayerInventory
 		else if(inventory[selectedSlot].getItem() != null)
 		{
 			held = inventory[selectedSlot].copy();
-			inventory[selectedSlot].setItem(null);
-			inventory[selectedSlot].setAmount(0);
+			inventory[selectedSlot].destroy();
 		}
 	}
 
