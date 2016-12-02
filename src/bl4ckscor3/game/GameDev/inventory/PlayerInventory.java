@@ -19,15 +19,15 @@ public class PlayerInventory
 	private Slot[] inventory = new Slot[20];
 	private boolean isOpen = false;
 	private int selectedSlot = 0;
-	private Slot held;
+	private ItemStack held;
 
 	public PlayerInventory()
 	{
-		setTool(new Slot(Item.AXE));
+		setTool(new Slot(new ItemStack(Item.AXE, 1)));
 
 		for(int i = 0; i < inventory.length; i++)
 		{
-			inventory[i] = new Slot(Item.WOOD, Game.r.nextInt(64));
+			inventory[i] = new Slot(new ItemStack(Item.WOOD, Game.r.nextInt(64)));
 		}
 	}
 
@@ -40,15 +40,17 @@ public class PlayerInventory
 	{
 		for(int i = 0; i < inventory.length; i++)
 		{
-			if(inventory[i].getItem() == item && inventory[i].getAmount() <= 128 - amount)
+			ItemStack stack = inventory[i].getItemStack();
+
+			if(stack.getItem() == item && stack.getAmount() <= 128 - amount)
 			{
-				inventory[i].setAmount(inventory[i].getAmount() + amount);
+				stack.setAmount(stack.getAmount() + amount);
 				return;
 			}
-			else if(inventory[i].getItem() == null)
+			else if(stack.getItem() == null)
 			{
-				inventory[i].setItem(item);
-				inventory[i].setAmount(amount);
+				stack.setItem(item);
+				stack.setAmount(amount);
 				return;
 			}
 		}
@@ -62,17 +64,17 @@ public class PlayerInventory
 	{
 		if(Screen.displayDebug)
 		{
-			g.drawImage(Slot.texture, 16, Main.height - 38, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+			g.drawImage(Slot.texture, 16, Main.height - 54, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 
-			if(tool.getItem() != null)
-				g.drawImage(tool.getItem().getTexture(), 16, Main.height - 38, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+			if(tool.getItemStack().getItem() != null)
+				g.drawImage(tool.getItemStack().getItem().getTexture(), 16, Main.height - 54, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 		}
 		else
 		{
 			g.drawImage(Slot.texture, 16, 16, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 
-			if(tool.getItem() != null)
-				g.drawImage(tool.getItem().getTexture(), 16, 16, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+			if(tool.getItemStack().getItem() != null)
+				g.drawImage(tool.getItemStack().getItem().getTexture(), 16, 16, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 		}
 
 		if(isOpen)
@@ -83,29 +85,29 @@ public class PlayerInventory
 			{
 				int x = startX + completeWidth / 2 - (Main.scaleFactor.getWidth() * size) / 2;
 				int y = startY - Main.scaleFactor.getHeight() * size;
-				
+
 				g.drawImage(held.getItem().getTexture(),  x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 				g.setColor(Color.WHITE);
 				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
 				g.setColor(Color.GRAY);
 				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
 			}
-			
+
 			for(int y = startY; y < startY + completeHeight; y += Main.scaleFactor.getHeight() * size + 2)
 			{
 				for(int x = startX; x < startX + completeWidth; x += Main.scaleFactor.getWidth() * size + 2)
 				{
-					Item i = inventory[currentSlot].getItem();
+					ItemStack stack = inventory[currentSlot].getItemStack();
 
 					g.drawImage(selectedSlot == currentSlot ? Slot.texture_selected : Slot.texture, x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 
-					if(i != null)
+					if(stack != null)
 					{
-						g.drawImage(i.getTexture(), x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
+						g.drawImage(stack.getItem().getTexture(), x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
 						g.setColor(Color.WHITE);
-						g.drawString("" + inventory[currentSlot].getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
+						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
 						g.setColor(Color.GRAY);
-						g.drawString("" + inventory[currentSlot].getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
+						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
 					}
 
 					currentSlot++;
@@ -118,36 +120,41 @@ public class PlayerInventory
 	 * Picks up or drops the item in the currently selected slot
 	 */
 	public void selectCurrentSlot()
-	{		
+	{
+		ItemStack inv = inventory[selectedSlot].getItemStack();
+
 		if(held != null)
 		{
-			if(inventory[selectedSlot].getItem() == held.getItem())
+			if(inv.getItem() == held.getItem())
 			{
-				if(inventory[selectedSlot].getAmount() + held.getAmount() <= 128)
+				if(inv.getAmount() + held.getAmount() <= 128)
 				{
-					inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + held.getAmount());
+					inv.setAmount(inv.getAmount() + held.getAmount());
 					held = null;
 				}
-				else if(inventory[selectedSlot].getAmount() + held.getAmount() > 128)
+				else if(inv.getAmount() + held.getAmount() > 128)
 				{
-					int previousAmount = inventory[selectedSlot].getAmount();
+					int previousAmount = inv.getAmount();
 
-					inventory[selectedSlot].setAmount(128);
+					inv.setAmount(128);
 					held.setAmount(held.getAmount() - (128 - previousAmount));
 				}
 			}
-			else if(inventory[selectedSlot].getItem() == null)
+			else if(inv.getItem() == null)
 			{
-				inventory[selectedSlot].setItem(held.getItem());
-				inventory[selectedSlot].setAmount(held.getAmount());
+				inv.setItem(held.getItem());
+				inv.setAmount(held.getAmount());
 				held = null;
 			}
 		}
-		else if(inventory[selectedSlot].getItem() != null)
+		else if(inv.getItem() != null)
 		{
-			held = inventory[selectedSlot].copy();
+			held = inv.copy();
 			inventory[selectedSlot].destroy();
+			return;
 		}
+		
+		inventory[selectedSlot].setItemStack(inv);
 	}
 
 	/**
@@ -156,47 +163,50 @@ public class PlayerInventory
 	 */
 	public void modifyStack(int key)
 	{
-		if(key == KeyEvent.VK_UP)
+		ItemStack inv = inventory[selectedSlot].getItemStack();
+
+		if(key == KeyEvent.VK_DOWN)
 		{
-			if(held != null)
+			if(inv != null && held != null && inv.getItem() == held.getItem())
 			{
-				if(inventory[selectedSlot].getItem() == held.getItem())
+				if(inv.getAmount() + 1 <= 128)
 				{
-					if(inventory[selectedSlot].getAmount() + 1 <= 128)
-					{
-						inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() + 1);
-						held.setAmount(held.getAmount() - 1);
-						
-						if(held.getAmount() == 0)
-							held = null;
-					}
-				}
-				else if(inventory[selectedSlot].getItem() == null)
-				{
-					inventory[selectedSlot].setItem(held.getItem());
-					inventory[selectedSlot].setAmount(1);
+					inv.setAmount(inv.getAmount() + 1);
 					held.setAmount(held.getAmount() - 1);
-					
+
 					if(held.getAmount() == 0)
 						held = null;
 				}
 			}
-		}
-		else if(key == KeyEvent.VK_DOWN)
-		{
-			if(held != null && inventory[selectedSlot].getItem() == held.getItem())
+			else if(inv == null)
 			{
-				inventory[selectedSlot].setAmount(inventory[selectedSlot].getAmount() - 1);
-				held.setAmount(held.getAmount() + 1);
-				
-				if(inventory[selectedSlot].getAmount() == 0)
-					inventory[selectedSlot].destroy();
+				inv = new ItemStack(held.getItem(), 1);
+				held.setAmount(held.getAmount() - 1);
+
+				if(held.getAmount() == 0)
+					held = null;
 			}
-			else if(held == null && inventory[selectedSlot].getItem() != null)
-				held = new Slot(inventory[selectedSlot].getItem(), 1);
 		}
+		else if(key == KeyEvent.VK_UP)
+		{
+			if(inv != null && held != null && inv.getItem() == held.getItem())
+			{
+				inv.setAmount(inv.getAmount() - 1);
+				held.setAmount(held.getAmount() + 1);
+
+				if(inv.getAmount() == 0)
+				{
+					inventory[selectedSlot].destroy();
+					return;
+				}
+			}
+			else if(held == null && inv.getItem() != null)
+				held = new ItemStack(inv.getItem(), 1);
+		}
+		
+		inventory[selectedSlot].setItemStack(inv);
 	}
-	
+
 	/**
 	 * Handles pressing the up arrow
 	 */
@@ -276,8 +286,8 @@ public class PlayerInventory
 	{
 		if(slot < inventory.length && slot >= 0)
 		{
-			inventory[slot].setItem(item);
-			inventory[slot].setAmount(amount);
+			inventory[slot].getItemStack().setItem(item);
+			inventory[slot].getItemStack().setAmount(amount);
 		}
 	}
 

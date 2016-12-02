@@ -8,78 +8,47 @@ public class Slot
 {
 	public static final Image texture = TextureManager.loadTextureFromPath("slot", "gui/");
 	public static final Image texture_selected = TextureManager.loadTextureFromPath("slot_selected", "gui/");
-	private Item item;
-	private int amount;
+	private ItemStack itemStack;
 	
 	/**
-	 * Creates a slot without an item
+	 * Creates an empty slot
 	 */
 	public Slot()
 	{
-		this(null);
+		this(new ItemStack(null, 0));
 	}
 	
 	/**
-	 * Creates a slot with 1 item
-	 * @param i The item this slot contains
+	 * Sets a Slot with the given ItemStack
 	 */
-	public Slot(Item i)
+	public Slot(ItemStack stack)
 	{
-		this(i, 0);
+		itemStack = stack;
 	}
 	
 	/**
-	 * Creates a slot with a specific amount of one item
-	 * @param i The item
-	 * @param a The amount, cannot be less than 1 or more than 128
+	 * Sets this Slot's ItemStack
+	 * @param inv The ItemStack to set
 	 */
-	public Slot(Item i, int a)
+	public void setItemStack(ItemStack stack)
 	{
-		item = i;
-		amount = a > 0 ? (a < 128 ? a : 128) : 0;
+		itemStack = stack;
 	}
 	
 	/**
-	 * @return The item in this slot
+	 * @return The ItemStack of this slot
 	 */
-	public Item getItem()
+	public ItemStack getItemStack()
 	{
-		return item;
+		return itemStack;
 	}
 	
 	/**
-	 * @return The amount
-	 */
-	public int getAmount()
-	{
-		return amount;
-	}
-	
-	/**
-	 * Sets the item in this slot
-	 * @param i The item to set
-	 */
-	public void setItem(Item i)
-	{
-		item = i;
-	}
-	
-	/**
-	 * Sets the amount of the item in this slot
-	 * @param a The amount, cannot be less than 1 or more than 128
-	 */
-	public void setAmount(int a)
-	{
-		amount = a > 0 ? (a < 128 ? a : 128) : 0;
-	}
-	
-	/**
-	 * "Destroys" this slot, aka removes the item and amount associated with it
+	 * "Destroys" this slot, aka removes the ItemStack associated with it
 	 */
 	public void destroy()
 	{
-		item = null;
-		amount = 0;
+		itemStack = null;
 	}
 	
 	/**
@@ -87,6 +56,6 @@ public class Slot
 	 */
 	public Slot copy()
 	{
-		return new Slot(getItem(), getAmount());
+		return new Slot(getItemStack());
 	}
 }

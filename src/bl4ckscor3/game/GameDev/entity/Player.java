@@ -84,7 +84,7 @@ public class Player extends Entity
 				
 				if(Key.keysPressed.contains(Controls.DESTROY))
 				{
-					if(po != null && po.getMaterial() == Material.TREE && !isWalking() && inventory.getTool().getItem() == Item.AXE)
+					if(po != null && po.getMaterial() == Material.TREE && !isWalking() && inventory.getTool().getItemStack().getItem() == Item.AXE)
 					{
 						inventory.addItem(Item.WOOD, Game.r.nextInt(2) + 1); //between 1 and 3
 						c.removeObject(po);
