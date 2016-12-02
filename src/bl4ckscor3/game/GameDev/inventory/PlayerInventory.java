@@ -125,7 +125,12 @@ public class PlayerInventory
 
 		if(held != null)
 		{
-			if(inv.getItem() == held.getItem())
+			if(inv == null)
+			{
+				inv = new ItemStack(held.getItem(), held.getAmount());
+				held = null;
+			}
+			else if(inv.getItem() == held.getItem())
 			{
 				if(inv.getAmount() + held.getAmount() <= 128)
 				{
@@ -139,12 +144,6 @@ public class PlayerInventory
 					inv.setAmount(128);
 					held.setAmount(held.getAmount() - (128 - previousAmount));
 				}
-			}
-			else if(inv.getItem() == null)
-			{
-				inv.setItem(held.getItem());
-				inv.setAmount(held.getAmount());
-				held = null;
 			}
 		}
 		else if(inv.getItem() != null)
