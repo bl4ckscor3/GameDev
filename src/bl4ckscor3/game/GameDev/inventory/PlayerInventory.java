@@ -27,7 +27,7 @@ public class PlayerInventory
 
 		for(int i = 0; i < inventory.length; i++)
 		{
-			inventory[i] = new Slot(new ItemStack(Item.WOOD, Game.r.nextInt(64)));
+			inventory[i] = new Slot(new ItemStack(Item.WOOD, Game.r.nextInt(64) + 1)); //can't be 0
 		}
 	}
 
@@ -201,7 +201,10 @@ public class PlayerInventory
 				}
 			}
 			else if(held == null && inv.getItem() != null)
+			{
 				held = new ItemStack(inv.getItem(), 1);
+				inv.setAmount(inv.getAmount() - 1);
+			}
 		}
 		
 		inventory[selectedSlot].setItemStack(inv);
