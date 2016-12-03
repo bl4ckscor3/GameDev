@@ -292,7 +292,7 @@ public class Player extends Entity
 			if(currentTexture == 3)
 				currentTexture = 0;
 
-			if(Menu.getState() == GameState.PAUSE)
+			if(Menu.getState() == GameState.PAUSE || AbstractInventory.isInventoryOpen())
 				stopAnimation();
 
 		}
