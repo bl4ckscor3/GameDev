@@ -10,6 +10,7 @@ import bl4ckscor3.game.gamedev.Main;
 import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.inventory.AbstractInventory;
 import bl4ckscor3.game.gamedev.inventory.Item;
 import bl4ckscor3.game.gamedev.inventory.PlayerInventory;
 import bl4ckscor3.game.gamedev.listener.Key;
@@ -34,7 +35,7 @@ public class Player extends Entity
 	private Direction prevDir;
 	private PlayerInventory inventory = new PlayerInventory();
 	private Image[] currentAnimation;
-	
+
 	public Player()
 	{
 		super(TextureManager.loadTextureFromPath("playerDown0", texturePath));
@@ -51,15 +52,15 @@ public class Player extends Entity
 			PlaceableObject po = null;
 			String bridge = "";
 			Direction dir;
-			
+
 			//update keys
-			if(Key.keysPressed.size() != 0)
+			if(!AbstractInventory.isInventoryOpen() && Key.keysPressed.size() != 0)
 			{
 				dir = getLastMovedDir();
 				newPos = Game.map.getChunkPosition(this, dir);
 				c = Game.map.getChunk(this, dir);
 				po = c.getPlaceableObject(newPos);
-				
+
 				switch(dir)
 				{
 					case UP:
@@ -75,13 +76,13 @@ public class Player extends Entity
 						bridge = "_horizontal";
 						break;
 				}
-				
+
 				if(Key.keysPressed.contains(Controls.PLACE))
 				{
 					if(po == null && c.getTile(newPos).isWater())
 						c.placeObject(new Bridge(c, newPos, bridge));
 				}
-				
+
 				if(Key.keysPressed.contains(Controls.DESTROY))
 				{
 					if(po != null && po.getMaterial() == Material.TREE && !isWalking() && inventory.getTool().getItemStack().getItem() == Item.AXE)
@@ -91,63 +92,60 @@ public class Player extends Entity
 					}
 				}
 
-				if(!inventory.isOpen())
+				int lastMovementKey = 0;
+
+				//movement
+				for(int key : Key.keysPressed)
 				{
-					int lastMovementKey = 0;
-	
-					//movement
-					for(int key : Key.keysPressed)
+					if(key == Controls.UP)
 					{
-						if(key == Controls.UP)
-						{
-							lastMovementKey = key;
-							dir = Direction.UP;
-						}
-						else if(key == Controls.LEFT)
-						{
-							lastMovementKey = key;
-							dir = Direction.LEFT;
-						}
-						else if(key == Controls.DOWN)
-						{
-							lastMovementKey = key;
-							dir = Direction.DOWN;
-						}
-						else if(key == Controls.RIGHT)
-						{
-							lastMovementKey = key;
-							dir = Direction.RIGHT;
-						}
+						lastMovementKey = key;
+						dir = Direction.UP;
 					}
-	
-					newPos = Game.map.getChunkPosition(this, dir);
-					c = Game.map.getChunk(this, dir);
-					po = c.getPlaceableObject(newPos);
-					DebugUI.setCurrentTile(c.getTile(newPos));
-					
-					if(lastMovementKey == 0)
+					else if(key == Controls.LEFT)
 					{
-						setWalking(false);
-						return;
+						lastMovementKey = key;
+						dir = Direction.LEFT;
 					}
-					
-					setLastMovedDir(dir);
-					setWalking(true);
-					
-					if(!checkContent(c, newPos, po))
-						return;
-					
-					if(lastMovementKey == Controls.UP)
-						position.y--;
-					else if(lastMovementKey == Controls.LEFT)
-						position.x--;
-					else if(lastMovementKey == Controls.DOWN)
-						position.y++;
-					else if(lastMovementKey == Controls.RIGHT)
-						position.x++;
-					else
-						setWalking(false);
+					else if(key == Controls.DOWN)
+					{
+						lastMovementKey = key;
+						dir = Direction.DOWN;
+					}
+					else if(key == Controls.RIGHT)
+					{
+						lastMovementKey = key;
+						dir = Direction.RIGHT;
+					}
 				}
+
+				newPos = Game.map.getChunkPosition(this, dir);
+				c = Game.map.getChunk(this, dir);
+				po = c.getPlaceableObject(newPos);
+				DebugUI.setCurrentTile(c.getTile(newPos));
+
+				if(lastMovementKey == 0)
+				{
+					setWalking(false);
+					return;
+				}
+
+				setLastMovedDir(dir);
+				setWalking(true);
+
+				if(!checkContent(c, newPos, po))
+					return;
+
+				if(lastMovementKey == Controls.UP)
+					position.y--;
+				else if(lastMovementKey == Controls.LEFT)
+					position.x--;
+				else if(lastMovementKey == Controls.DOWN)
+					position.y++;
+				else if(lastMovementKey == Controls.RIGHT)
+					position.x++;
+				else
+					setWalking(false);
 			}
 			else
 				setWalking(false);
@@ -173,7 +171,7 @@ public class Player extends Entity
 			if(po != null && po.getMaterial() == Material.TREE)
 				return false;
 		}
-		
+
 		return true;
 	}
 
@@ -267,7 +265,7 @@ public class Player extends Entity
 	{
 		return inventory;
 	}
-	
+
 	private class Animation implements Runnable
 	{
 		int currentTexture = 0;

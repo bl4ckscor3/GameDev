@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import bl4ckscor3.game.gamedev.inventory.AbstractInventory;
 import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.DebugUI;
@@ -42,7 +43,11 @@ public class Screen extends JPanel
 		}
 		else
 		{
-			Game.player.getInventory().render(g);
+			for(AbstractInventory inv : AbstractInventory.inventories)
+			{
+				if(inv.isOpen())
+					inv.render(g);
+			}
 			
 			if(displayDebug)
 				DebugUI.displayDebugUI(g);	

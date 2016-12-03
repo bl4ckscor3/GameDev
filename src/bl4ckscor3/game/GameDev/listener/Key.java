@@ -29,16 +29,14 @@ public class Key implements KeyListener
 		if(!keysPressed.contains(key))
 			keysPressed.add(key);
 
-		//toggle of debug ui
-		if(key == 114) //F3
+		if(key == KeyEvent.VK_F3) //toggle of debug ui
 		{
 			if(!Screen.displayDebug)
 				Screen.displayDebug = true;
 			else
 				Screen.displayDebug = false;
 		}
-		//pausing and unpausing, also switching to the previous menu
-		else if(key == 27) //ESC
+		else if(key == KeyEvent.VK_ESCAPE) //pausing and unpausing, also switching to the previous menu
 		{
 			if(Menu.getState() != GameState.MAIN)
 			{
@@ -116,7 +114,7 @@ public class Key implements KeyListener
 				Menu.setSelectedOption(Menu.getSelectedOption() == 0 ? Menu.getHighestOption() : Menu.getSelectedOption() - 1);
 			else if(key == KeyEvent.VK_DOWN && !cm.isSelecting)
 				Menu.setSelectedOption(Menu.getSelectedOption() == Menu.getHighestOption() ? 0 : Menu.getSelectedOption() + 1);
-			else if(key == 10) //enter
+			else if(key == KeyEvent.VK_ENTER)
 			{
 				if(Menu.getState() != GameState.PLAYING)
 				{
