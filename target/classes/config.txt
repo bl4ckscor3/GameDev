@@ -10,5 +10,5 @@ down=40
 right=39
 place=32
 destroy=16
-inventory=67
+inventory=73
 jesus=17
