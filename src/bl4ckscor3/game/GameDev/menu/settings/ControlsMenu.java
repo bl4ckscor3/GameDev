@@ -26,6 +26,7 @@ public class ControlsMenu implements IMenu
 			"Walk right:",
 			"Place objects:",
 			"Destroy objects:",
+			"Inventory: ",
 			"Jesus:"
 	};
 	
