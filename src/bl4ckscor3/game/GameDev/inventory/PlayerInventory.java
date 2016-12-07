@@ -47,17 +47,17 @@ public class PlayerInventory extends AbstractInventory
 	@Override
 	public void up()
 	{
-		if(selectedSlot < 5)
-			selectedSlot += 15;
+		if(selectedSlot < slotsPerRow) //top row
+			selectedSlot += slotsPerRow * (slotsPerColumn - 1);
 		else
-			selectedSlot -= 5;
+			selectedSlot -= slotsPerRow;
 	}
 
 	@Override
 	public void left()
 	{
-		if(selectedSlot % 5 == 0)
-			selectedSlot += 4;
+		if(selectedSlot % slotsPerRow == 0)
+			selectedSlot += slotsPerRow - 1;
 		else
 			selectedSlot--;
 	}
@@ -65,17 +65,17 @@ public class PlayerInventory extends AbstractInventory
 	@Override
 	public void down()
 	{
-		if(selectedSlot > 14)
-			selectedSlot -= 15;
+		if(selectedSlot >= (slotsPerRow * slotsPerColumn) - slotsPerRow && selectedSlot < slotsPerRow * slotsPerColumn) //bottom row
+			selectedSlot -= slotsPerRow * (slotsPerColumn - 1);
 		else
-			selectedSlot += 5;
+			selectedSlot += slotsPerRow;
 	}
 
 	@Override
 	public void right()
 	{
-		if((selectedSlot + 1) % 5 == 0)
-			selectedSlot -= 4;
+		if((selectedSlot + 1) % slotsPerRow == 0)
+			selectedSlot -= slotsPerRow - 1;
 		else
 			selectedSlot++;
 	}
