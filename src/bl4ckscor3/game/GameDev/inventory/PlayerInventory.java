@@ -65,7 +65,7 @@ public class PlayerInventory extends AbstractInventory
 	@Override
 	public void down()
 	{
-		if(selectedSlot >= (slotsPerRow * slotsPerColumn) - slotsPerRow && selectedSlot < slotsPerRow * slotsPerColumn) //bottom row
+		if(selectedSlot >= slots - slotsPerRow && selectedSlot < slots) //bottom row
 			selectedSlot -= slotsPerRow * (slotsPerColumn - 1);
 		else
 			selectedSlot += slotsPerRow;

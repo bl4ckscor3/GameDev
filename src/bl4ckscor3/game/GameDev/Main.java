@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.GameThread;
 import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.game.content.Controls;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.ScaleFactor;
 import bl4ckscor3.game.gamedev.util.Utilities;

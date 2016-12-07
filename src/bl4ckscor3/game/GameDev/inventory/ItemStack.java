@@ -26,7 +26,7 @@ public class ItemStack
 	{
 		return item;
 	}
-	
+
 	/**
 	 * @return The amount
 	 */

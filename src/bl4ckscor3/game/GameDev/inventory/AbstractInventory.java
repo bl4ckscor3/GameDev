@@ -1,6 +1,7 @@
 package bl4ckscor3.game.gamedev.inventory;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -10,18 +11,20 @@ import bl4ckscor3.game.gamedev.Main;
 public abstract class AbstractInventory
 {
 	public static final ArrayList<AbstractInventory> inventories = new ArrayList<AbstractInventory>();
+	public static AbstractInventory openInventory = null; //the currently open inventory, null if none is open
 	protected final int size = 3;
 	protected int slotsPerRow;
 	protected int slotsPerColumn;
+	protected int slots;
 	protected int completeWidth; //the width of slotsPerRow slots per row with 2 pixels space inbetween, the last two extra pixels left out
 	protected int completeHeight; //the width of slotsPerColumn slots per column with 2 pixels space inbetween, the last two extra pixels left out
 	protected int startX; //x position of the top left corner of the inventory
 	protected int startY; //y position of the top left corner of the inventory
 	protected Slot[] inventory;
-	private static boolean inventoryOpen = false; //if any inventory is open
 	protected boolean isOpen = false; //if this inventory is open
 	protected int selectedSlot = 0;
 	protected ItemStack held;
+	protected Font amountFont = new Font("Calibri", Font.BOLD, 18);
 	
 	/**
 	 * Sets up this inventory's bounds
@@ -36,6 +39,7 @@ public abstract class AbstractInventory
 	{
 		slotsPerRow = spr;
 		slotsPerColumn = spc;
+		slots = slotsPerRow * slotsPerColumn;
 		completeWidth = (Main.scaleFactor.getWidth() * size + 2) * spr - 2;
 		completeHeight = (Main.scaleFactor.getHeight() * size + 2) * spc - 2;
 		startX = Main.width / 2 - completeWidth / 2;
@@ -59,11 +63,12 @@ public abstract class AbstractInventory
 				int x = startX + completeWidth / 2 - (Main.scaleFactor.getWidth() * size) / 2;
 				int y = startY - Main.scaleFactor.getHeight() * size;
 
+				g.setFont(amountFont);
 				g.drawImage(held.getItem().getTexture(),  x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
-				g.setColor(Color.WHITE);
-				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
 				g.setColor(Color.GRAY);
-				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
+				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 29, y + Main.scaleFactor.getHeight() * size - 4);
+				g.setColor(Color.WHITE);
+				g.drawString("" + held.getAmount(), x + Main.scaleFactor.getWidth() * size - 30, y + Main.scaleFactor.getHeight() * size - 5);
 			}
 
 			int xx = 0;
@@ -85,11 +90,12 @@ public abstract class AbstractInventory
 
 					if(stack != null)
 					{
+						g.setFont(amountFont);
 						g.drawImage(stack.getItem().getTexture(), x, y, Main.scaleFactor.getWidth() * size, Main.scaleFactor.getHeight() * size, null);
-						g.setColor(Color.WHITE);
-						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 20, y + Main.scaleFactor.getHeight() * size - 5);
 						g.setColor(Color.GRAY);
-						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 19, y + Main.scaleFactor.getHeight() * size - 4);
+						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 29, y + Main.scaleFactor.getHeight() * size - 4);
+						g.setColor(Color.WHITE);
+						g.drawString("" + stack.getAmount(), x + Main.scaleFactor.getWidth() * size - 30, y + Main.scaleFactor.getHeight() * size - 5);
 					}
 
 					currentSlot++;
@@ -223,7 +229,7 @@ public abstract class AbstractInventory
 	/**
 	 * @return This inventory
 	 */
-	public Slot[] getInventory()
+	public final Slot[] getInventory()
 	{
 		return inventory;
 	}
@@ -246,15 +252,15 @@ public abstract class AbstractInventory
 	/**
 	 * @return true if any inventory is open, false otherwise
 	 */
-	public static boolean isInventoryOpen()
+	public static final boolean isInventoryOpen()
 	{
-		return inventoryOpen;
+		return openInventory != null;
 	}
 	
 	/**
 	 * @return true if this inventory is open, false otherwise
 	 */
-	public boolean isOpen()
+	public final boolean isOpen()
 	{
 		return isOpen;
 	}
@@ -262,25 +268,25 @@ public abstract class AbstractInventory
 	/**
 	 * Opens this inventory
 	 */
-	public void open()
+	public final void open()
 	{
-		if(inventoryOpen)
+		if(isInventoryOpen())
 			return;
 		
-		inventoryOpen = true;
 		isOpen = true;
+		openInventory = this;
 	}
 
 	/**
 	 * Closes this inventory
 	 */
-	public void close()
+	public final void close()
 	{
-		if(!inventoryOpen)
+		if(!isInventoryOpen())
 			return;
 
-		inventoryOpen = false;
 		isOpen = false;
+		openInventory = null;
 	}
 	
 	//vvvvvvvv navigation within inventory vvvvvvvv

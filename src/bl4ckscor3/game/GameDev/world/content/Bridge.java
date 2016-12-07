@@ -8,7 +8,7 @@ import bl4ckscor3.game.gamedev.world.Chunk;
 public class Bridge extends PlaceableObject
 {
 	/** The path of the bridge textures*/
-	private static final String texturePath = "objects/bridge/";
+	public static final String texturePath = "objects/bridge/";
 	
 	/**
 	 * Sets up an object that can be placed in the world

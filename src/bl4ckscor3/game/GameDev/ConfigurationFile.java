@@ -12,9 +12,6 @@ import org.apache.commons.io.FileUtils;
 
 import bl4ckscor3.game.gamedev.util.Utilities;
 
-/**
- * Use the -update command to let a new configuration take place
- */
 public class ConfigurationFile
 {
 	public File file;
@@ -32,7 +29,8 @@ public class ConfigurationFile
 			"right=39",
 			"place=32",
 			"destroy=16",
-			"inventory=67",
+			"inventory=73",
+			"crafting=67",
 			"jesus=17"
 	};
 

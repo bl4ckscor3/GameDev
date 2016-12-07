@@ -3,6 +3,7 @@ package bl4ckscor3.game.gamedev.game;
 import java.util.Random;
 
 import bl4ckscor3.game.gamedev.entity.Player;
+import bl4ckscor3.game.gamedev.inventory.CraftingInventory;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.world.Map;
@@ -21,10 +22,14 @@ public class Game
 	public static int mousePosX;
 	/** The current Y position of the mouse cursor*/
 	public static int mousePosY;
+	/** The inventory of crafting */
+	public static CraftingInventory crafting;
 	
 	public Game(int seed)
 	{
 		player = new Player();
+		CraftingInventory.setupRecipes();
+		crafting = new CraftingInventory(7, 9, 0);
 		map = new Map(seed);
 		//spawning of the entities
 		map.spawnEntity(player, 0, 0);

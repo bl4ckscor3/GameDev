@@ -4,9 +4,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import bl4ckscor3.game.gamedev.game.Controls;
 import bl4ckscor3.game.gamedev.game.Game;
 import bl4ckscor3.game.gamedev.game.Screen;
+import bl4ckscor3.game.gamedev.game.content.Controls;
+import bl4ckscor3.game.gamedev.inventory.AbstractInventory;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.menu.settings.ControlsMenu;
@@ -16,7 +17,7 @@ public class Key implements KeyListener
 {
 	public static CopyOnWriteArrayList<Integer> keysPressed = new CopyOnWriteArrayList<Integer>();
 	public static ControlsMenu cm;
-	
+
 	@Override
 	public void keyTyped(KeyEvent event){}
 
@@ -24,7 +25,7 @@ public class Key implements KeyListener
 	public void keyPressed(KeyEvent event)
 	{
 		int key = event.getKeyCode();
-		
+
 		//adding the currently pressed key(s) to the list
 		if(!keysPressed.contains(key))
 			keysPressed.add(key);
@@ -69,14 +70,21 @@ public class Key implements KeyListener
 					Menu.setStateToLast();
 			}
 		}
-		else if(key == Controls.INVENTORY)
+		else if(!Menu.isOpen()) //disallow inventoríes to be opened when paused
 		{
-			if(!Menu.isOpen()) //disallow inventory to be opened when paused
+			if(key == Controls.INVENTORY)
 			{
 				if(Game.player.getInventory().isOpen())
 					Game.player.getInventory().close();
 				else
 					Game.player.getInventory().open();
+			}
+			else if(key == Controls.CRAFTING)
+			{
+				if(Game.crafting.isOpen())
+					Game.crafting.close();
+				else
+					Game.crafting.open();
 			}
 		}
 		else
@@ -84,29 +92,29 @@ public class Key implements KeyListener
 			if(Menu.getState() == GameState.SEED)
 				SeedMenu.onKeyPressed(key);
 		}
-		
-		if(Game.player != null && Game.player.getInventory().isOpen())
+
+		if(Game.player != null && AbstractInventory.isInventoryOpen())
 		{
 			if(key == KeyEvent.VK_UP)
 			{
 				if(keysPressed.contains(KeyEvent.VK_SHIFT))
-					Game.player.getInventory().modifyStack(key);
+					AbstractInventory.openInventory.modifyStack(key);
 				else
-					Game.player.getInventory().up();
+					AbstractInventory.openInventory.up();
 			}
 			else if(key == KeyEvent.VK_LEFT)
-				Game.player.getInventory().left();
+				AbstractInventory.openInventory.left();
 			else if(key == KeyEvent.VK_DOWN)
 			{
 				if(keysPressed.contains(KeyEvent.VK_SHIFT))
-					Game.player.getInventory().modifyStack(key);
+					AbstractInventory.openInventory.modifyStack(key);
 				else
-					Game.player.getInventory().down();
+					AbstractInventory.openInventory.down();
 			}
 			else if(key == KeyEvent.VK_RIGHT)
-				Game.player.getInventory().right();
+				AbstractInventory.openInventory.right();
 			else if(key == KeyEvent.VK_ENTER)
-				Game.player.getInventory().selectCurrentSlot();
+				AbstractInventory.openInventory.selectCurrentSlot();
 		}
 		else if(Menu.isOpen())
 		{

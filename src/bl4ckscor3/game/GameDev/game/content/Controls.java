@@ -1,4 +1,4 @@
-package bl4ckscor3.game.gamedev.game;
+package bl4ckscor3.game.gamedev.game.content;
 
 import bl4ckscor3.game.gamedev.Main;
 
@@ -11,6 +11,7 @@ public class Controls
 	public static int PLACE;
 	public static int DESTROY;
 	public static int INVENTORY;
+	public static int CRAFTING;
 	public static int JESUS;
 	
 	/**
@@ -62,7 +63,13 @@ public class Controls
 		
 		if(controls[7] != 0)
 		{
-			JESUS = controls[7];
+			CRAFTING = controls[7];
+			Main.config.set("crafting", "" + CRAFTING);
+		}
+		
+		if(controls[8] != 0)
+		{
+			JESUS = controls[8];
 			Main.config.set("jesus", "" + JESUS);
 		}
 	}
@@ -72,7 +79,7 @@ public class Controls
 	 */
 	public static int[] getControls()
 	{
-		return new int[]{UP, LEFT, DOWN, RIGHT, PLACE, DESTROY, INVENTORY, JESUS};
+		return new int[]{UP, LEFT, DOWN, RIGHT, PLACE, DESTROY, INVENTORY, CRAFTING, JESUS};
 	}
 	
 	/**
@@ -87,6 +94,7 @@ public class Controls
 				Main.config.getInt("place"),
 				Main.config.getInt("destroy"),
 				Main.config.getInt("inventory"),
+				Main.config.getInt("crafting"),
 				Main.config.getInt("jesus"));
 	}
 }

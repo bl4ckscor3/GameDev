@@ -11,4 +11,5 @@ right=39
 place=32
 destroy=16
 inventory=73
+crafting=67
 jesus=17

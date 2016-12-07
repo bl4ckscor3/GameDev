@@ -8,7 +8,7 @@ import java.awt.Point;
 import java.awt.event.KeyEvent;
 
 import bl4ckscor3.game.gamedev.Main;
-import bl4ckscor3.game.gamedev.game.Controls;
+import bl4ckscor3.game.gamedev.game.content.Controls;
 import bl4ckscor3.game.gamedev.menu.GameState;
 import bl4ckscor3.game.gamedev.menu.IMenu;
 import bl4ckscor3.game.gamedev.menu.Menu;
@@ -27,6 +27,7 @@ public class ControlsMenu implements IMenu
 			"Place objects:",
 			"Destroy objects:",
 			"Inventory: ",
+			"Crafting: ",
 			"Jesus:"
 	};
 	
