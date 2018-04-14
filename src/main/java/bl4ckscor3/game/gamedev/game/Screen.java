@@ -10,7 +10,7 @@ import bl4ckscor3.game.gamedev.listener.Key;
 import bl4ckscor3.game.gamedev.menu.Menu;
 import bl4ckscor3.game.gamedev.util.DebugUI;
 
-public class Screen extends JPanel 
+public class Screen extends JPanel
 {
 	public static float pixelSize = 2.5F;
 	public static int tileSize = 16;
@@ -25,9 +25,6 @@ public class Screen extends JPanel
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		//clears screen
-		g.clearRect(0, 0, 1920, 1080);
-		
 		if(Game.map != null)
 			Game.map.render(g);
 
@@ -48,9 +45,9 @@ public class Screen extends JPanel
 				if(inv.isOpen())
 					inv.render(g);
 			}
-			
+
 			if(displayDebug)
-				DebugUI.displayDebugUI(g);	
+				DebugUI.displayDebugUI(g);
 		}
 	}
 }
